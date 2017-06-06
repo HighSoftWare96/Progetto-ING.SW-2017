@@ -1,13 +1,16 @@
 /**
  * 
  */
-package it.RGB.is.Classes;
+package it.RGB.is.Tests.Classes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.util.HashSet;
 
 import org.junit.Test;
+
+import it.RGB.is.Classes.BancaUtenti;
+import it.RGB.is.Classes.Cliente;
 
 /**
  * @author Edoardo

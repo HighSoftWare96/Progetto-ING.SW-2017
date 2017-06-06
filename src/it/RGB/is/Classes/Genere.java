@@ -19,7 +19,7 @@ public enum Genere {
 		case WORLD_MUSIC:
 			return "World Music";
 		case POP:
-			return "POP";
+			return "Pop";
 		default:
 			return "";
 		}

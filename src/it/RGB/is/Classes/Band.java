@@ -2,6 +2,10 @@ package it.RGB.is.Classes;
 
 public class Band extends ArtistaGenerico {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2180832719975689255L;
 	private Artista[] componenti;
 
 	/**

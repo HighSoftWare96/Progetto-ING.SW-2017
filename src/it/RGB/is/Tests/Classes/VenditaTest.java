@@ -1,10 +1,10 @@
-package it.RGB.is.Classes;
-
-import static org.junit.Assert.*;
+package it.RGB.is.Tests.Classes;
 
 import java.util.Date;
 
 import org.junit.Test;
+
+import it.RGB.is.Classes.Vendita;
 
 public class VenditaTest {
 

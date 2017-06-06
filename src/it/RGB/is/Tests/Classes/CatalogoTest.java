@@ -1,8 +1,8 @@
-package it.RGB.is.Classes;
-
-import static org.junit.Assert.*;
+package it.RGB.is.Tests.Classes;
 
 import org.junit.Test;
+
+import it.RGB.is.Classes.Catalogo;
 
 public class CatalogoTest {
 

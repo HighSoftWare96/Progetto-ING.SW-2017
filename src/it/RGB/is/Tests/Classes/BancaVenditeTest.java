@@ -1,9 +1,11 @@
 /**
  * 
  */
-package it.RGB.is.Classes;
+package it.RGB.is.Tests.Classes;
 
 import org.junit.Test;
+
+import it.RGB.is.Classes.BancaVendite;
 
 /**
  * @author Edoardo

@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class Artista extends ArtistaGenerico {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3001273989197795597L;
 	private String nomeBattesimo;
 	private Date dataNascita;
 	private Strumento[] strumenti;

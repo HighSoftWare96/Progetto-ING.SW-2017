@@ -1,6 +1,10 @@
-package it.RGB.is.Classes;
+package it.RGB.is.Tests.Classes;
 
 import org.junit.Test;
+
+import it.RGB.is.Classes.Cart;
+import it.RGB.is.Classes.ModConsegna;
+import it.RGB.is.Classes.Prodotto;
 
 public class CartTest {		//??????????????????????
 

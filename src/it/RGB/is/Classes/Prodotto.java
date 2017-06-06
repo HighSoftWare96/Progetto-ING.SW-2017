@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
-import javax.xml.crypto.dsig.keyinfo.PGPData;
 
 public class Prodotto implements Serializable {
 
