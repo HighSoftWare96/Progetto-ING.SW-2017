@@ -15,7 +15,7 @@ public class MainFrameMenu extends JMenuBar {
 	private static final long serialVersionUID = 1L;
 	static JMenu sellMenu = new JMenu("Acquisti");
 	static JMenu userMenu = new JMenu("Account");
-	static JMenu helpMenu = new JMenu("Help");
+	static JMenu helpMenu = new JMenu("Informazioni");
 	static JLabel logInUser = new JLabel();
 
 	static JMenuItem logOpt = new JMenuItem("Log in...");
@@ -25,7 +25,7 @@ public class MainFrameMenu extends JMenuBar {
 	static JMenuItem suggestedOpt = new JMenuItem("Visualizza suggerimenti");
 	static JMenuItem discountsOpt = new JMenuItem("I miei sconti");
 	static JMenuItem usrDetails = new JMenuItem("Dettagli utente");
-	static JMenuItem aboutOpt = new JMenuItem("About");
+	static JMenuItem aboutOpt = new JMenuItem("Su...");
 
 	public MainFrameMenu() {
 
