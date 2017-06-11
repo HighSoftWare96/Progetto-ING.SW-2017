@@ -1,9 +1,7 @@
 package it.RGB.is.Classes;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
@@ -25,25 +23,12 @@ public class AAAMain {
 
 	private static void initializeStore() {
 
-		Catalogo catalogo = null;
-		BancaUtenti bancaUtenti = null;
-		Cart carrello = null;
-		BancaVendite vendite = null;
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		Cart.initialize();
+		BancaVendite.initialize();
 
 		// data structures
-		try {
-			catalogo = new Catalogo();
-			bancaUtenti = new BancaUtenti();
-			carrello = new Cart();
-			vendite = new BancaVendite();
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,
-					"Errore critico nell'inizializzazione delle strutture dati. Vedere file di report per dettagli.",
-					"Errore", JOptionPane.ERROR_MESSAGE);
-			// TODO: rivedere
-			printErrToFile(e.getStackTrace().toString());
-			System.exit(-1);
-		}
 
 		// data testing
 		Artista steveLukather = new Artista("Steve Lukather", Genere.ROCK, "Steve Lukather", new Date(),
@@ -77,34 +62,41 @@ public class AAAMain {
 		Catalogo.addItem(totoXIV2);
 	}
 
-	public static void printErrToFile(String stackTrace) {
+	public static void criticalErrorPrintToFile(String message, StackTraceElement[] errors) {
+
+		JOptionPane.showMessageDialog(null, "<html>Errore critico di IO delle strutture dati.<br>"
+				+ message + "<br>Vedere file di report per dettagli.", "Errore", JOptionPane.ERROR_MESSAGE);
+
+		String stackTrace = message + "\nSTACK TRACE:\n";
+
+		for (StackTraceElement item : errors) {
+			stackTrace += item.toString();
+		}
+
 		try {
 
-			//directory file output
-			String filePath = "music_store_file//errors/";
-			File directory = new File(filePath);
-			if (! directory.exists()) {
-				directory.mkdir();
-			}
-
-			//file output
-			String fileNameToFormat = "error_dump_";
-			String completeFileName = "error_dump_1.txt";
-			int counter = 2;
+			// file output
+			String fileNameToFormat = "music_store_file//errors//error_dump_";
+			String completeFileName = "music_store_file//errors//error_dump_0.txt";
+			int counter = 1;
 			File file = new File(completeFileName);
-
 
 			// incremento e cambio il nome del file finchè ne trovo un file
 			// uguale
+
 			while (file.exists()) {
 				completeFileName = fileNameToFormat + counter + ".txt";
 				counter++;
 				file = new File(completeFileName);
 			}
 
-			PrintWriter outputToFile = new PrintWriter("music_store_file//errors//" + completeFileName, "UTF-8");
-			outputToFile.println(stackTrace);
+			// creazione directories
+			file.getParentFile().mkdirs();
+
+			PrintWriter outputToFile = new PrintWriter(file, "UTF-8");
+			outputToFile.println(new Date() + "\n" + stackTrace);
 			outputToFile.close();
+
 		} catch (Exception e) {
 		}
 	}

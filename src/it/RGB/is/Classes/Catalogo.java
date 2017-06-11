@@ -21,40 +21,31 @@ import it.RGB.is.GUI.GUIMain;
 public class Catalogo implements Serializable {
 
 	private static final long serialVersionUID = 3336345341426740830L;
-	private final static File catalogoFile = new File("music_store_file//catalogo.dat");
+	private static final File catalogoFile = new File("music_store_file//catalogo.dat");
 	private static HashSet<Prodotto> strutturaDati;
 	private static int availableID;
 
-	/**
-	 * Default constructor
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
-	 */
-	public Catalogo() throws IOException, ClassNotFoundException {
-		if (catalogoFile.exists()) {
-			// recupero i dati
-			// file di input
-			FileInputStream inputFile = new FileInputStream(catalogoFile);
-			// creazione dello stream di byte da ricevere
-			ObjectInputStream streamInput = new ObjectInputStream(inputFile);
-			// recupero l'array list dal file e lo salvo nell'arraylist
-			// attuale del programma
-			strutturaDati = (HashSet<Prodotto>) streamInput.readObject();
-			streamInput.close();
-		} else // creo il catalogo da zero
-			strutturaDati = new HashSet<>();
+	public static void initialize() {
+		try {
+			if (catalogoFile.exists()) {
+				// recupero i dati
+				// file di input
+				FileInputStream inputFile = new FileInputStream(catalogoFile);
+				// creazione dello stream di byte da ricevere
+				ObjectInputStream streamInput = new ObjectInputStream(inputFile);
+				// recupero l'array list dal file e lo salvo nell'arraylist
+				// attuale del programma
+				strutturaDati = (HashSet<Prodotto>) streamInput.readObject();
+				streamInput.close();
+			} else // creo il catalogo da zero
+				strutturaDati = new HashSet<>();
+		} catch (Exception e) {
+			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			System.exit(-1);
+		}
 	}
 
-	public Iterator<Prodotto> iterator() {
-		// TODO implement here
-		return strutturaDati.iterator();
-	}
-
-	/**
-	 * @param Prodotto
-	 */
 	public static void addItem(Prodotto prodotto) {
-		// TODO implement here
 		strutturaDati.add(prodotto);
 	}
 
@@ -73,14 +64,6 @@ public class Catalogo implements Serializable {
 		strutturaDati.remove(prodotto);
 	}
 
-	/**
-	 * @param Field
-	 */
-	public HashSet<Prodotto> searchFor(SearchMod field, Object key) {
-		// TODO implement here
-		return null;
-	}
-
 	public static int getUniqueID() {
 		return availableID++;
 	}
@@ -96,7 +79,7 @@ public class Catalogo implements Serializable {
 				catalogoFile.getParentFile().mkdirs();
 				catalogoFile.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
 			}
 		}
 
@@ -117,8 +100,7 @@ public class Catalogo implements Serializable {
 			outToFile.close();
 
 		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
 		}
 
 	}

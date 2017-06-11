@@ -19,14 +19,11 @@ public class BancaUtenti implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8289777747322280430L;
-	private final static File utentiFile = new File("music_store_file//utenti.dat");
+	private static final File utentiFile = new File("music_store_file//utenti.dat");
 	private static HashSet<Cliente> strutturaUtenti;
 	private static Cliente clienteLoggato = null;
 
-	/**
-	 * Default constructor
-	 */
-	public BancaUtenti() {
+	public static void initialize(){
 		if (utentiFile.exists()) {
 			// recupero i dati
 			try {
@@ -39,20 +36,15 @@ public class BancaUtenti implements Serializable {
 				strutturaUtenti = (HashSet<Cliente>) streamInput.readObject();
 				streamInput.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				System.exit(-1);
 			}
 		} else // creo il catalogo da zero
 			strutturaUtenti = new HashSet<>();
 
 	}
 
-	public Iterator<Cliente> iterator() {
-		// TODO implement here
-		return strutturaUtenti.iterator();
-	}
-
 	public static void addItem(Cliente cliente) {
-		// TODO implement here
 		strutturaUtenti.add(cliente);
 	}
 
@@ -89,7 +81,7 @@ public class BancaUtenti implements Serializable {
 				utentiFile.getParentFile().mkdirs();
 				utentiFile.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
 			}
 		}
 
@@ -110,8 +102,7 @@ public class BancaUtenti implements Serializable {
 			outToFile.close();
 
 		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
 		}
 
 	}

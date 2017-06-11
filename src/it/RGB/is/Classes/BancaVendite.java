@@ -16,10 +16,7 @@ public class BancaVendite {
 	private static ArrayList<Vendita> strutturaVendite;
 	private final static File venditeFile = new File("music_store_file//vendite.dat");
 
-	/**
-	 * Default constructor
-	 */
-	public BancaVendite() {
+	public static void initialize() {
 		if (venditeFile.exists()) {
 			// recupero i dati
 			try {
@@ -32,17 +29,14 @@ public class BancaVendite {
 				strutturaVendite = (ArrayList<Vendita>) streamInput.readObject();
 				streamInput.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				System.exit(-1);
 			}
 		} else // creo il catalogo da zero
 			strutturaVendite = new ArrayList<>();
 	}
 
-	/**
-	 * @param Vendita
-	 */
 	public static void addItem(Vendita vendita) {
-		// TODO implement here
 		strutturaVendite.add(vendita);
 	}
 
@@ -53,7 +47,7 @@ public class BancaVendite {
 				venditeFile.getParentFile().mkdirs();
 				venditeFile.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
 			}
 		}
 
@@ -74,8 +68,7 @@ public class BancaVendite {
 			outToFile.close();
 
 		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
 		}
 
 	}
