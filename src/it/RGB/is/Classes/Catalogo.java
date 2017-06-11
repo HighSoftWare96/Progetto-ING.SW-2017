@@ -2,6 +2,7 @@ package it.RGB.is.Classes;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,22 +27,20 @@ public class Catalogo implements Serializable {
 
 	/**
 	 * Default constructor
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public Catalogo() {
+	public Catalogo() throws IOException, ClassNotFoundException {
 		if (catalogoFile.exists()) {
 			// recupero i dati
-			try {
-				// file di input
-				FileInputStream inputFile = new FileInputStream(catalogoFile);
-				// creazione dello stream di byte da ricevere
-				ObjectInputStream streamInput = new ObjectInputStream(inputFile);
-				// recupero l'array list dal file e lo salvo nell'arraylist
-				// attuale del programma
-				strutturaDati = (HashSet<Prodotto>) streamInput.readObject();
-				streamInput.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			// file di input
+			FileInputStream inputFile = new FileInputStream(catalogoFile);
+			// creazione dello stream di byte da ricevere
+			ObjectInputStream streamInput = new ObjectInputStream(inputFile);
+			// recupero l'array list dal file e lo salvo nell'arraylist
+			// attuale del programma
+			strutturaDati = (HashSet<Prodotto>) streamInput.readObject();
+			streamInput.close();
 		} else // creo il catalogo da zero
 			strutturaDati = new HashSet<>();
 	}
@@ -54,7 +53,7 @@ public class Catalogo implements Serializable {
 	/**
 	 * @param Prodotto
 	 */
-	public void addItem(Prodotto prodotto) {
+	public static void addItem(Prodotto prodotto) {
 		// TODO implement here
 		strutturaDati.add(prodotto);
 	}
