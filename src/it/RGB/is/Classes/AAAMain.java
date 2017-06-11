@@ -94,7 +94,7 @@ public class AAAMain {
 			File file = new File(completeFileName);
 
 
-			// incremento e cambio il nome del file finchï¿½ ne trovo un file
+			// incremento e cambio il nome del file finchè ne trovo un file
 			// uguale
 			while (file.exists()) {
 				completeFileName = fileNameToFormat + counter + ".txt";
