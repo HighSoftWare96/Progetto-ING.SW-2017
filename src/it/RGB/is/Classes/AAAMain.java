@@ -79,12 +79,22 @@ public class AAAMain {
 
 	public static void printErrToFile(String stackTrace) {
 		try {
+
+			//directory file output
+			String filePath = "music_store_file//errors/";
+			File directory = new File(filePath);
+			if (! directory.exists()) {
+				directory.mkdir();
+			}
+
+			//file output
 			String fileNameToFormat = "error_dump_";
 			String completeFileName = "error_dump_1.txt";
 			int counter = 2;
 			File file = new File(completeFileName);
 
-			// incremento e cambio il nome del file finchè ne trovo un file
+
+			// incremento e cambio il nome del file finchï¿½ ne trovo un file
 			// uguale
 			while (file.exists()) {
 				completeFileName = fileNameToFormat + counter + ".txt";
