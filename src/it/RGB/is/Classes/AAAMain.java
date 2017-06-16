@@ -53,10 +53,13 @@ public class AAAMain {
 				new Band("Toto", Genere.ROCK, new Artista[] {}), "Gran bel album", Genere.ROCK,
 				new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
 
-		Cliente edoardo = new Cliente("ASHDGUOASDGOLASGYDA", "EdoGimo96", "password", "Edoardo", "Righi",
-				"Bussolengo City", "12312312364");
+		try {
+			Cliente edoardo = new Cliente("ASHDGUOASDGOLASGYDA", "EdoGimo96", "password", "Edoardo", "Righi",
+					"Bussolengo City", "12312312364", null);
+			BancaUtenti.addItem(edoardo);
+		} catch (Exception e) {
 
-		BancaUtenti.addItem(edoardo);
+		}
 
 		Catalogo.addItem(totoXIV);
 		Catalogo.addItem(totoXIV2);
@@ -64,8 +67,8 @@ public class AAAMain {
 
 	public static void criticalErrorPrintToFile(String message, StackTraceElement[] errors) {
 
-		JOptionPane.showMessageDialog(null, "<html>Errore critico di IO delle strutture dati.<br>"
-				+ message + "<br>Vedere file di report per dettagli.", "Errore", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "<html>Errore critico di IO delle strutture dati.<br>" + message
+				+ "<br>Vedere file di report per dettagli.", "Errore", JOptionPane.ERROR_MESSAGE);
 
 		String stackTrace = message + "\nSTACK TRACE:\n";
 

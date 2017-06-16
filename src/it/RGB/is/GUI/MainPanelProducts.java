@@ -43,6 +43,7 @@ public class MainPanelProducts extends JPanel {
 	}
 
 	private void adjustTable(JTable table) {
+		table.setToolTipText("Doppio click per dettagli");
 		// fisso altezza righe
 		table.setRowHeight(table.getRowHeight() + 82);
 		// selezione singola

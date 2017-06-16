@@ -13,6 +13,7 @@ import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.SearchMod;
+import it.RGB.is.Exceptions.IllegalUserRegistration;
 
 public final class Controller {
 
@@ -68,7 +69,9 @@ public final class Controller {
 		MainFrameMenu.suggestedOpt.setEnabled(true);
 		MainFrameMenu.discountsOpt.setEnabled(true);
 
-		MainFrameMenu.logInUser.setText("Benvenuto " + BancaUtenti.getLoggedInUser().getUsername()); //Logged in as:
+		MainFrameMenu.logInUser.setText("Benvenuto " + BancaUtenti.getLoggedInUser().getUsername()); // Logged
+																										// in
+																										// as:
 		MainFrameMenu.logInUser.setVisible(true);
 
 		// per gli altri pannelli
@@ -173,6 +176,7 @@ public final class Controller {
 			} else {
 				JOptionPane.showMessageDialog(GUIMain.getFrame(), "Parametri di ricerca scorretti", "Ricerca",
 						JOptionPane.ERROR_MESSAGE);
+				MainPanelButtons.flushSearch();
 			}
 			break;
 		default:
@@ -264,37 +268,33 @@ public final class Controller {
 
 	// REGISTERFRAMELISTENER
 	public static void registerConfirm(RegisterFrame registerFrame) {
-		if (registerFrame.checkCorrectData()) {
 
-			Cliente newUser;
+		Cliente newUser = null;
 
-			if (registerFrame.cellText.getText().equals("")
-					|| registerFrame.cellText.getText().equalsIgnoreCase("Opzionale")) { // non
-																							// ha
-				// inserito
-				// il num di
-				// telefono
-				newUser = new Cliente(registerFrame.cFText.getText(), registerFrame.userText.getText(),
-						new String(registerFrame.passwordText.getPassword()), registerFrame.nameText.getText(),
-						registerFrame.surnameText.getText(), registerFrame.cityText.getText(),
-						registerFrame.telText.getText());
-
-			} else {
-				newUser = new Cliente(registerFrame.cFText.getText(), registerFrame.userText.getText(),
-						new String(registerFrame.passwordText.getPassword()), registerFrame.nameText.getText(),
-						registerFrame.surnameText.getText(), registerFrame.cityText.getText(),
-						registerFrame.telText.getText(), registerFrame.cellText.getText());
-			}
-			// inserisco il nuovo utente nel database
-			BancaUtenti.addItem(newUser);
-			// faccio il login
-			setLoggedIn(newUser);
-
-			JOptionPane.showMessageDialog(registerFrame, "Registrazione avvenuta con successo!", "Benvenuto!",
-					JOptionPane.INFORMATION_MESSAGE);
-			// completamento
-			registerFrame.disposeWithSuccess();
+		try {
+			newUser = new Cliente(registerFrame.cFText.getText(), registerFrame.userText.getText(),
+					new String(registerFrame.passwordText.getPassword()), registerFrame.nameText.getText(),
+					registerFrame.surnameText.getText(), registerFrame.cityText.getText(),
+					registerFrame.telText.getText(), registerFrame.cellText.getText());
+			registerFrame.checkPswsMatch();
+		} catch (IllegalUserRegistration e) {
+			Toolkit.getDefaultToolkit().beep();
+			JOptionPane.showMessageDialog(GUIMain.getFrame(), e.getMessage(), "Errore registrazione",
+					JOptionPane.ERROR_MESSAGE);
+			registerFrame.setErrorLayout(e.getMessage());
+			return;
 		}
+
+		// inserisco il nuovo utente nel database
+		BancaUtenti.addItem(newUser);
+		// faccio il login
+		setLoggedIn(newUser);
+
+		JOptionPane.showMessageDialog(registerFrame, "Registrazione avvenuta con successo!", "Benvenuto!",
+				JOptionPane.INFORMATION_MESSAGE);
+		// completamento
+		registerFrame.disposeWithSuccess();
+
 	}
 
 	// TABLESSELECTIONLISTENER

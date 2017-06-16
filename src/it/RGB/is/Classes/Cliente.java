@@ -1,9 +1,14 @@
 package it.RGB.is.Classes;
 
+import java.awt.Toolkit;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import javax.swing.JOptionPane;
+
+import it.RGB.is.Exceptions.IllegalUserRegistration;
 
 public class Cliente implements Serializable {
 
@@ -24,7 +29,9 @@ public class Cliente implements Serializable {
 
 	// costruttore SENZA numeroCell
 	public Cliente(String codiceFiscale, String nomeUtente, String password, String nome, String cognome, String city,
-			String numeroTel) {
+			String numeroTel, String numeroCell) throws IllegalUserRegistration {
+
+		checkCorrectData(codiceFiscale, nomeUtente, password, nome, cognome, city, numeroTel, numeroCell);
 
 		this.codiceFiscale = codiceFiscale;
 		this.nomeUtente = nomeUtente;
@@ -34,15 +41,37 @@ public class Cliente implements Serializable {
 		this.city = city;
 		this.numeroTel = numeroTel;
 
+		if (numeroCell != null && !numeroCell.equals(""))
+			this.numeroCell = numeroCell;
+
 		this.acquisti = new ArrayList<>();
 	}
 
-	// costruttore CON numeroCell
-	public Cliente(String codiceFiscale, String nomeUtente, String password, String nome, String cognome, String city,
-			String numeroTel, String numeroCell) {
+	private void checkCorrectData(String codiceFiscale, String nomeUtente, String password, String nome, String cognome,
+			String city, String numeroTel, String numeroCell) throws IllegalUserRegistration {
 
-		this(codiceFiscale, nomeUtente, password, nome, cognome, city, numeroTel);
-		this.numeroCell = numeroCell;
+		// controllo validità parametri
+		if (codiceFiscale == null || nomeUtente == null || password == null || nome == null || cognome == null
+				|| city == null || numeroTel == null || codiceFiscale.equals("") || nomeUtente.equals("")
+				|| password.equals("") || nome.equals("") || cognome.equals("") || city.equals("")
+				|| numeroTel.equals(""))
+			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_EMPTY_FIELDS);
+
+		else if (nomeUtente.contains(" ")) {
+			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_USRNM_SPACES);
+		} else if (!codiceFiscale.equals(codiceFiscale.toUpperCase())
+				|| !codiceFiscale.matches("^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$")) {
+			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_CF_SINTAX);
+		} else if (!numeroTel.matches("[0-9]+")) {
+			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_TEL_ERROR);
+		} else if (numeroCell != null) {
+			if (!numeroCell.matches("[0-9]+") && !numeroCell.equals(""))
+				throw new IllegalUserRegistration(IllegalUserRegistration.MSG_CELL_ERROR);
+		} else if (password.length() <= 5) {
+			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_PSW_LOW);
+		} else if (BancaUtenti.userNameExists(nomeUtente)) {
+			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_USRNM_USED);
+		}
 	}
 
 	public void addVendita(Vendita vendita) {

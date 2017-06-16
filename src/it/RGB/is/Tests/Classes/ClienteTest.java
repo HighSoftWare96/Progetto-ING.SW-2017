@@ -11,13 +11,18 @@ import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Vendita;
+import it.RGB.is.Exceptions.IllegalUserRegistration;
 
 public class ClienteTest {
 	private Cliente clienteOnTesting;
 
 	public ClienteTest() {
-		clienteOnTesting = new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli", "Verona",
-				"000000000000");
+		try {
+			clienteOnTesting = new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli",
+					"Verona", "000000000000", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	@Test
@@ -83,25 +88,25 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testEquals() {
+	public void testEquals() throws IllegalUserRegistration {
 		Cliente clienteForEquals = new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli",
-				"Verona", "000000000000");
+				"Verona", "000000000000", null);
 		Assert.assertTrue(clienteForEquals.equals(clienteOnTesting));
 		Assert.assertTrue(clienteForEquals.hashCode() == clienteOnTesting.hashCode());
 		clienteForEquals = new Cliente("BRTGNN96T21B2N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli", "Verona",
-				"000000000000");
+				"000000000000", null);
 		Assert.assertTrue(clienteForEquals.equals(clienteOnTesting));
 		Assert.assertTrue(clienteForEquals.hashCode() == clienteOnTesting.hashCode());
 		clienteForEquals = new Cliente("BRTGNN96T21B296N", "bertonc95", "ciao123", "Giovanni", "Bertoncelli", "Verona",
-				"000000000000");
+				"000000000000", null);
 		Assert.assertFalse(clienteForEquals.equals(clienteOnTesting));
 		Assert.assertFalse(clienteForEquals.hashCode() == clienteOnTesting.hashCode());
 	}
 
 	@Test
 	public void testDiscounts() {
-		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 }, 250,
-				new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
+		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 },
+				250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
