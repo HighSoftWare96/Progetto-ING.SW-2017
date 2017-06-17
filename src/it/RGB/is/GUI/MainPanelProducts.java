@@ -33,9 +33,14 @@ public class MainPanelProducts extends JPanel {
 		productsTable = new JTable(productsTableModel);
 		productsPanel = new JScrollPane(productsTable);
 
-		// IMPOSTO GESTORE EVENTI DELLA TABELLE
-		productsTable.addMouseListener(new MainTableListener(this));
-
+		// IMPOSTO GESTORE EVENTI DELLA TABELLE (sia per la selezione sia per il mouse)
+		MainTableProductsListener tableListener = new MainTableProductsListener(this);
+		
+		// mouse (click e doppio click)
+		productsTable.addMouseListener(tableListener);
+		// selezione e deselezione
+		productsTable.getSelectionModel().addListSelectionListener(tableListener);
+		
 		adjustTable(productsTable);
 
 		add(productsPanel);

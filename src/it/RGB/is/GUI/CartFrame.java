@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -69,8 +67,15 @@ public class CartFrame extends JDialog {
 		cartList = new JPanel(new GridLayout(1, 1));
 		cartList.setBorder(titleCartProduct);
 
-		cartItemsTable.addMouseListener(new CartTableListener());
+		// listener tabella (Mouse + selezione)
+		CartTableListener tableListener = new CartTableListener(this);
+		// mouse
+		cartItemsTable.addMouseListener(tableListener);
+		// listener per verificare se si deseleziona una casella
+		cartItemsTable.getSelectionModel().addListSelectionListener(tableListener);
 
+		
+		
 		ImageIcon emptyCartIcon = new ImageIcon(this.getClass().getResource("/resources/cart_empty_new.png"));
 		emptyCartIconLbl = new JLabel(emptyCartIcon);
 
@@ -83,8 +88,7 @@ public class CartFrame extends JDialog {
 
 		cartList.add(containerTable);
 
-		// listener per verificare se si deseleziona una casella
-		cartItemsTable.getSelectionModel().addListSelectionListener(new TablesSelectionListener(cartItemsTable, this));
+
 
 		// Pulsanti azione
 		removeCart = new JButton("Rimuovi articolo");
@@ -192,12 +196,12 @@ public class CartFrame extends JDialog {
 		}
 	}
 
-	public void enableSelectionBtn() {
+	public static void enableSelectionBtn() {
 		removeCart.setEnabled(true);
 		removeCart.setForeground(Color.decode("#990000"));
 	}
 
-	public void disableSelectionBtn() {
+	public static void disableSelectionBtn() {
 		removeCart.setEnabled(false);
 		removeCart.setForeground(null);
 	}
@@ -211,45 +215,18 @@ public class CartFrame extends JDialog {
 	public static int getSelectedID() {
 		return selectedID;
 	}
-
-	private class CartTableListener implements MouseListener {
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// qualcuno ha selezionato la riga
-			selectedID = (int) cartItemsTable.getValueAt(cartItemsTable.getSelectedRow(), 0);
-			enableSelectionBtn();
-		}
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			return;
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			return;
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			return;
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			return;
-		}
-
+	
+	public static void setSelectedID(int newID){
+		selectedID = newID;
 	}
-
+	
 	public static void setEmptyLayout() {
 		containerTable.setViewportView(emptyCartIconLbl);
 
+	}
+
+	public JTable getTable() {
+		return cartItemsTable;
 	}
 
 }

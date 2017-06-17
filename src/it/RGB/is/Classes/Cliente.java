@@ -1,12 +1,9 @@
 package it.RGB.is.Classes;
 
-import java.awt.Toolkit;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import javax.swing.JOptionPane;
 
 import it.RGB.is.Exceptions.IllegalUserRegistration;
 

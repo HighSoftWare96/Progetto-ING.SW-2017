@@ -297,25 +297,46 @@ public final class Controller {
 
 	}
 
-	// TABLESSELECTIONLISTENER
-	public static void tableValueChange(JTable table, Object frame) {
-		if (table.getSelectedRow() == -1) {
-			if (frame instanceof MainPanelSidebar) {
-				MainPanelSidebar productPanel = (MainPanelSidebar) frame;
-				productPanel.disableSelectionBtn();
-			} else if (frame instanceof CartFrame) {
-				CartFrame productPanel = (CartFrame) frame;
-				productPanel.disableSelectionBtn();
-			}
-		} else {
-			getSelectedItemFromTable(table);
+	// FUNZIONI PER LA SELEZIONE DELLE TABELLE
+	
+	// Tabella principale dei PRODOTTI
+	
+	public static void deselectedProductsTable(JTable tableView) {
+		// niente selezionato
+		if (tableView.getSelectedRow() == -1) {
+			// disabilito la selezione nella sidebar
+			MainPanelSidebar.disableSelectionBtn();
+		} else { // selezionato qualcosa
+			selectedProductsTable(tableView);
 		}
-	} 
+	}
 
-	private static void getSelectedItemFromTable(JTable tableView) {
+	public static void selectedProductsTable(JTable tableView) {
+		// è stato selezionato qualcosa imposto la sidebar
 		MainPanelSidebar.enableSelectionBtn();
 		int selectedID = (int) tableView.getValueAt(tableView.getSelectedRow(), 0);
 		MainPanelSidebar.setSelectedID(selectedID);
 	}
+	
+	
+	// Tabella del CARRELLO
+	
+	public static void deselectedCartTable(JTable tableView) {
+		// niente selezionato
+		if (tableView.getSelectedRow() == -1) {
+			// disabilito la selezione nel carrello
+			CartFrame.disableSelectionBtn();
+		} else { // selezionato qualcosa
+			selectedCartTable(tableView);
+		}		
+	}
+	
+	public static void selectedCartTable(JTable tableView){
+		// abilito e imposto l'id all'oggetto selezionato
+		CartFrame.setSelectedID((int) tableView.getValueAt(tableView.getSelectedRow(), 0));
+		CartFrame.enableSelectionBtn();
+	}
+
+
 
 }

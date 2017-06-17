@@ -74,7 +74,7 @@ public class MainPanelSidebar extends JPanel {
 		buyBtn.setEnabled(true);
 	}
 
-	public void disableSelectionBtn() {
+	public static void disableSelectionBtn() {
 		infoBtn.setEnabled(false);
 		buyBtn.setEnabled(false);
 	}

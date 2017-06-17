@@ -53,10 +53,6 @@ public class MainFrame extends JFrame {
 		mainFrameContainer.add(products, BorderLayout.CENTER);
 		mainFrameContainer.add(sidebar, BorderLayout.EAST);
 
-		// listener per verificare se si deseleziona una casella ===
-		products.getTable().getSelectionModel()
-				.addListSelectionListener(new TablesSelectionListener(products.getTable(), sidebar));
-
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new ExitListener());
 		setJMenuBar(mainFrameMenu);
@@ -102,5 +98,9 @@ public class MainFrame extends JFrame {
 
 	public static MainPanelProducts getPanelProducts() {
 		return products;
+	}
+
+	public static MainPanelSidebar getSidebar() {
+		return sidebar;
 	}
 }
