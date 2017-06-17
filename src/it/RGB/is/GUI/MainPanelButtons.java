@@ -170,6 +170,12 @@ public class MainPanelButtons extends JPanel {
 	public static void enableSearch(boolean enable) {
 		updateViewSearchBtn.setEnabled(!enable);
 		deleteSearch.setVisible(enable);
+		//per far si che bisogna cancellare la ricerca per modificare i Box o scrivere nel FIeld
+		searchField.setEnabled(!enable);
+		comboBoxSearch.setEnabled(!enable);
+		genereBoxSearch.setEnabled(!enable);
+		fromPrice.setEnabled(!enable);
+		toPrice.setEnabled(!enable);
 	}
 
 	public static void displayGenSearchLayout() {
