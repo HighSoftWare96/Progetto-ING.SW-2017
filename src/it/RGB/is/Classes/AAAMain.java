@@ -58,8 +58,8 @@ public class AAAMain {
 				new String[] { "Roar", "Legendary Lovers", "Birthday", "Unconditionally (feat. Juicy J)",
 						"This Is How We Do","International Smile", "Ghost", "Love Me", "This Moment",
 						"Double Rainbow", "By The Grace Of God" },
-				new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/prismcover.jpg")) },
-				new Band("Katy Perry", Genere.POP, new Artista[]{}), "18 ottobre 2013", Genere.POP,
+				new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/prismcover.jpg")) }, 
+				new Float(6.99), new Band("Katy Perry", Genere.POP, new Artista[]{}), "18 ottobre 2013", Genere.POP,
 				new Artista[] { katyPerry}, 100);
 
 
@@ -73,7 +73,7 @@ public class AAAMain {
 
 		Catalogo.addItem(totoXIV);
 		Catalogo.addItem(totoXIV2);
-		Catalogo.addItem(prism)
+		Catalogo.addItem(prism);
 	}
 
 	public static void criticalErrorPrintToFile(String message, StackTraceElement[] errors) {
