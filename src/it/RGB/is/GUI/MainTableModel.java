@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 import it.RGB.is.Classes.Catalogo;
+import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 
 public class MainTableModel extends AbstractTableModel {
@@ -98,7 +99,7 @@ public class MainTableModel extends AbstractTableModel {
 		case 5:
 			return String.class;
 		case 6:
-			return String.class;
+			return Genere.class;
 		case 7:
 			return String.class;
 		case 8:
