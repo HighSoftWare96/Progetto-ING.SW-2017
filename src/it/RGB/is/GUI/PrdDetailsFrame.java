@@ -36,7 +36,7 @@ public class PrdDetailsFrame extends JDialog {
 		JPanel firstPanel = new JPanel(new GridLayout(2, 1));
 
 		ImageIcon[] photos = prodotto.getPhotos();
-		JPanel imagesPanel = new JPanel(new GridLayout(photos.length, 1));
+		JPanel imagesPanel = new JPanel(new GridLayout(1, photos.length));
 
 		for (ImageIcon item : photos) {
 			imagesPanel.add(new JLabel(item, SwingConstants.CENTER));
@@ -78,16 +78,16 @@ public class PrdDetailsFrame extends JDialog {
 		genLabel.setFont(dataLabel.getFont().deriveFont(Font.BOLD));
 
 		fourthPanel.add(dataLabel);
-		fourthPanel.add(new JLabel("<html>" + prodotto.getDataArrivo().toString() + "<br><br>", SwingConstants.CENTER));
+		fourthPanel.add(new JLabel("<html>" + prodotto.getDataArrivo().toString() + "<br>", SwingConstants.CENTER));
 
 		fourthPanel.add(singerGroupLabel);
-		fourthPanel.add(new JLabel("<html>" + prodotto.getTitolare().toString() + "<br><br>", SwingConstants.CENTER));
+		fourthPanel.add(new JLabel("<html><center>" + prodotto.getTitolare().toString() + "<br>", SwingConstants.CENTER));
 
 		fourthPanel.add(descrlLabel);
-		fourthPanel.add(new JLabel("<html>" + prodotto.getDescrizione() + "<br><br>", SwingConstants.CENTER));
+		fourthPanel.add(new JLabel("<html>" + prodotto.getDescrizione() + "<br>", SwingConstants.CENTER));
 
 		fourthPanel.add(genLabel);
-		fourthPanel.add(new JLabel("<html>" + prodotto.getGenere().toString() + "<br><br>", SwingConstants.CENTER));
+		fourthPanel.add(new JLabel("<html>" + prodotto.getGenere().toString() + "<br>", SwingConstants.CENTER));
 
 		JPanel fifthPanel = new JPanel(new FlowLayout());
 		ArtistaGenerico[] artisti = prodotto.getPartecipanti();

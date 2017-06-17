@@ -68,7 +68,7 @@ public class MainTableModel extends AbstractTableModel {
 		case 3:
 			return "<html><p>" + item.getSongsTitles() + "</p></html>";
 		case 4:
-			return item.getTitolare().toString();
+			return "<html><center>" + item.getTitolare().toString() + "</html>";
 		case 5:
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
 			return dateFormat.format(item.getDataArrivo());

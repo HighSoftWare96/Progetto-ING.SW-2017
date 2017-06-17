@@ -26,7 +26,7 @@ public class Band extends ArtistaGenerico {
 		String allComponentNames = "";
 
 		for (Artista item : componenti) {
-			allComponentNames += item.toString() + ", ";
+			allComponentNames += item.toString() + "<br>";
 		}
 		if (allComponentNames.length() > 0) {
 			allComponentNames = allComponentNames.substring(0, allComponentNames.length() - 2); // RIMOZIONE

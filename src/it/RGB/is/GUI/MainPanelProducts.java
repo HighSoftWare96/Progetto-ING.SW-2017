@@ -2,6 +2,7 @@ package it.RGB.is.GUI;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -50,7 +51,8 @@ public class MainPanelProducts extends JPanel {
 	private void adjustTable(JTable table) {
 		table.setToolTipText("Doppio click per dettagli");
 		// fisso altezza righe
-		table.setRowHeight(table.getRowHeight() + 82);
+		table.setRowHeight(table.getRowHeight() + 80);
+		
 		// selezione singola
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// colonne non resizing
@@ -92,6 +94,9 @@ public class MainPanelProducts extends JPanel {
 			case 3:
 				item.setCellRenderer(rendererForJLabel);
 				break;
+			case 4:
+				item.setCellRenderer(rendererForJLabel);
+				break;
 			default:
 				item.setCellRenderer(centerRenderer);
 				break;
@@ -120,7 +125,7 @@ public class MainPanelProducts extends JPanel {
 			// DEFAULT VALUE
 			lbl.setForeground(Color.BLACK);
 			lbl.setOpaque(false);
-			lbl.setBorder(new EmptyBorder(15, 7, 0, 7));
+			lbl.setBorder(new EmptyBorder(12, 7, 5, 7));
 
 			if (isSelected) {
 				lbl.setOpaque(true);
