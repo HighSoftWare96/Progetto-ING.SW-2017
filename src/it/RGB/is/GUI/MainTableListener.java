@@ -12,15 +12,16 @@ public class MainTableListener implements MouseListener {
 	public MainTableListener(MainPanelProducts mainPanelIn) {
 		mainPanel = mainPanelIn;
 	}
+	
+	public MainTableListener(CartFrame cartFrame){
+		
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// singolo click
 		if (e.getClickCount() == 1) {
-			MainPanelSidebar.enableSelectionBtn();
-			JTable tableView = mainPanel.getTable();
-			int selectedID = (int) tableView.getValueAt(tableView.getSelectedRow(), 0);
-			MainPanelSidebar.setSelectedID(selectedID);
+			Controller.tableValueChange(mainPanel.getTable(), mainPanel);
 		}
 
 		// doppio click su una riga
@@ -28,7 +29,7 @@ public class MainTableListener implements MouseListener {
 			new PrdDetailsFrame(GUIMain.getFrame(), MainPanelSidebar.getSelectedID());
 		}
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

@@ -307,7 +307,15 @@ public final class Controller {
 				CartFrame productPanel = (CartFrame) frame;
 				productPanel.disableSelectionBtn();
 			}
+		} else {
+			getSelectedItemFromTable(table);
 		}
+	} 
+
+	private static void getSelectedItemFromTable(JTable tableView) {
+		MainPanelSidebar.enableSelectionBtn();
+		int selectedID = (int) tableView.getValueAt(tableView.getSelectedRow(), 0);
+		MainPanelSidebar.setSelectedID(selectedID);
 	}
 
 }
