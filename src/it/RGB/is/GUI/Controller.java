@@ -308,6 +308,9 @@ public final class Controller {
 				productPanel.disableSelectionBtn();
 			}
 		}
+		else{
+			
+		}
 	}
 
 }

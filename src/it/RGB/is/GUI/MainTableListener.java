@@ -4,25 +4,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
-import javax.swing.table.TableModel;
 
 public class MainTableListener implements MouseListener {
 
-	private MainPanelProducts mainPanel;
+	private static MainPanelProducts mainPanel;
 
-	public MainTableListener(MainPanelProducts mainPanel) {
-		this.mainPanel = mainPanel;
+	public MainTableListener(MainPanelProducts mainPanelIn) {
+		mainPanel = mainPanelIn;
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// singolo click
 		if (e.getClickCount() == 1) {
-			MainPanelSidebar.enableSelectionBtn();
-			TableModel tableModel = mainPanel.getTableModel();
-			JTable tableView = mainPanel.getTable();
-			int selectedID = (int) tableModel.getValueAt(tableView.getSelectedRow(), 0);
-			MainPanelSidebar.setSelectedID(selectedID);
+			getSelected();
 		}
 
 		// doppio click su una riga
@@ -31,6 +26,13 @@ public class MainTableListener implements MouseListener {
 		}
 	}
 
+	public static void getSelected(){
+		MainPanelSidebar.enableSelectionBtn();
+		JTable tableView = mainPanel.getTable();
+		int selectedID = (int) tableView.getValueAt(tableView.getSelectedRow(), 0);
+		MainPanelSidebar.setSelectedID(selectedID);
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

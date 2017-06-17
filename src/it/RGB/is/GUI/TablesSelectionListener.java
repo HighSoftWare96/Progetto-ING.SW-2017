@@ -23,7 +23,6 @@ public class TablesSelectionListener implements ListSelectionListener {
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
 		Controller.tableValueChange(this.table, this.frame);
 	}
 

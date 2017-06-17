@@ -217,7 +217,7 @@ public class CartFrame extends JDialog {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// qualcuno ha selezionato la riga
-			selectedID = (int) cartItemsTableModel.getValueAt(cartItemsTable.getSelectedRow(), 0);
+			selectedID = (int) cartItemsTable.getValueAt(cartItemsTable.getSelectedRow(), 0);
 			enableSelectionBtn();
 		}
 
