@@ -37,6 +37,8 @@ public class AAAMain {
 				new Strumento[] { new Strumento("Pianoforte"), new Strumento("Organo"), new Strumento("Contrabasso") });
 		Artista stevePorcaro = new Artista("Steve Porcaro", Genere.ROCK, "Steve Porcaro", new Date(),
 				new Strumento[] { new Strumento("Sintetizzatore") });
+		Artista katyPerry = new Artista("Katy Perry", Genere.POP, "Katheryn Elizabeth Hudson", new Date(),
+				new Strumento[] { new Strumento("Voce") });
 
 		Prodotto totoXIV = new Prodotto(false, "Toto XIV",
 				new String[] { "Running out of time", "Burn", "Holy war", "21st Century Blues", "Orphan",
@@ -52,6 +54,14 @@ public class AAAMain {
 				new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/totoXIVcover.jpg")) }, 125,
 				new Band("Toto", Genere.ROCK, new Artista[] {}), "Gran bel album", Genere.ROCK,
 				new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
+		Prodotto prism = new Prodotto(true, "Prism",
+				new String[] { "Roar", "Legendary Lovers", "Birthday", "Unconditionally (feat. Juicy J)",
+						"This Is How We Do","International Smile", "Ghost", "Love Me", "This Moment",
+						"Double Rainbow", "By The Grace Of God" },
+				new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/prismcover.jpg")) },
+				new Band("Katy Perry", Genere.POP, new Artista[]{}), "18 ottobre 2013", Genere.POP,
+				new Artista[] { katyPerry}, 100);
+
 
 		try {
 			Cliente edoardo = new Cliente("ASHDGUOASDGOLASGYDA", "EdoGimo96", "password", "Edoardo", "Righi",
@@ -63,6 +73,7 @@ public class AAAMain {
 
 		Catalogo.addItem(totoXIV);
 		Catalogo.addItem(totoXIV2);
+		Catalogo.addItem(prism)
 	}
 
 	public static void criticalErrorPrintToFile(String message, StackTraceElement[] errors) {
@@ -84,7 +95,7 @@ public class AAAMain {
 			int counter = 1;
 			File file = new File(completeFileName);
 
-			// incremento e cambio il nome del file finchè ne trovo un file
+			// incremento e cambio il nome del file finchï¿½ ne trovo un file
 			// uguale
 
 			while (file.exists()) {
