@@ -4,12 +4,13 @@ import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 import it.RGB.is.Classes.Cart;
+import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 
 public class CartTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	String[] ColName = { "ID", "Copertina", "Titolo", "Artista/band", "Genere", "Prezzo", "Quantità" };
+	String[] ColName = { "ID", "Copertina", "Titolo", "Artista/band", "Genere", "Prezzo (€)", "Quantità" };
 	private static Prodotto[] productsInCart = new Prodotto[0];
 
 	public CartTableModel() {
@@ -63,7 +64,7 @@ public class CartTableModel extends AbstractTableModel {
 		case 4:
 			return item.getGenere();
 		case 5:
-			return String.format("%.2f €", item.getPrezzo());
+			return item.getPrezzo();
 		case 6:
 			return Cart.getQuantita(item.getID());
 		}
@@ -83,9 +84,9 @@ public class CartTableModel extends AbstractTableModel {
 		case 3:
 			return String.class;
 		case 4:
-			return String.class;
+			return Genere.class;
 		case 5:
-			return String.class;
+			return Float.class;
 		case 6:
 			return Integer.class;
 		default:

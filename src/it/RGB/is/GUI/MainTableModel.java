@@ -13,7 +13,7 @@ import it.RGB.is.Classes.Prodotto;
 public class MainTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	String[] ColName = { "ID", "Copertina", "Titolo", "Brani", "Artista/band", "Data arrivo", "Genere", "Prezzo",
+	String[] ColName = { "ID", "Copertina", "Titolo", "Brani", "Artista/band", "Data arrivo", "Genere", "Prezzo (€)",
 			"Disp." };
 
 	private static Prodotto[] productsData;
@@ -75,7 +75,7 @@ public class MainTableModel extends AbstractTableModel {
 		case 6:
 			return item.getGenere();
 		case 7:
-			return String.format("%.2f €", item.getPrezzo());
+			return item.getPrezzo();
 		case 8:
 			return item.getDisp();
 		}
@@ -101,7 +101,7 @@ public class MainTableModel extends AbstractTableModel {
 		case 6:
 			return Genere.class;
 		case 7:
-			return String.class;
+			return Float.class;
 		case 8:
 			return Integer.class;
 		default:

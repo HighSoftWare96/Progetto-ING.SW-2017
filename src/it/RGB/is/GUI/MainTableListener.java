@@ -17,20 +17,16 @@ public class MainTableListener implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// singolo click
 		if (e.getClickCount() == 1) {
-			getSelected();
+			MainPanelSidebar.enableSelectionBtn();
+			JTable tableView = mainPanel.getTable();
+			int selectedID = (int) tableView.getValueAt(tableView.getSelectedRow(), 0);
+			MainPanelSidebar.setSelectedID(selectedID);
 		}
 
 		// doppio click su una riga
 		if (e.getClickCount() == 2) {
 			new PrdDetailsFrame(GUIMain.getFrame(), MainPanelSidebar.getSelectedID());
 		}
-	}
-
-	public static void getSelected(){
-		MainPanelSidebar.enableSelectionBtn();
-		JTable tableView = mainPanel.getTable();
-		int selectedID = (int) tableView.getValueAt(tableView.getSelectedRow(), 0);
-		MainPanelSidebar.setSelectedID(selectedID);
 	}
 	
 	@Override
