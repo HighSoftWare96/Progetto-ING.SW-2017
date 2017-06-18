@@ -167,20 +167,22 @@ public class CartFrame extends JDialog {
 
 		table.setAutoCreateRowSorter(true);
 
+		TableColumnModel tableColModel = table.getColumnModel();
+
 		for (int i = 0; i < table.getColumnCount(); i++) {
 
 			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 			centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 			centerRenderer.setVerticalAlignment(JLabel.CENTER);
 
-			TableColumnModel tableColModel = table.getColumnModel();
+			TableColumn item = tableColModel.getColumn(i);
 
 			if (i != 1) { // escludo l'immagine
 				if (i == 0) { // rendo l'Id invisibile
-					tableColModel.getColumn(0).setMinWidth(0);
-					tableColModel.getColumn(0).setMaxWidth(0);
+					item.setMinWidth(0);
+					item.setMaxWidth(0);
 				}
-				TableColumn item = tableColModel.getColumn(i);
+
 				item.setCellRenderer(centerRenderer);
 			}
 		}
