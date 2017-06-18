@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 
 public class MainFrameMenu extends JMenuBar {
 
@@ -17,15 +18,17 @@ public class MainFrameMenu extends JMenuBar {
 	static JMenu userMenu = new JMenu("Account");
 	static JMenu helpMenu = new JMenu("Aiuto");
 	static JLabel logInUser = new JLabel();
-
-	static JMenuItem logOpt = new JMenuItem("Log in...");
-	static JMenuItem cartView = new JMenuItem("Visualizza carrello");
-	static JMenuItem cartDelete = new JMenuItem("Svuota carrello");
-	static JMenuItem endSell = new JMenuItem("Completa acquisto");
-	static JMenuItem suggestedOpt = new JMenuItem("Visualizza suggerimenti");
-	static JMenuItem discountsOpt = new JMenuItem("I miei sconti");
-	static JMenuItem usrDetails = new JMenuItem("Dettagli utente");
-	static JMenuItem aboutOpt = new JMenuItem("Informazioni");
+	
+	
+	//TODO modificare icone - per ora sono solo placeholder
+	static JMenuItem logOpt = new JMenuItem("Log in...", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png"))); 
+	static JMenuItem cartView = new JMenuItem("Visualizza carrello", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png")));
+	static JMenuItem cartDelete = new JMenuItem("Svuota carrello", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png")));
+	static JMenuItem endSell = new JMenuItem("Completa acquisto", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png")));
+	static JMenuItem suggestedOpt = new JMenuItem("Visualizza suggerimenti", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png")));
+	static JMenuItem discountsOpt = new JMenuItem("I miei sconti", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png")));
+	static JMenuItem usrDetails = new JMenuItem("Dettagli utente", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png")));
+	static JMenuItem aboutOpt = new JMenuItem("Informazioni", new ImageIcon(MainFrameMenu.class.getResource("/resources/buy_small.png")));
 
 	public MainFrameMenu() {
 
