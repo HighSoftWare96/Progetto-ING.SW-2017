@@ -15,7 +15,6 @@ public class CartTableModel extends AbstractTableModel {
 
 	public CartTableModel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void updateTableModel(Prodotto[] productsData) {
@@ -26,13 +25,11 @@ public class CartTableModel extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return ColName.length;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
 		return productsInCart.length;
 	}
 

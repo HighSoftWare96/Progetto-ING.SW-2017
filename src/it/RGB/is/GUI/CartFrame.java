@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import it.RGB.is.Classes.Cart;
 
@@ -74,8 +75,6 @@ public class CartFrame extends JDialog {
 		// listener per verificare se si deseleziona una casella
 		cartItemsTable.getSelectionModel().addListSelectionListener(tableListener);
 
-		
-		
 		ImageIcon emptyCartIcon = new ImageIcon(this.getClass().getResource("/resources/cart_empty_new.png"));
 		emptyCartIconLbl = new JLabel(emptyCartIcon);
 
@@ -87,8 +86,6 @@ public class CartFrame extends JDialog {
 		adjustTable(cartItemsTable);
 
 		cartList.add(containerTable);
-
-
 
 		// Pulsanti azione
 		removeCart = new JButton("Rimuovi articolo");
@@ -175,8 +172,15 @@ public class CartFrame extends JDialog {
 			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 			centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 			centerRenderer.setVerticalAlignment(JLabel.CENTER);
+
+			TableColumnModel tableColModel = table.getColumnModel();
+
 			if (i != 1) { // escludo l'immagine
-				TableColumn item = table.getColumnModel().getColumn(i);
+				if (i == 0) { // rendo l'Id invisibile
+					tableColModel.getColumn(0).setMinWidth(0);
+					tableColModel.getColumn(0).setMaxWidth(0);
+				}
+				TableColumn item = tableColModel.getColumn(i);
 				item.setCellRenderer(centerRenderer);
 			}
 		}
@@ -215,11 +219,11 @@ public class CartFrame extends JDialog {
 	public static int getSelectedID() {
 		return selectedID;
 	}
-	
-	public static void setSelectedID(int newID){
+
+	public static void setSelectedID(int newID) {
 		selectedID = newID;
 	}
-	
+
 	public static void setEmptyLayout() {
 		containerTable.setViewportView(emptyCartIconLbl);
 

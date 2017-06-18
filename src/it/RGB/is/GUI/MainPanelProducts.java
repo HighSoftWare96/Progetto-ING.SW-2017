@@ -48,6 +48,7 @@ public class MainPanelProducts extends JPanel {
 	}
 
 	private void adjustTable(JTable table) {
+		
 		table.setToolTipText("Doppio click per dettagli");
 		// fisso altezza righe
 		table.setRowHeight(table.getRowHeight() + 80);
@@ -80,8 +81,8 @@ public class MainPanelProducts extends JPanel {
 			switch (i) {
 			case 0:
 				item.setCellRenderer(centerRenderer);
-				item.setMinWidth(10);
-				item.setMaxWidth(30);
+				item.setMinWidth(0);
+				item.setMaxWidth(0);
 				break;
 			case 1:
 				item.setMinWidth(90);

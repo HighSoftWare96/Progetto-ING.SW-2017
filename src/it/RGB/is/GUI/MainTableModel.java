@@ -64,7 +64,7 @@ public class MainTableModel extends AbstractTableModel {
 		case 1:
 			return item.getCover();
 		case 2:
-			return item.getTitolo();
+			return "<html><h4>" + item.getTitolo();
 		case 3:
 			return "<html><p>" + item.getSongsTitles() + "</p></html>";
 		case 4:
