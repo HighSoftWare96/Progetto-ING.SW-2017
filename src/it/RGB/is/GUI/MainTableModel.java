@@ -66,8 +66,8 @@ public class MainTableModel extends AbstractTableModel {
 		case 2:
 			return "<html><h4>" + item.getTitolo();
 		case 3:
-			if(item.getSongsTitles().length() > 150)
-				return "<html><p style='text-align:justify'>" + item.getSongsTitles().substring(0, 150) + "..." + "</p></html>";
+			if(item.getSongsTitles().length() > 180)
+				return "<html><p style='text-align:justify'>" + item.getSongsTitles().substring(0, 180) + "..." + "</p></html>";
 			else
 				return "<html><p style='text-align:justify'>" + item.getSongsTitles() + "</p></html>";
 		case 4:

@@ -57,7 +57,7 @@ public class MainFrame extends JFrame {
 		addWindowListener(new ExitListener());
 		setJMenuBar(mainFrameMenu);
 		setSize(800, 700);
-		setMinimumSize(new Dimension(800, 700));
+		setMinimumSize(new Dimension(1000, 700));
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		setLocationRelativeTo(null);
 		setIconImage(new ImageIcon(MainFrame.class.getResource("/resources/main_new.png")).getImage());

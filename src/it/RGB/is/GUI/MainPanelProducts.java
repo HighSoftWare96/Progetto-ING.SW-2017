@@ -125,7 +125,7 @@ public class MainPanelProducts extends JPanel {
 			// DEFAULT VALUE
 			lbl.setForeground(Color.BLACK);
 			lbl.setOpaque(false);
-			lbl.setBorder(new EmptyBorder(12, 7, 5, 7));
+			lbl.setBorder(new EmptyBorder(5, 7, 5, 7));
 
 			if (isSelected) {
 				lbl.setOpaque(true);
