@@ -12,7 +12,7 @@ import it.RGB.is.GUI.GUIMain;
 
 public class AAAMain {
 
-	private static boolean insertOldData = false;
+	private static boolean insertOldData = true;
 
 	public static void main(String[] args) {
 
