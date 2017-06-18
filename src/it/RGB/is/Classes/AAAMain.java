@@ -77,7 +77,7 @@ public class AAAMain {
 					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/ahfodcover.jpg")),
 							new ImageIcon(AAAMain.class.getResource("/resources/covers/ahfodcover_back.jpg")) },
 					new Float(14.99),
-					new Band("Colplay", Genere.POP,
+					new Band("Coldplay", Genere.POP,
 							new Artista[] { chrisMartin, jonnyBuckland, guyBerryman, willChampion }),
 					"18 ottobre 2013", Genere.POP,
 					new Artista[] { chrisMartin, jonnyBuckland, guyBerryman, willChampion }, 50);

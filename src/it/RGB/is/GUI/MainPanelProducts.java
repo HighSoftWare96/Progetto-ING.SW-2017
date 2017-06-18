@@ -2,7 +2,6 @@ package it.RGB.is.GUI;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -95,7 +94,7 @@ public class MainPanelProducts extends JPanel {
 				item.setCellRenderer(rendererForJLabel);
 				break;
 			case 4:
-				item.setCellRenderer(rendererForJLabel);
+				item.setCellRenderer(centerRenderer);
 				break;
 			default:
 				item.setCellRenderer(centerRenderer);

@@ -77,7 +77,7 @@ public class Prodotto implements Serializable {
 	}
 
 	public String getTitolo() {
-		return this.titolo + (isDVD() ? " (dvd)" : "");
+		return this.titolo + (isDVD() ? " (DVD)" : "");
 	}
 
 	public String[] getTitoliPezzi() {

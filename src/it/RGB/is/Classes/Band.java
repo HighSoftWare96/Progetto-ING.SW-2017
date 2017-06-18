@@ -20,6 +20,10 @@ public class Band extends ArtistaGenerico {
 		// TODO implement here
 		return this.componenti;
 	}
+	
+	public String getNome(){
+		return super.getNomeArte();
+	}
 
 	@Override
 	public String toString() {

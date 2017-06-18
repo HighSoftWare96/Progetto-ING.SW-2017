@@ -60,7 +60,7 @@ public class CartTableModel extends AbstractTableModel {
 		case 2:
 			return item.getTitolo();
 		case 3:
-			return item.getTitolare().toString();
+			return item.getTitolare().getNomeArte();
 		case 4:
 			return item.getGenere();
 		case 5:
