@@ -138,7 +138,7 @@ public class AAAMain {
 			Prodotto blueTrain = new Prodotto(false, "Blue Train", 
 					new String[] { "Blue Train", "Moment's Notice", "Locomotion", "I'm Old Fashioned", "Lazy Bird",	
 							"Blue Train (alt. take)", "Lazy Bird (alt. take)" }, 
-					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/guardianGcover.jpg")) },
+					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/bluetrain.jpg")) },
 					new Float(8.99), johnColtrane, "Album del 1957", Genere.JAZZ, new Artista[]{
 							johnColtrane, leeMorgan, curtisFuller, kennyDrew, paulChambers, phillyJoeJones }, 80);
 			
@@ -149,7 +149,7 @@ public class AAAMain {
 					new String[]{ "Merry Blues", "Bixo", "El Dorado 1997", "Promiscuity", "La Primavera",
 							"Me gustas tú", "Denia", "Mi Vida" ,"Trapped by Love", "Le Rendez Vous", "Mr. Bobby",
 							"Papito", "La Chinita", "La Marea", "Homens","La Vacaloca", "Infinita Tristeza"},
-					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/guardianGcover.jpg")) },
+					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/esperanzacover.jpg")) },
 					new Float(6.99), manuChao, "Album del 2001", Genere.LATIN, new Artista[]{ manuChao }, 100);
 
 			try {
