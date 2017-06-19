@@ -69,7 +69,7 @@ public class UsrDetailsFrame extends JDialog {
 
 		JPanel venditePnl = new JPanel(new FlowLayout());
 		// setto una preferenza per rendere il flow verticale (stimo 40px per ogni elemento...)
-		venditePnl.setPreferredSize(new Dimension(500, BancaUtenti.getLoggedInUser().getVenditeCount() * 40));
+		venditePnl.setPreferredSize(new Dimension(500, BancaUtenti.getLoggedInUser().getVenditeCount() * 50));
 
 		for (Vendita item : user.getVendite()) {
 			JPanel currentVenditaPnl = new JPanel(new FlowLayout());
