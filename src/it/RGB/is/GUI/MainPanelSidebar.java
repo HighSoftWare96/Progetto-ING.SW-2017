@@ -41,7 +41,7 @@ public class MainPanelSidebar extends JPanel {
 
 		infoBtn.setIcon(new ImageIcon(MainPanelSidebar.class.getResource("/resources/info_new.png")));
 		infoBtn.setEnabled(false);
-		infoBtn.setToolTipText("Informazioni sul prodotto");
+		infoBtn.setToolTipText("Dettagli prodotto");
 		infoBtn.setActionCommand(ActionsCommands.INFO_PRODUCT_COMMAND);
 		infoBtn.addActionListener(new MainFrameListeners());
 

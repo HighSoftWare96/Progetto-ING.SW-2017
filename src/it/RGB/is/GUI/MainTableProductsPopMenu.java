@@ -8,7 +8,7 @@ public class MainTableProductsPopMenu extends JPopupMenu{
 
 	private static final long serialVersionUID = 1L;
 	private JMenuItem cartAddBtn = new JMenuItem("Aggiungi al carrello", new ImageIcon(this.getClass().getResource("/resources/buy_small.png")));
-	private JMenuItem detailsBtn = new JMenuItem("Dettagli", new ImageIcon(this.getClass().getResource("/resources/info_small.png")));
+	private JMenuItem detailsBtn = new JMenuItem("Dettagli prodotto", new ImageIcon(this.getClass().getResource("/resources/info_small.png")));
 	
 	public MainTableProductsPopMenu() {
 		super();

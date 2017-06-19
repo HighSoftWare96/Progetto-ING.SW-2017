@@ -63,6 +63,7 @@ public final class Controller {
 
 	public static void setLoggedIn() {
 		MainFrameMenu.logOpt.setText("Log out...");
+		MainFrameMenu.logOpt.setIcon(new ImageIcon(MainFrameMenu.class.getResource("/resources/logout_small.png")));
 		MainFrameMenu.logOpt.setActionCommand(ActionsCommands.LOG_OUT_COMMAND);
 
 		MainFrameMenu.usrDetails.setEnabled(true);
@@ -88,6 +89,7 @@ public final class Controller {
 
 	public static void setLoggedOut() {
 		MainFrameMenu.logOpt.setText("Log in...");
+		MainFrameMenu.logOpt.setIcon(new ImageIcon(MainFrameMenu.class.getResource("/resources/login_small.png")));
 		MainFrameMenu.logOpt.setActionCommand(ActionsCommands.LOG_IN_COMMAND);
 
 		MainFrameMenu.usrDetails.setEnabled(false);

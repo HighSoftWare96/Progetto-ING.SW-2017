@@ -108,7 +108,7 @@ public class UsrDetailsFrame extends JDialog {
 		getContentPane().add(southPanel, BorderLayout.CENTER);
 		getContentPane().add(venditeContainer, BorderLayout.SOUTH);
 
-		setIconImage(new ImageIcon(this.getClass().getResource("/resources/key.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/resources/user_icon.png")).getImage());
 		pack();
 		setResizable(false);
 		setLocationRelativeTo(null);
