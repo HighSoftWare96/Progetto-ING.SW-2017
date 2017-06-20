@@ -1,5 +1,9 @@
 package it.RGB.is.Classes;
 
+import java.util.Date;
+
+import it.RGB.is.Exceptions.IllegalArtistArguments;
+
 public class Band extends ArtistaGenerico {
 
 	/**
@@ -10,18 +14,28 @@ public class Band extends ArtistaGenerico {
 
 	/**
 	 * Default constructor
+	 * 
+	 * @throws IllegalArtistArguments
 	 */
-	public Band(String nomeArte, Genere genere, Artista[] componenti) {
+	public Band(String nomeArte, Genere genere, Artista[] componenti) throws IllegalArtistArguments {
 		super(nomeArte, genere);
 		this.componenti = componenti;
+		checkCorrectData(nomeArte, genere, componenti);
+	}
+
+	protected void checkCorrectData(String nomeArte, Genere genere, Artista[] componenti)
+			throws IllegalArtistArguments {
+		super.checkCorrectData(nomeArte, genere);
+		if (componenti.length == 0)
+			throw new IllegalArtistArguments();
 	}
 
 	public Artista[] getComponenti() {
 		// TODO implement here
 		return this.componenti;
 	}
-	
-	public String getNome(){
+
+	public String getNome() {
 		return super.getNomeArte();
 	}
 

@@ -2,6 +2,8 @@ package it.RGB.is.Classes;
 
 import java.util.Date;
 
+import it.RGB.is.Exceptions.IllegalArtistArguments;
+
 public class Artista extends ArtistaGenerico {
 
 	/**
@@ -14,12 +16,26 @@ public class Artista extends ArtistaGenerico {
 
 	/**
 	 * Default constructor
+	 * 
+	 * @throws IllegalArtistArguments
 	 */
-	public Artista(String nomeArte, Genere genere, String nomeBattesimo, Date dataNascita, Strumento[] strumenti) {
+	public Artista(String nomeArte, Genere genere, String nomeBattesimo, Date dataNascita, Strumento[] strumenti)
+			throws IllegalArtistArguments {
 		super(nomeArte, genere);
+
+		checkCorrectData(nomeArte, genere, nomeBattesimo, dataNascita, strumenti);
+
 		this.nomeBattesimo = nomeBattesimo;
 		this.dataNascita = dataNascita;
 		this.strumenti = strumenti;
+	}
+
+	protected void checkCorrectData(String nomeArte, Genere genere, String nomeBattesimo2, Date dataNascita2,
+			Strumento[] strumenti2) throws IllegalArtistArguments {
+		// metodo ereditato di controllo errori
+		super.checkCorrectData(nomeArte, genere);
+		if (nomeBattesimo2.equals("") || dataNascita2 == null || strumenti2.length == 0)
+			throw new IllegalArtistArguments();
 	}
 
 	/**
