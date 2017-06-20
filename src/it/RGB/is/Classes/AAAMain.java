@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import it.RGB.is.Exceptions.IllegalArtistArguments;
+import it.RGB.is.Exceptions.IllegalProdottoArgument;
 import it.RGB.is.GUI.GUIMain;
 
 public class AAAMain {
@@ -171,10 +172,12 @@ public class AAAMain {
 				Catalogo.addItem(esperanza);
 
 			} catch (IllegalArtistArguments e) {
-				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni artisti");
+				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni artisti!",
+						"Errore init dati", JOptionPane.ERROR_MESSAGE);
 				System.exit(-1);
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione dei dati");
+			} catch (IllegalProdottoArgument e) {
+				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni prodotti!",
+						"Errore init dati", JOptionPane.ERROR_MESSAGE);
 				System.exit(-1);
 			}
 

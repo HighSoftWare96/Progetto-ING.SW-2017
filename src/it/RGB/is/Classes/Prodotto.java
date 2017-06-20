@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
+import it.RGB.is.Exceptions.IllegalProdottoArgument;
+
 public class Prodotto implements Serializable {
 
 	/**
@@ -23,12 +25,6 @@ public class Prodotto implements Serializable {
 	private Genere genere;
 	private ArtistaGenerico[] partecipanti;
 	private int disp;
-
-	/**
-	 * Default constructor
-	 */
-	public Prodotto() {
-	}
 
 	/**
 	 * @param boolean
@@ -51,10 +47,15 @@ public class Prodotto implements Serializable {
 	 *            partecipanti
 	 * @param int
 	 *            disp
+	 * @throws IllegalProdottoArgument
 	 */
 	public Prodotto(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
-			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp) {
+			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp)
+			throws IllegalProdottoArgument {
 		this.ID = setUniqueID();
+
+		checkCorrectData(dvd, titolo, titoliPezzi, photos, prezzo, titolare, descrizione, genere, partecipanti, disp);
+
 		this.dvd = dvd;
 		this.titolo = titolo;
 		this.titoliPezzi = titoliPezzi;
@@ -66,6 +67,14 @@ public class Prodotto implements Serializable {
 		this.genere = genere;
 		this.partecipanti = partecipanti;
 		this.disp = disp;
+	}
+
+	private void checkCorrectData(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
+			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp)
+			throws IllegalProdottoArgument {
+		if (titolo == null || titolo.equals("") || titoliPezzi.length == 0 || photos.length == 0 || prezzo <= 0
+				|| titolare == null || genere == null || partecipanti.length == 0 || disp <= 0)
+			throw new IllegalProdottoArgument();
 	}
 
 	public boolean isDVD() {
