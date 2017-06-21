@@ -18,7 +18,7 @@ public class BancaVendite {
 	private static ArrayList<Vendita> strutturaVendite;
 	private final static File venditeFile = new File("music_store_file//vendite.dat");
 
-	public static void initialize() {
+	public static void initialize() throws CriticalException {
 		if (venditeFile.exists()) {
 			// recupero i dati
 			try {
@@ -41,7 +41,7 @@ public class BancaVendite {
 		strutturaVendite.add(vendita);
 	}
 
-	public static void saveVendite() {
+	public static void saveVendite() throws CriticalException {
 
 		if (!venditeFile.exists()) { // se il file non esiste lo creo
 			try {

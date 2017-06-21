@@ -1,7 +1,5 @@
 package it.RGB.is.Classes;
 
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
@@ -9,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
+import it.RGB.is.Exceptions.CriticalException;
 import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
 import it.RGB.is.GUI.GUIMain;
 
@@ -27,7 +26,6 @@ public class AAAMain {
 	}
 
 	private static void initializeStore() {
-
 		Catalogo.initialize();
 		BancaUtenti.initialize();
 		Cart.initialize();

@@ -17,6 +17,7 @@ public class Cart {
 	}
 
 	public static float getSubTotale(ModConsegna modConsegna) {
+		// se la modConsegna è null allora calcolo solo il subtotale
 		if (modConsegna == null)
 			calculateSubTotale(0);
 		else {

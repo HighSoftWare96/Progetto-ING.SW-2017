@@ -1,45 +1,55 @@
 package it.RGB.is.Tests.Classes;
 
-import org.junit.Assert;
+import java.util.Date;
+
 import org.junit.Test;
 
 import it.RGB.is.Classes.Artista;
 import it.RGB.is.Classes.ArtistaGenerico;
 import it.RGB.is.Classes.Band;
 import it.RGB.is.Classes.Genere;
+import it.RGB.is.Classes.Strumento;
+import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
 
 public class ArtistaTest {
-	
+
 	private ArtistaGenerico absArtista = TestData.steveLukather;
 	private ArtistaGenerico absArtistaWithArtName = TestData.nek;
 	private ArtistaGenerico absBand = TestData.toto;
-	
-	
+
+	// test error handling costruttore di ArtistaGenerico (null)
+	@Test(expected = ArtistIllegalArgumentException.class)
+	public void testArtistaGenericoNull() throws ArtistIllegalArgumentException {
+		new Artista(null, null, "Test", new Date(), new Strumento[] { new Strumento("Chitarra") });
+	}
+
+	// test error handling costruttore di Artista
+	@Test(expected = ArtistIllegalArgumentException.class)
+	public void testArtistaNull() throws ArtistIllegalArgumentException {
+		new Artista("Test", Genere.ROCK, null, null, null);
+	}
+
+	// test error handling costruttore di Artista (empty)
+	@Test(expected = ArtistIllegalArgumentException.class)
+	public void testArtistaEmpty() throws ArtistIllegalArgumentException {
+		new Artista("Test", Genere.ROCK, null, null, new Strumento[] {});
+	}
+
+	// test error handling costruttore di Band (null)
+	@Test(expected = ArtistIllegalArgumentException.class)
+	public void testBandNull() throws ArtistIllegalArgumentException {
+		new Band("Test", Genere.ROCK, null);
+	}
+
+	// test error handling costruttore di Band (empty)
+	@Test(expected = ArtistIllegalArgumentException.class)
+	public void testBandEmpty() throws ArtistIllegalArgumentException {
+		new Artista("Test", Genere.ROCK, null, null, new Strumento[] {});
+	}
+
 	@Test
-	public void testArtista() {
+	public void testArtistaSemplice() {
 		
-		Assert.assertTrue(absArtista.toString().contains("Chitarra"));
-		Assert.assertTrue(absArtista.toString().contains("Steve Lukather"));
-		Assert.assertTrue(absArtista.toString().contains("Basso"));
-		Assert.assertTrue(absArtista.toString().contains("Voce"));
-		
-		Assert.assertTrue(absArtistaWithArtName.toString().contains("Nek"));
-		Assert.assertTrue(absArtistaWithArtName.toString().contains("Filippo Neviani"));
-		Assert.assertTrue(absArtistaWithArtName.toString().contains("Voce"));
-		Assert.assertEquals("Nek", absArtistaWithArtName.getNomeArte());
-		
-		Artista artistaWithArtName = (Artista) absArtistaWithArtName;
-		Assert.assertEquals("Filippo Neviani", artistaWithArtName.getNomeBattesimo());
-		Assert.assertTrue(artistaWithArtName.getStrumento().length > 0);
-		
-		Band band = (Band) absBand;
-		Assert.assertTrue(band.getComponenti().length > 0);
-		Assert.assertEquals(absArtista, band.getComponenti()[0]);
-		Assert.assertEquals(Genere.ROCK, band.getGenerePrincipale());
-		
-		Assert.assertTrue(absBand.toString().contains("Toto"));
-		Assert.assertTrue(absBand.toString().contains("Steve Lukather"));
-		Assert.assertTrue(absBand.toString().contains("David Paich"));
 	}
 
 }

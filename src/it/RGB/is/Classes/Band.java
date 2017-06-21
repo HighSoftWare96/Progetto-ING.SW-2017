@@ -1,7 +1,5 @@
 package it.RGB.is.Classes;
 
-import java.util.Date;
-
 import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
 
 public class Band extends ArtistaGenerico {
@@ -26,7 +24,7 @@ public class Band extends ArtistaGenerico {
 	protected void checkCorrectData(String nomeArte, Genere genere, Artista[] componenti)
 			throws ArtistIllegalArgumentException {
 		super.checkCorrectData(nomeArte, genere);
-		if (componenti.length == 0)
+		if (componenti == null || componenti.length == 0)
 			throw new ArtistIllegalArgumentException();
 	}
 

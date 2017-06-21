@@ -34,7 +34,7 @@ public class Artista extends ArtistaGenerico {
 			Strumento[] strumenti2) throws ArtistIllegalArgumentException {
 		// metodo ereditato di controllo errori
 		super.checkCorrectData(nomeArte, genere);
-		if (nomeBattesimo2.equals("") || dataNascita2 == null || strumenti2.length == 0)
+		if (nomeBattesimo2 == null || nomeBattesimo2.equals("") || dataNascita2 == null || strumenti2.length == 0)
 			throw new ArtistIllegalArgumentException();
 	}
 
