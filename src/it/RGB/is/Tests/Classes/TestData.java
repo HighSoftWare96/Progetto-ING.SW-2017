@@ -19,6 +19,7 @@ public class TestData {
 	static Band toto = null;
 	static Prodotto genericCD = null;
 	static Prodotto genericDVD = null;
+	static String genericSongs[] = null;
 
 	static {
 		try {
