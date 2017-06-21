@@ -58,9 +58,6 @@ public class Cart {
 	}
 
 	public static void removeAll() {
-		if(strutturaDati.isEmpty())
-			throw new CartIllegalArgumentsException("Rimozione di tutti gli articoli dal carrello fallita: carrello già vuoto.");
-			
 		for (Prodotto item : strutturaDati.keySet()) {
 			// aggiorno il catalogo
 			Catalogo.addItem(item, strutturaDati.get(item));
