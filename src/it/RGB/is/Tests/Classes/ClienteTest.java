@@ -11,7 +11,7 @@ import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Vendita;
-import it.RGB.is.Exceptions.IllegalUserRegistration;
+import it.RGB.is.Exceptions.IllegalUserRegistrationException;
 
 public class ClienteTest {
 	private Cliente clienteOnTesting;
@@ -88,7 +88,7 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testEquals() throws IllegalUserRegistration {
+	public void testEquals() throws IllegalUserRegistrationException {
 		Cliente clienteForEquals = new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli",
 				"Verona", "000000000000", null);
 		Assert.assertTrue(clienteForEquals.equals(clienteOnTesting));

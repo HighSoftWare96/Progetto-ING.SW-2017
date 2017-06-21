@@ -8,8 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import it.RGB.is.Exceptions.IllegalArtistArguments;
-import it.RGB.is.Exceptions.IllegalProdottoArgument;
+import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
+import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
 import it.RGB.is.GUI.GUIMain;
 
 public class AAAMain {
@@ -171,11 +171,11 @@ public class AAAMain {
 				Catalogo.addItem(blueTrain);
 				Catalogo.addItem(esperanza);
 
-			} catch (IllegalArtistArguments e) {
+			} catch (ArtistIllegalArgumentException e) {
 				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni artisti!",
 						"Errore init dati", JOptionPane.ERROR_MESSAGE);
 				System.exit(-1);
-			} catch (IllegalProdottoArgument e) {
+			} catch (ProdottoIllegalArgumentException e) {
 				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni prodotti!",
 						"Errore init dati", JOptionPane.ERROR_MESSAGE);
 				System.exit(-1);
@@ -191,7 +191,7 @@ public class AAAMain {
 		}
 	}
 
-	public static void criticalErrorPrintToFile(String message, StackTraceElement[] errors) {
+	public static void criticalIOErrorPrintToFile(String message, StackTraceElement[] errors) {
 
 		JOptionPane.showMessageDialog(null, "<html>Errore critico di IO delle strutture dati.<br>" + message
 				+ "<br>Vedere file di report per dettagli.", "Errore", JOptionPane.ERROR_MESSAGE);

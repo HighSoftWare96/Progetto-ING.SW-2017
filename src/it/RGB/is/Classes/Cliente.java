@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import it.RGB.is.Exceptions.IllegalUserRegistration;
+import it.RGB.is.Exceptions.IllegalUserRegistrationException;
 
 public class Cliente implements Serializable {
 
@@ -26,7 +26,7 @@ public class Cliente implements Serializable {
 
 	// costruttore SENZA numeroCell
 	public Cliente(String codiceFiscale, String nomeUtente, String password, String nome, String cognome, String city,
-			String numeroTel, String numeroCell) throws IllegalUserRegistration {
+			String numeroTel, String numeroCell) throws IllegalUserRegistrationException {
 
 		checkCorrectData(codiceFiscale, nomeUtente, password, nome, cognome, city, numeroTel, numeroCell);
 
@@ -45,29 +45,29 @@ public class Cliente implements Serializable {
 	}
 
 	private void checkCorrectData(String codiceFiscale, String nomeUtente, String password, String nome, String cognome,
-			String city, String numeroTel, String numeroCell) throws IllegalUserRegistration {
+			String city, String numeroTel, String numeroCell) throws IllegalUserRegistrationException {
 
 		// controllo validità parametri
 		if (codiceFiscale == null || nomeUtente == null || password == null || nome == null || cognome == null
 				|| city == null || numeroTel == null || codiceFiscale.equals("") || nomeUtente.equals("")
 				|| password.equals("") || nome.equals("") || cognome.equals("") || city.equals("")
 				|| numeroTel.equals(""))
-			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_EMPTY_FIELDS);
+			throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_EMPTY_FIELDS);
 
 		else if (nomeUtente.contains(" ")) {
-			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_USRNM_SPACES);
+			throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_USRNM_SPACES);
 		} else if (!codiceFiscale.equals(codiceFiscale.toUpperCase())
 				|| !codiceFiscale.matches("^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$")) {
-			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_CF_SINTAX);
+			throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_CF_SINTAX);
 		} else if (!numeroTel.matches("[0-9]+")) {
-			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_TEL_ERROR);
+			throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_TEL_ERROR);
 		} else if (numeroCell != null) {
 			if (!numeroCell.matches("[0-9]+") && !numeroCell.equals(""))
-				throw new IllegalUserRegistration(IllegalUserRegistration.MSG_CELL_ERROR);
+				throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_CELL_ERROR);
 		} else if (password.length() <= 5) {
-			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_PSW_LOW);
+			throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_PSW_LOW);
 		} else if (BancaUtenti.userNameExists(nomeUtente)) {
-			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_USRNM_USED);
+			throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_USRNM_USED);
 		}
 	}
 

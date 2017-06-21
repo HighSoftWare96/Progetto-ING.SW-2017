@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import it.RGB.is.Exceptions.VenditaIllegalArgumentException;
+
 public class Vendita implements Serializable {
 
 	private static final long serialVersionUID = -6971244944884772121L;
@@ -18,6 +20,9 @@ public class Vendita implements Serializable {
 
 	public Vendita(Cliente acquirente, Prodotto[] prodotti, Integer[] amount, float prezzoTotale, Date data,
 			String indirizzoIP, Pagamento modPag, ModConsegna modconsegna) {
+
+		checkCorrectData(acquirente, prodotti, amount, prezzoTotale, data, indirizzoIP, modPag, modconsegna);
+
 		this.acquirente = acquirente;
 		this.prodotti = prodotti;
 		this.amount = amount;
@@ -26,6 +31,15 @@ public class Vendita implements Serializable {
 		this.indirizzoIP = indirizzoIP;
 		this.modPag = modPag;
 		this.modConsegna = modconsegna;
+	}
+
+	private void checkCorrectData(Cliente acquirente2, Prodotto[] prodotti2, Integer[] amount2, float prezzoTotale2,
+			Date data2, String indirizzoIP2, Pagamento modPag2, ModConsegna modconsegna2) {
+		if (acquirente2 == null || prodotti2.length <= 0 || amount2.length <= 0 || prezzoTotale2 <= 0 || data2 == null
+				|| indirizzoIP2.length() <= 0 || modPag2 == null || modconsegna2 == null)
+			throw new VenditaIllegalArgumentException("Errore nella creazione della vendita (null pointer)");
+		else if (prodotti2.length != amount2.length)
+			throw new VenditaIllegalArgumentException("Errore vendita: prodotti e vendite discordi");
 	}
 
 	public Prodotto[] getProdotti() {

@@ -29,7 +29,7 @@ public class BancaVendite {
 				strutturaVendite = (ArrayList<Vendita>) streamInput.readObject();
 				streamInput.close();
 			} catch (Exception e) {
-				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 				System.exit(-1);
 			}
 		} else // creo il catalogo da zero
@@ -47,7 +47,7 @@ public class BancaVendite {
 				venditeFile.getParentFile().mkdirs();
 				venditeFile.createNewFile();
 			} catch (IOException e) {
-				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 			}
 		}
 
@@ -68,7 +68,7 @@ public class BancaVendite {
 			outToFile.close();
 
 		} catch (IOException e) {
-			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 		}
 
 	}

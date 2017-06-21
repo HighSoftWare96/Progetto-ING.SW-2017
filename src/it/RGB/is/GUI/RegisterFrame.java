@@ -17,7 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import it.RGB.is.Exceptions.IllegalUserRegistration;
+import it.RGB.is.Exceptions.IllegalUserRegistrationException;
 
 public class RegisterFrame extends JDialog {
 
@@ -136,32 +136,32 @@ public class RegisterFrame extends JDialog {
 		parent.dispose();
 	}
 
-	public void checkPswsMatch() throws IllegalUserRegistration {
+	public void checkPswsMatch() throws IllegalUserRegistrationException {
 		if (!new String(passwordText.getPassword()).equals(new String(passwordText2.getPassword()))) {
-			throw new IllegalUserRegistration(IllegalUserRegistration.MSG_PSWS_NMATCH);
+			throw new IllegalUserRegistrationException(IllegalUserRegistrationException.MSG_PSWS_NMATCH);
 		}
 	}
 
 	public void setErrorLayout(String message) {
 		switch (message) {
-		case IllegalUserRegistration.MSG_CF_SINTAX:
+		case IllegalUserRegistrationException.MSG_CF_SINTAX:
 			this.cFText.setText("");
 			break;
-		case IllegalUserRegistration.MSG_EMPTY_FIELDS:
+		case IllegalUserRegistrationException.MSG_EMPTY_FIELDS:
 			break;
-		case IllegalUserRegistration.MSG_PSW_LOW:
-		case IllegalUserRegistration.MSG_PSWS_NMATCH:
+		case IllegalUserRegistrationException.MSG_PSW_LOW:
+		case IllegalUserRegistrationException.MSG_PSWS_NMATCH:
 			this.passwordText.setText("");
 			this.passwordText2.setText("");
 			break;
-		case IllegalUserRegistration.MSG_TEL_ERROR:
+		case IllegalUserRegistrationException.MSG_TEL_ERROR:
 			this.telText.setText("");
 			break;
-		case IllegalUserRegistration.MSG_CELL_ERROR:
+		case IllegalUserRegistrationException.MSG_CELL_ERROR:
 			this.cellText.setText("");
 			break;
-		case IllegalUserRegistration.MSG_USRNM_SPACES:
-		case IllegalUserRegistration.MSG_USRNM_USED:
+		case IllegalUserRegistrationException.MSG_USRNM_SPACES:
+		case IllegalUserRegistrationException.MSG_USRNM_USED:
 			this.userText.setText("");
 			break;
 
