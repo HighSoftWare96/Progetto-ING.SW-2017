@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import it.RGB.is.Exceptions.CriticalException;
+
 /**
  * 
  */
@@ -29,8 +31,7 @@ public class BancaVendite {
 				strutturaVendite = (ArrayList<Vendita>) streamInput.readObject();
 				streamInput.close();
 			} catch (Exception e) {
-				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
-				System.exit(-1);
+				throw new CriticalException("BancaVendite IO: inizializzione dati da file");
 			}
 		} else // creo il catalogo da zero
 			strutturaVendite = new ArrayList<>();
@@ -47,7 +48,7 @@ public class BancaVendite {
 				venditeFile.getParentFile().mkdirs();
 				venditeFile.createNewFile();
 			} catch (IOException e) {
-				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				throw new CriticalException("BancaVendite IO: salvataggio su file");
 			}
 		}
 
@@ -68,7 +69,7 @@ public class BancaVendite {
 			outToFile.close();
 
 		} catch (IOException e) {
-			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			throw new CriticalException("BancaVendite IO: salvataggio su file");
 		}
 
 	}

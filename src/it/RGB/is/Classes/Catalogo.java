@@ -11,6 +11,7 @@ import java.util.HashSet;
 
 import javax.swing.JOptionPane;
 
+import it.RGB.is.Exceptions.CriticalException;
 import it.RGB.is.GUI.GUIMain;
 
 /**
@@ -38,8 +39,7 @@ public class Catalogo implements Serializable {
 			} else // creo il catalogo da zero
 				strutturaDati = new HashSet<>();
 		} catch (Exception e) {
-			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
-			System.exit(-1);
+			throw new CriticalException("Catalogo IO: inizializzazione dati da file");
 		}
 	}
 
@@ -77,7 +77,7 @@ public class Catalogo implements Serializable {
 				catalogoFile.getParentFile().mkdirs();
 				catalogoFile.createNewFile();
 			} catch (IOException e) {
-				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				throw new CriticalException("Catalogo IO: salvataggio dati su file");
 			}
 		}
 
@@ -98,7 +98,7 @@ public class Catalogo implements Serializable {
 			outToFile.close();
 
 		} catch (IOException e) {
-			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			throw new CriticalException("Catalogo IO: salvataggio dati su file");
 		}
 
 	}

@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashSet;
 
+import it.RGB.is.Exceptions.CriticalException;
+
 /**
  * 
  */
@@ -22,7 +24,7 @@ public class BancaUtenti implements Serializable {
 	private static HashSet<Cliente> strutturaUtenti;
 	private static Cliente clienteLoggato = null;
 
-	public static void initialize(){
+	public static void initialize() {
 		if (utentiFile.exists()) {
 			// recupero i dati
 			try {
@@ -35,8 +37,7 @@ public class BancaUtenti implements Serializable {
 				strutturaUtenti = (HashSet<Cliente>) streamInput.readObject();
 				streamInput.close();
 			} catch (Exception e) {
-				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
-				System.exit(-1);
+				throw new CriticalException("BancaUtenti IO - inizializzazione dati da file");
 			}
 		} else // creo il catalogo da zero
 			strutturaUtenti = new HashSet<>();
@@ -80,7 +81,7 @@ public class BancaUtenti implements Serializable {
 				utentiFile.getParentFile().mkdirs();
 				utentiFile.createNewFile();
 			} catch (IOException e) {
-				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				throw new CriticalException("BancaUtenti IO salvataggio su file");
 			}
 		}
 
@@ -101,7 +102,7 @@ public class BancaUtenti implements Serializable {
 			outToFile.close();
 
 		} catch (IOException e) {
-			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			throw new CriticalException("BancaUtenti IO salvataggio su file");
 		}
 
 	}
