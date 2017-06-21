@@ -1,6 +1,6 @@
 package it.RGB.is.Exceptions;
 
-public class CartIllegalArgumentsException extends CriticalException{
+public class CartIllegalArgumentsException extends CriticalException {
 	
 	private static final long serialVersionUID = 1L;
 

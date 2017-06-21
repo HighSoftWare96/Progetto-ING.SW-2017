@@ -26,7 +26,7 @@ public class CriticalException extends RuntimeException {
 		else
 			JOptionPane.showMessageDialog(null,
 					"<html>Errore critico nell'esecuzione del programma:<br>" + message
-							+ "<br>Il programma verrà chiuso." + message + "<br>Vedere file di report per dettagli.",
+							+ "<br>Il programma verrà chiuso.<br>Vedere file di report per dettagli.",
 					"Errore", JOptionPane.ERROR_MESSAGE);
 
 		String stackTrace = message + "\nSTACK TRACE:\n";

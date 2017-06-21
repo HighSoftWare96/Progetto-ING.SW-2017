@@ -190,43 +190,4 @@ public class AAAMain {
 			}
 		}
 	}
-
-	public static void criticalIOErrorPrintToFile(String message, StackTraceElement[] errors) {
-
-		JOptionPane.showMessageDialog(null, "<html>Errore critico di IO delle strutture dati.<br>" + message
-				+ "<br>Vedere file di report per dettagli.", "Errore", JOptionPane.ERROR_MESSAGE);
-
-		String stackTrace = message + "\nSTACK TRACE:\n";
-
-		for (StackTraceElement item : errors) {
-			stackTrace += item.toString();
-		}
-
-		try {
-
-			// file output
-			String fileNameToFormat = "music_store_file//errors//error_dump_";
-			String completeFileName = "music_store_file//errors//error_dump_0.txt";
-			int counter = 1;
-			File file = new File(completeFileName);
-
-			// incremento e cambio il nome del file finch� ne trovo un file
-			// uguale
-
-			while (file.exists()) {
-				completeFileName = fileNameToFormat + counter + ".txt";
-				counter++;
-				file = new File(completeFileName);
-			}
-
-			// creazione directories
-			file.getParentFile().mkdirs();
-
-			PrintWriter outputToFile = new PrintWriter(file, "UTF-8");
-			outputToFile.println(new Date() + "\n" + stackTrace);
-			outputToFile.close();
-
-		} catch (Exception e) {
-		}
-	}
 }

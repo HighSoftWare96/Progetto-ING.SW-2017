@@ -62,6 +62,7 @@ public final class Controller {
 	}
 
 	public static void setLoggedIn() {
+
 		MainFrameMenu.logOpt.setText("Log out...");
 		MainFrameMenu.logOpt.setIcon(new ImageIcon(MainFrameMenu.class.getResource("/resources/logout_small.png")));
 		MainFrameMenu.logOpt.setActionCommand(ActionsCommands.LOG_OUT_COMMAND);
@@ -300,9 +301,9 @@ public final class Controller {
 	}
 
 	// FUNZIONI PER LA SELEZIONE DELLE TABELLE
-	
+
 	// Tabella principale dei PRODOTTI
-	
+
 	public static void deselectedProductsTable(JTable tableView) {
 		// niente selezionato
 		if (tableView.getSelectedRow() == -1) {
@@ -319,10 +320,9 @@ public final class Controller {
 		int selectedID = (int) tableView.getValueAt(tableView.getSelectedRow(), 0);
 		MainPanelSidebar.setSelectedID(selectedID);
 	}
-	
-	
+
 	// Tabella del CARRELLO
-	
+
 	public static void deselectedCartTable(JTable tableView) {
 		// niente selezionato
 		if (tableView.getSelectedRow() == -1) {
@@ -330,15 +330,13 @@ public final class Controller {
 			CartFrame.disableSelectionBtn();
 		} else { // selezionato qualcosa
 			selectedCartTable(tableView);
-		}		
+		}
 	}
-	
-	public static void selectedCartTable(JTable tableView){
+
+	public static void selectedCartTable(JTable tableView) {
 		// abilito e imposto l'id all'oggetto selezionato
 		CartFrame.setSelectedID((int) tableView.getValueAt(tableView.getSelectedRow(), 0));
 		CartFrame.enableSelectionBtn();
 	}
-
-
 
 }
