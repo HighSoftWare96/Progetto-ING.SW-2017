@@ -1,6 +1,6 @@
 package it.RGB.is.Exceptions;
 
-public class IllegalUserRegistration extends Exception {
+public class IllegalUserRegistrationException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 	public static final String MSG_EMPTY_FIELDS = "Riempire tutti i campi obbligatori!";
@@ -12,11 +12,11 @@ public class IllegalUserRegistration extends Exception {
 	public static final String MSG_PSW_LOW = "Password poco sicura! (# caratteri > 5)";
 	public static final String MSG_PSWS_NMATCH = "Le password inserite non corrispondono";
 	
-	public IllegalUserRegistration() {
+	public IllegalUserRegistrationException() {
 		super();
 	}
 
-	public IllegalUserRegistration(String error) {
+	public IllegalUserRegistrationException(String error) {
 		super(error);
 	}
 

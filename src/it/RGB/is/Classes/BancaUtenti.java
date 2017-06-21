@@ -35,7 +35,7 @@ public class BancaUtenti implements Serializable {
 				strutturaUtenti = (HashSet<Cliente>) streamInput.readObject();
 				streamInput.close();
 			} catch (Exception e) {
-				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 				System.exit(-1);
 			}
 		} else // creo il catalogo da zero
@@ -80,7 +80,7 @@ public class BancaUtenti implements Serializable {
 				utentiFile.getParentFile().mkdirs();
 				utentiFile.createNewFile();
 			} catch (IOException e) {
-				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 			}
 		}
 
@@ -101,7 +101,7 @@ public class BancaUtenti implements Serializable {
 			outToFile.close();
 
 		} catch (IOException e) {
-			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 		}
 
 	}

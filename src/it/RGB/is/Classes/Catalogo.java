@@ -38,7 +38,7 @@ public class Catalogo implements Serializable {
 			} else // creo il catalogo da zero
 				strutturaDati = new HashSet<>();
 		} catch (Exception e) {
-			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 			System.exit(-1);
 		}
 	}
@@ -77,7 +77,7 @@ public class Catalogo implements Serializable {
 				catalogoFile.getParentFile().mkdirs();
 				catalogoFile.createNewFile();
 			} catch (IOException e) {
-				AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+				AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 			}
 		}
 
@@ -98,7 +98,7 @@ public class Catalogo implements Serializable {
 			outToFile.close();
 
 		} catch (IOException e) {
-			AAAMain.criticalErrorPrintToFile(e.getMessage(), e.getStackTrace());
+			AAAMain.criticalIOErrorPrintToFile(e.getMessage(), e.getStackTrace());
 		}
 
 	}

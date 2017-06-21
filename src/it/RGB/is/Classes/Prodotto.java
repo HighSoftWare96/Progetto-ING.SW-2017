@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
-import it.RGB.is.Exceptions.IllegalProdottoArgument;
+import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
 
 public class Prodotto implements Serializable {
 
@@ -47,11 +47,11 @@ public class Prodotto implements Serializable {
 	 *            partecipanti
 	 * @param int
 	 *            disp
-	 * @throws IllegalProdottoArgument
+	 * @throws ProdottoIllegalArgumentException
 	 */
 	public Prodotto(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
 			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp)
-			throws IllegalProdottoArgument {
+			throws ProdottoIllegalArgumentException {
 		this.ID = setUniqueID();
 
 		checkCorrectData(dvd, titolo, titoliPezzi, photos, prezzo, titolare, descrizione, genere, partecipanti, disp);
@@ -71,10 +71,10 @@ public class Prodotto implements Serializable {
 
 	private void checkCorrectData(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
 			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp)
-			throws IllegalProdottoArgument {
+			throws ProdottoIllegalArgumentException {
 		if (titolo == null || titolo.equals("") || titoliPezzi.length == 0 || photos.length == 0 || prezzo <= 0
 				|| titolare == null || genere == null || partecipanti.length == 0 || disp <= 0)
-			throw new IllegalProdottoArgument();
+			throw new ProdottoIllegalArgumentException();
 	}
 
 	public boolean isDVD() {

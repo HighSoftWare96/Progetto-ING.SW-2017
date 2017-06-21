@@ -13,7 +13,7 @@ import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.SearchMod;
-import it.RGB.is.Exceptions.IllegalUserRegistration;
+import it.RGB.is.Exceptions.IllegalUserRegistrationException;
 
 public final class Controller {
 
@@ -279,7 +279,7 @@ public final class Controller {
 					registerFrame.surnameText.getText(), registerFrame.cityText.getText(),
 					registerFrame.telText.getText(), registerFrame.cellText.getText());
 			registerFrame.checkPswsMatch();
-		} catch (IllegalUserRegistration e) {
+		} catch (IllegalUserRegistrationException e) {
 			Toolkit.getDefaultToolkit().beep();
 			JOptionPane.showMessageDialog(GUIMain.getFrame(), e.getMessage(), "Errore registrazione",
 					JOptionPane.ERROR_MESSAGE);
