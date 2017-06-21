@@ -1,6 +1,8 @@
 package it.RGB.is.Classes;
 
-import java.util.HashMap;;
+import java.util.HashMap;
+
+import it.RGB.is.Exceptions.CartIllegalArgumentsException;;
 
 public class Cart {
 
@@ -42,6 +44,11 @@ public class Cart {
 
 	// rimuove prodotto dal carrello
 	public static void removeItem(Prodotto prodotto, int q) {
+		if(prodotto == null || q <=0 )
+			throw new CartIllegalArgumentsException("Rimozione dal carrello fallita (null pointer).");
+		if(q <= 0 )
+			throw new CartIllegalArgumentsException("Rimozione dal carrello fallita: quantità da rimuovere negativa o nulla.");
+		
 		// aggiornamento del carrello
 		strutturaDati.put(prodotto, strutturaDati.get(prodotto) - q);
 
@@ -51,6 +58,9 @@ public class Cart {
 	}
 
 	public static void removeAll() {
+		if(strutturaDati.isEmpty())
+			throw new CartIllegalArgumentsException("Rimozione di tutti gli articoli dal carrello fallita: carrello già vuoto.");
+			
 		for (Prodotto item : strutturaDati.keySet()) {
 			// aggiorno il catalogo
 			Catalogo.addItem(item, strutturaDati.get(item));
@@ -64,6 +74,12 @@ public class Cart {
 
 	// aggiunge prodotto al carrello
 	public static void addItem(Prodotto prodotto, Integer q) {
+		if(prodotto == null)
+			throw new CartIllegalArgumentsException("Aggiunta al carrello fallita (null pointer).");
+		if(q <= 0 )
+			throw new CartIllegalArgumentsException("Aggiunta al carrello fallita: quantità da aggiungere negativa o nulla.");
+		if(q > prodotto.getDisp())
+			throw new CartIllegalArgumentsException("Aggiunta al carrello fallita: quantità da aggiungere maggiore della disponibilità.");
 
 		// se è già presente il prodotto lo aggiungo alla quantità gia presente
 		if (strutturaDati.containsKey(prodotto)) {
@@ -86,6 +102,9 @@ public class Cart {
 
 	// calcola il valore di subTotale
 	private static void calculateSubTotale(float pagSpedizione) {
+		if(pagSpedizione < 0)
+			throw new CartIllegalArgumentsException("Calcolo subtotale fallito: costo spedizione negativo.");
+		
 		float result = pagSpedizione;
 
 		for (Prodotto item : strutturaDati.keySet()) {
