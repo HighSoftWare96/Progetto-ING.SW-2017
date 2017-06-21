@@ -1,5 +1,7 @@
 package it.RGB.is.Tests.Classes;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 
 import org.junit.Test;
@@ -49,7 +51,24 @@ public class ArtistaTest {
 
 	@Test
 	public void testArtistaSemplice() {
-		
+		assertTrue(absArtista.getGenerePrincipale().equals(Genere.ROCK));
+		// stesso nome arte e nascita un solo nome stampato
+		assertTrue(absArtista.getNomeArte().equalsIgnoreCase("Steve Lukather"));
+		assertTrue(absArtista.toString().contains("Chitarra"));
+		assertTrue(absArtista.toString().contains("Steve Lukather"));
+	}
+
+	@Test
+	public void testArtistaConSecondoNome() {
+		assertTrue(absArtistaWithArtName.toString().contains("Nek"));
+		assertTrue(absArtistaWithArtName.toString().contains("Filippo"));
+	}
+
+	@Test
+	public void testBand() {
+		assertTrue(absBand.getGenerePrincipale().equals(Genere.ROCK));
+		assertTrue(absBand.toString().contains("Steve Lukather"));
+		assertTrue(absBand.toString().contains("Steve Lukather"));
 	}
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.RGB.is.Tests.Classes;
+package it.RGB.is.Tests.Integration;
 
 import static org.junit.Assert.fail;
 

@@ -42,7 +42,6 @@ public class Artista extends ArtistaGenerico {
 	 * @return
 	 */
 	public String getNomeBattesimo() {
-		// TODO implement here
 		return this.nomeBattesimo;
 	}
 
@@ -50,7 +49,6 @@ public class Artista extends ArtistaGenerico {
 	 * @return
 	 */
 	public Date getDataNascita() {
-		// TODO implement here
 		return this.dataNascita;
 	}
 
@@ -58,7 +56,6 @@ public class Artista extends ArtistaGenerico {
 	 * @return
 	 */
 	public Strumento[] getStrumento() {
-		// TODO implement here
 		return this.strumenti;
 	}
 
