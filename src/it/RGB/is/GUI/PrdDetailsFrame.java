@@ -89,7 +89,7 @@ public class PrdDetailsFrame extends JDialog {
 		fourthPanel.add(genLabel);
 		fourthPanel.add(new JLabel("<html>" + prodotto.getGenere().toString() + "<br>", SwingConstants.CENTER));
 
-		JPanel fifthPanel = new JPanel(new FlowLayout());
+		JPanel fifthPanel = new JPanel(new GridLayout(2, 1));
 		ArtistaGenerico[] artisti = prodotto.getPartecipanti();
 		String artistiFormatted = "<html><center>Musicisti partecipanti:<br></center><ul>";
 		for (ArtistaGenerico item : artisti) {
@@ -98,15 +98,13 @@ public class PrdDetailsFrame extends JDialog {
 			artistiFormatted += "</li>";
 		}
 		artistiFormatted += "</ul></html>";
-
-		fifthPanel.add(new JLabel(artistiFormatted));
-		fifthPanel.setBorder(new EmptyBorder(0, 0, 0, 30));
-
-		JPanel lastPanel = new JPanel(new GridLayout(1, 1));
 		JLabel prizeLabel = new JLabel("<html><center><b>Prezzo:</b> <br><h2>" + prodotto.getPrezzo() + " €</h2>",
 				SwingConstants.CENTER);
-		lastPanel.add(prizeLabel);
-		lastPanel.setBorder(new EmptyBorder(0, 30, 0, 30));
+		prizeLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
+
+		fifthPanel.add(new JLabel(artistiFormatted));
+		fifthPanel.add(prizeLabel);
+		fifthPanel.setBorder(new EmptyBorder(10, 5, 0, 15));
 
 		// pannello contenente tutti i sottopannelli
 		JPanel mainPanel = new JPanel(new FlowLayout());
@@ -114,11 +112,10 @@ public class PrdDetailsFrame extends JDialog {
 		mainPanel.add(secondPanel);
 		mainPanel.add(fourthPanel);
 		mainPanel.add(fifthPanel);
-		mainPanel.add(lastPanel);
 
 		// scroll pane per permettere lo scrolling
-		JScrollPane mainScrollPane = new JScrollPane(mainPanel, 
-				JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane mainScrollPane = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mainScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		// aggiungo lo scroll pane
