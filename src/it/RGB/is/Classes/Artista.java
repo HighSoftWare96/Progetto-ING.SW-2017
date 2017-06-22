@@ -66,10 +66,10 @@ public class Artista extends ArtistaGenerico {
 			strumentiSuonati += item.toString();
 		}
 
-		if (super.getNomeArte().equals(nomeBattesimo))
-			return this.nomeBattesimo + strumentiSuonati;
+		if (super.getNomeArte().equals(getNomeBattesimo()))
+			return this.getNomeBattesimo() + strumentiSuonati;
 		else
-			return super.getNomeArte() + " (" + nomeBattesimo + ")" + strumentiSuonati;
+			return super.getNomeArte() + " (" + getNomeBattesimo() + ")" + strumentiSuonati;
 	}
 
 }
