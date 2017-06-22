@@ -117,7 +117,8 @@ public class PrdDetailsFrame extends JDialog {
 		mainPanel.add(lastPanel);
 
 		// scroll pane per permettere lo scrolling
-		JScrollPane mainScrollPane = new JScrollPane(mainPanel);
+		JScrollPane mainScrollPane = new JScrollPane(mainPanel, 
+				JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mainScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		// aggiungo lo scroll pane
