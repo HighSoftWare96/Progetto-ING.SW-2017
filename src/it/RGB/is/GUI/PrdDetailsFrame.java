@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -26,8 +27,6 @@ public class PrdDetailsFrame extends JDialog {
 		// ESC key
 		setFocusable(true);
 		addKeyListener(new KeyboardListener(this));
-
-		setLayout(new FlowLayout());
 
 		Prodotto prodotto = Catalogo.searchByID(id);
 
@@ -81,7 +80,8 @@ public class PrdDetailsFrame extends JDialog {
 		fourthPanel.add(new JLabel("<html>" + prodotto.getDataArrivo().toString() + "<br>", SwingConstants.CENTER));
 
 		fourthPanel.add(singerGroupLabel);
-		fourthPanel.add(new JLabel("<html><center>" + prodotto.getTitolare().toString() + "<br>", SwingConstants.CENTER));
+		fourthPanel
+				.add(new JLabel("<html><center>" + prodotto.getTitolare().toString() + "<br>", SwingConstants.CENTER));
 
 		fourthPanel.add(descrlLabel);
 		fourthPanel.add(new JLabel("<html>" + prodotto.getDescrizione() + "<br>", SwingConstants.CENTER));
@@ -108,11 +108,20 @@ public class PrdDetailsFrame extends JDialog {
 		lastPanel.add(prizeLabel);
 		lastPanel.setBorder(new EmptyBorder(0, 30, 0, 30));
 
-		getContentPane().add(firstPanel);
-		getContentPane().add(secondPanel);
-		getContentPane().add(fourthPanel);
-		getContentPane().add(fifthPanel);
-		getContentPane().add(lastPanel);
+		// pannello contenente tutti i sottopannelli
+		JPanel mainPanel = new JPanel(new FlowLayout());
+		mainPanel.add(firstPanel);
+		mainPanel.add(secondPanel);
+		mainPanel.add(fourthPanel);
+		mainPanel.add(fifthPanel);
+		mainPanel.add(lastPanel);
+
+		// scroll pane per permettere lo scrolling
+		JScrollPane mainScrollPane = new JScrollPane(mainPanel);
+		mainScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+		// aggiungo lo scroll pane
+		getContentPane().add(mainScrollPane);
 
 		setIconImage(new ImageIcon(this.getClass().getResource("/resources/info_icon_new.png")).getImage());
 
