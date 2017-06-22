@@ -22,7 +22,7 @@ public class VenditaTest {
 	@Test (expected = VenditaIllegalArgumentException.class)
 	public void testVenditaClienteNull() throws VenditaIllegalArgumentException {
 		TestData.initializeData();
-		venditaTest = new Vendita(null, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
+		new Vendita(null, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		
 	} 
 	
