@@ -12,6 +12,7 @@ import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Strumento;
 
 public class TestData {
+
 	static Artista steveLukather = null;
 	static Artista davidPaich = null;
 	static Artista stevePorcaro = null;
@@ -21,10 +22,11 @@ public class TestData {
 	static Prodotto genericDVD = null;
 	static String genericSongs[] = null;
 
-	static {
+	public static void initializeData() {
 		try {
 			steveLukather = new Artista("Steve Lukather", Genere.ROCK, "Steve Lukather", new Date(),
 					new Strumento[] { new Strumento("Chitarra"), new Strumento("Voce"), new Strumento("Basso") });
+
 			davidPaich = new Artista("David Paich", Genere.ROCK, "David Paich", new Date(), new Strumento[] {
 					new Strumento("Pianoforte"), new Strumento("Organo"), new Strumento("Contrabasso") });
 			stevePorcaro = new Artista("Steve Porcaro", Genere.ROCK, "Steve Porcaro", new Date(),
@@ -39,8 +41,9 @@ public class TestData {
 							"Unknown Soldier", "The Little Things", "Chinatown", "All the Tears that shine", "Fortune",
 							"Great Expectations" },
 					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/totoXIVcover.jpg")) },
-					new Float(12.23), new Band("Toto", Genere.ROCK, new Artista[] {}), "Gran bel album", Genere.ROCK,
-					new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
+					new Float(12.23),
+					new Band("Toto", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
+					"Gran bel album", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
 
 			genericDVD = new Prodotto(true, "Toto XIV",
 					new String[] { "Running out of time", "Burn", "Holy war", "21st Century Blues", "Orphan",
@@ -50,7 +53,7 @@ public class TestData {
 					new Float(12.23), new Band("Toto", Genere.ROCK, new Artista[] {}), "Gran bel album", Genere.ROCK,
 					new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }
