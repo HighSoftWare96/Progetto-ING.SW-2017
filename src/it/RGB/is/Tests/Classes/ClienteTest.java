@@ -11,8 +11,6 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
-import it.RGB.is.Classes.BancaUtenti;
-import it.RGB.is.Classes.Catalogo;
 import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
@@ -76,7 +74,7 @@ public class ClienteTest {
 		String psw = clienteOnTesting.getPassword();
 		assertEquals("Psw cliente", "ciao123", psw);
 		String city = clienteOnTesting.getCity();
-		assertEquals("Città cliente", "Verona", city);
+		assertEquals("Cittï¿½ cliente", "Verona", city);
 		String tel = clienteOnTesting.getTel();
 		assertEquals("Tel cliente", "000000000000", tel);
 		assertFalse(clienteOnTesting.canHaveDiscounts());
@@ -110,9 +108,9 @@ public class ClienteTest {
 		Assert.assertEquals(1, venditeCliente[0].getProdottiLength()); // con un
 																		// solo
 																		// prodotto
-		Assert.assertEquals(vendita, venditeCliente[0]); // è quella che ho
+		Assert.assertEquals(vendita, venditeCliente[0]); // ï¿½ quella che ho
 															// inserito io
-		Assert.assertTrue(TestData.getGenericCd().getPrezzo() * 20 == venditeCliente[0].getPrezzoTotale()); // è
+		Assert.assertTrue(TestData.getGenericCd().getPrezzo() * 20 == venditeCliente[0].getPrezzoTotale()); // ï¿½
 		// quella
 		// che
 		// ho
