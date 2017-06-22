@@ -18,6 +18,7 @@ public class CartTest {
 
 	@Test
 	public void testCart() {
+
 		// test rimozione tutti prodotti
 		Cart.addItem(TestData.getGenericCd(), 4);
 		Cart.addItem(TestData.getGenericDVD(), 2);
@@ -51,7 +52,7 @@ public class CartTest {
 		// aumento quantità di un prodotto già presente
 		Cart.addItem(TestData.getGenericCd(), 1);
 		assertTrue(Cart.getQuantita(TestData.getGenericCd().getID()) == 2);
-		
+
 		// Prodotto da ID
 		assertTrue(Cart.getItemByID(TestData.getGenericCd().getID()).equals(TestData.getGenericCd()));
 		Cart.removeItem(TestData.getGenericCd(), 1);
@@ -59,24 +60,34 @@ public class CartTest {
 
 		// numero prodotti nel carrello
 		assertTrue(Cart.getCartNumberItems() == 0);
+
+		// completamento acquisto
+		Cart.addItem(TestData.getGenericCd(), 1);
+		Cart.addItem(TestData.getGenericCd(), 1);
+		Cart.buyAndRemove();
+		assertTrue(Cart.getCartNumberItems() == 0);
+
+		// get amount length
+		Cart.addItem(TestData.getGenericCd(), 1);
+		Cart.addItem(TestData.getGenericCd(), 1);
+		assertTrue(Cart.getAmount().length == Cart.getCartNumberItems());
+		assertTrue(Cart.getAmount().length == Cart.getCart().length);
+
 	}
-	
-	@Test (expected = CartIllegalArgumentsException.class)
-	public void testAddCartModeThenAvailable(){
+
+	@Test(expected = CartIllegalArgumentsException.class)
+	public void testAddCartModeThenAvailable() {
 		// inserisco più prodotti di quanti disponibili nel catalogo
 		Cart.addItem(TestData.getGenericCd(), 2000);
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class)
 	public void removeItemNull() {
-
 		Cart.removeItem(null, 1);
-
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class)
 	public void removeItemAmount() {
-
 		Cart.removeItem(TestData.getGenericCd(), -1);
 		Cart.removeItem(TestData.getGenericCd(), 0);
 	}

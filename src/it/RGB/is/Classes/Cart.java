@@ -21,7 +21,7 @@ public class Cart {
 		// se la modConsegna è null allora calcolo solo il subtotale
 		if (modConsegna == null)
 			calculateSubTotale(0);
-		
+
 		else {
 			switch (modConsegna) {
 			case CORRIERE_24H:
@@ -72,7 +72,7 @@ public class Cart {
 
 	// rimuove prodotto dal carrello
 	public static void removeItem(Prodotto prodotto, int q) throws LightCartException {
-		if (prodotto == null || q <= 0)
+		if (prodotto == null)
 			throw new CartIllegalArgumentsException("Rimozione dal carrello fallita (null pointer).");
 		if (q <= 0)
 			throw new CartIllegalArgumentsException(
