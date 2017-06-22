@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
+import it.RGB.is.Exceptions.NoPrefFoundException;
 
 public class Cliente implements Serializable {
 
@@ -36,7 +37,7 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.city = city;
-		this.numeroTel = numeroTel; 
+		this.numeroTel = numeroTel;
 
 		if (numeroCell != null && !numeroCell.equals(""))
 			this.numeroCell = numeroCell;
@@ -118,8 +119,12 @@ public class Cliente implements Serializable {
 		return acquisti.size();
 	}
 
-	public Genere calculateGeneriPref() {
+	public Genere calculateGeneriPref() throws NoPrefFoundException {
 		int[] arrayGenere = new int[Genere.values().length];
+
+		// non ha effettuato acquisti
+		if (getVendite().length <= 0)
+			throw new NoPrefFoundException();
 
 		for (Vendita v : getVendite())
 			for (Prodotto p : v.getProdotti())
@@ -151,6 +156,7 @@ public class Cliente implements Serializable {
 
 		// prendo l'indice maggiore
 		int maxIndex = 0;
+
 		for (int i = 1; i < arrayGenere.length; i++) {
 			int newnumber = arrayGenere[i];
 			if ((newnumber > arrayGenere[maxIndex])) {

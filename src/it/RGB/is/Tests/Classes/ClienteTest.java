@@ -14,11 +14,13 @@ import org.junit.Test;
 import it.RGB.is.Classes.BancaUtenti;
 import it.RGB.is.Classes.Catalogo;
 import it.RGB.is.Classes.Cliente;
+import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Vendita;
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
+import it.RGB.is.Exceptions.NoPrefFoundException;
 
 public class ClienteTest {
 
@@ -172,8 +174,16 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testClientePreferredGen() {
+	public void testClientePreferredGen() throws NoPrefFoundException {
 		Vendita genericVendita = TestData.getGenericVendita();
+		clienteOnTesting.addVendita(genericVendita);
+		clienteOnTesting.addVendita(genericVendita);
+		
+		// solo ROCK
+		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.ROCK));
+		
+		clienteOnTesting = TestData.getGenericCliente();
+		
 
 	}
 

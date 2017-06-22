@@ -14,6 +14,7 @@ import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.SearchMod;
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
+import it.RGB.is.Exceptions.NoPrefFoundException;
 
 public final class Controller {
 
@@ -189,16 +190,25 @@ public final class Controller {
 	}
 
 	public static void suggestionCommand() {
-		Genere gen = BancaUtenti.getLoggedInUser().calculateGeneriPref();
-		Prodotto[] resultsGen = Catalogo.searchByGen(gen);
-		if (resultsGen.length > 0) {
-			MainPanelProducts.updateSearch(resultsGen);
-			MainFrame.getPanelProducts()
-					.setResultTitle("<html><font color = \"green\"><b>Risultati suggeriti per l'utente</b>");
-			MainPanelButtons.enableSearch(true);
-		} else {
-			JOptionPane.showMessageDialog(GUIMain.getFrame(), "Nessun elemento suggerito trovato",
-					"Visualizza elementi suggeriti", JOptionPane.INFORMATION_MESSAGE);
+		try {
+			Genere gen = null;
+			gen = BancaUtenti.getLoggedInUser().calculateGeneriPref(); // potrebbe
+																		// lanciare
+																		// l'eccezione
+
+			Prodotto[] resultsGen = Catalogo.searchByGen(gen);
+			if (resultsGen.length > 0) {
+				MainPanelProducts.updateSearch(resultsGen);
+				MainFrame.getPanelProducts()
+						.setResultTitle("<html><font color = \"green\"><b>Risultati suggeriti per l'utente</b>");
+				MainPanelButtons.enableSearch(true);
+			} else {
+				JOptionPane.showMessageDialog(GUIMain.getFrame(), "Nessun elemento suggerito trovato nel catalogo",
+						"Visualizza elementi suggeriti", JOptionPane.INFORMATION_MESSAGE);
+			}
+		} catch (NoPrefFoundException e) {
+			JOptionPane.showMessageDialog(GUIMain.getFrame(), e.getMessage(), "Visualizza elementi suggeriti",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
