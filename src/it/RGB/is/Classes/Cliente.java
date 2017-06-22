@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
-import it.RGB.is.Exceptions.NoPrefFoundException;
+import it.RGB.is.Exceptions.NoGenPrefFoundException;
 
 public class Cliente implements Serializable {
 
@@ -119,12 +119,12 @@ public class Cliente implements Serializable {
 		return acquisti.size();
 	}
 
-	public Genere calculateGeneriPref() throws NoPrefFoundException {
+	public Genere calculateGeneriPref() throws NoGenPrefFoundException {
 		int[] arrayGenere = new int[Genere.values().length];
 
 		// non ha effettuato acquisti
 		if (getVendite().length <= 0)
-			throw new NoPrefFoundException();
+			throw new NoGenPrefFoundException();
 
 		for (Vendita v : getVendite())
 			for (Prodotto p : v.getProdotti())

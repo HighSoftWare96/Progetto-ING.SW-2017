@@ -14,7 +14,7 @@ import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.SearchMod;
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
-import it.RGB.is.Exceptions.NoPrefFoundException;
+import it.RGB.is.Exceptions.NoGenPrefFoundException;
 
 public final class Controller {
 
@@ -206,7 +206,7 @@ public final class Controller {
 				JOptionPane.showMessageDialog(GUIMain.getFrame(), "Nessun elemento suggerito trovato nel catalogo",
 						"Visualizza elementi suggeriti", JOptionPane.INFORMATION_MESSAGE);
 			}
-		} catch (NoPrefFoundException e) {
+		} catch (NoGenPrefFoundException e) {
 			JOptionPane.showMessageDialog(GUIMain.getFrame(), e.getMessage(), "Visualizza elementi suggeriti",
 					JOptionPane.INFORMATION_MESSAGE);
 		}

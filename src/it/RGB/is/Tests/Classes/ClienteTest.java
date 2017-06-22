@@ -19,8 +19,10 @@ import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Vendita;
+import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
-import it.RGB.is.Exceptions.NoPrefFoundException;
+import it.RGB.is.Exceptions.NoGenPrefFoundException;
+import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
 
 public class ClienteTest {
 
@@ -28,16 +30,13 @@ public class ClienteTest {
 
 	public ClienteTest() {
 		try {
-			
-			Catalogo.initialize();
-			BancaUtenti.initialize();
-			
+
 			TestData.initializeData();
-			
+
 			clienteOnTesting = TestData.getGenericCliente();
-			
+
 			BancaUtenti.addItem(clienteOnTesting);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -173,18 +172,34 @@ public class ClienteTest {
 
 	}
 
+	// nessun acquisto effettuato: eccezione
+	@Test(expected = NoGenPrefFoundException.class)
+	public void testClientePreferredGenNull() throws NoGenPrefFoundException {
+		clienteOnTesting = TestData.getGenericCliente();
+		clienteOnTesting.calculateGeneriPref();
+	}
+
 	@Test
-	public void testClientePreferredGen() throws NoPrefFoundException {
+	public void testClientePreferredGen() throws NoGenPrefFoundException, ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
 		Vendita genericVendita = TestData.getGenericVendita();
 		clienteOnTesting.addVendita(genericVendita);
 		clienteOnTesting.addVendita(genericVendita);
-		
+
 		// solo ROCK
 		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.ROCK));
-		
-		clienteOnTesting = TestData.getGenericCliente();
-		
 
+		// jazz
+		TestData.changeGenOfGenericVendita(Genere.JAZZ);
+		clienteOnTesting.addVendita(genericVendita);
+		clienteOnTesting.addVendita(genericVendita);
+		
+		// ancora ROCK
+		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.ROCK));
+		
+		clienteOnTesting.addVendita(genericVendita);
+		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.JAZZ));
+		
+		
 	}
 
 }

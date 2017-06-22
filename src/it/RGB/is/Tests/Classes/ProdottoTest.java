@@ -19,6 +19,10 @@ public class ProdottoTest {
 	private Prodotto genericCD = null;
 	private Prodotto genericDVD = null;
 
+	public ProdottoTest() {
+		TestData.initializeData();
+	}
+	
 	@Test
 	public void testProdotto() {
 		genericCD = TestData.getGenericCd();		

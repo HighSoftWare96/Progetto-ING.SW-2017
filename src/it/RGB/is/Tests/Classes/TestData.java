@@ -36,42 +36,34 @@ public class TestData {
 	private static Artista noPartecipanti[] = null;
 
 	public static Artista getArtist1() {
-		//initializeData();
 		return steveLukather;
 	}
 
 	public static Artista getArtist2() {
-		//initializeData();
 		return davidPaich;
 	}
 
 	public static Artista getArtist3() {
-		//initializeData();
 		return stevePorcaro;
 	}
 
 	public static Artista getArtistArtName() {
-		//initializeData();
 		return nek;
 	}
 
 	public static Band getBand() {
-		//initializeData();
 		return toto;
 	}
 
 	public static Prodotto getGenericCd() {
-		//initializeData();
 		return genericCD;
 	}
 
 	public static Prodotto getGenericDVD() {
-		//initializeData();
 		return genericDVD;
 	}
 
 	public static String[] getGenericSongs() {
-		//initializeData();
 		return genericSongs;
 	}
 	
@@ -95,7 +87,6 @@ public class TestData {
 
 	public static void changeGenOfGenericCD(Genere genere)
 			throws ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
-		//initializeData();
 		genericCD = new Prodotto(false, "Toto XIV",
 				new String[] { "Running out of time", "Burn", "Holy war", "21st Century Blues", "Orphan",
 						"Unknown Soldier", "The Little Things", "Chinatown", "All the Tears that shine", "Fortune",
@@ -107,17 +98,19 @@ public class TestData {
 	}
 
 	public static Cliente getGenericCliente() {
-		//initializeData();
 		return genericCliente;
 	}
 
 	public static Vendita getGenericVendita() {
-		//initializeData();
 		return genericVendita;
 	}
 
 	public static void initializeData() {
 		try {
+			Catalogo.initializeFromScratch();
+			BancaUtenti.initializeFromScratch();
+			BancaVendite.initializeFromScratch();
+			
 			steveLukather = new Artista("Steve Lukather", Genere.ROCK, "Steve Lukather", new Date(),
 					new Strumento[] { new Strumento("Chitarra"), new Strumento("Voce"), new Strumento("Basso") });
 

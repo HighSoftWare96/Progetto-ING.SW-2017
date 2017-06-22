@@ -24,6 +24,13 @@ public class BancaUtenti implements Serializable {
 	private static HashSet<Cliente> strutturaUtenti;
 	private static Cliente clienteLoggato = null;
 
+	
+	// SOLO PER TESTING !!!
+	public static void initializeFromScratch() {
+		strutturaUtenti = new HashSet<>();
+	}
+	
+	
 	public static void initialize() {
 		if (utentiFile.exists()) {
 			// recupero i dati
@@ -106,5 +113,7 @@ public class BancaUtenti implements Serializable {
 		}
 
 	}
+
+
 
 }

@@ -24,6 +24,12 @@ public class Catalogo implements Serializable {
 	private static HashSet<Prodotto> strutturaDati;
 	private static int availableID;
 
+	
+	// SOLO PER TESTING !!!
+	public static void initializeFromScratch() {
+		strutturaDati = new HashSet<>();
+	}
+	
 	public static void initialize() {
 		try {
 			if (catalogoFile.exists()) {
@@ -180,5 +186,4 @@ public class Catalogo implements Serializable {
 		}
 
 	}
-
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import it.RGB.is.Exceptions.CriticalException;
 
@@ -17,6 +18,11 @@ public class BancaVendite {
 
 	private static ArrayList<Vendita> strutturaVendite;
 	private final static File venditeFile = new File("music_store_file//vendite.dat");
+
+	// SOLO PER TESTING !!!
+	public static void initializeFromScratch() {
+		strutturaVendite = new ArrayList<>();
+	}
 
 	public static void initialize() throws CriticalException {
 		if (venditeFile.exists()) {
@@ -73,4 +79,5 @@ public class BancaVendite {
 		}
 
 	}
+
 }
