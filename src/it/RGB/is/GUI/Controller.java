@@ -20,6 +20,7 @@ public final class Controller {
 
 	// CARTFRAMELISTENER
 	public static void updateDeleteCart(int amount, Prodotto prodotto) {
+
 		// aggiorno il model
 		Cart.removeItem(prodotto, amount);
 

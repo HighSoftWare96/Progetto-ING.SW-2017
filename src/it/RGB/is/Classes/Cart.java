@@ -2,7 +2,8 @@ package it.RGB.is.Classes;
 
 import java.util.HashMap;
 
-import it.RGB.is.Exceptions.CartIllegalArgumentsException;;
+import it.RGB.is.Exceptions.CartIllegalArgumentsException;
+import it.RGB.is.Exceptions.LightCartException;;
 
 public class Cart {
 
@@ -20,6 +21,7 @@ public class Cart {
 		// se la modConsegna è null allora calcolo solo il subtotale
 		if (modConsegna == null)
 			calculateSubTotale(0);
+		
 		else {
 			switch (modConsegna) {
 			case CORRIERE_24H:
@@ -43,13 +45,40 @@ public class Cart {
 		return subTotale;
 	}
 
+	// calcola il valore di subTotale
+	private static void calculateSubTotale(float pagSpedizione) {
+		if (pagSpedizione < 0)
+			throw new CartIllegalArgumentsException("Calcolo subtotale fallito: costo spedizione negativo.");
+
+		float result = pagSpedizione;
+
+		for (Prodotto item : strutturaDati.keySet()) {
+			result += (item.getPrezzo() * strutturaDati.get(item));
+		}
+		subTotale = result;
+	}
+
+	// calcola il subtotale senza la spedizione
+	public static float calculateSubTotaleNotSped() {
+		float result = 0;
+
+		for (Prodotto item : strutturaDati.keySet()) {
+			result += (item.getPrezzo() * strutturaDati.get(item));
+		}
+
+		subTotale = result;
+		return subTotale;
+	}
+
 	// rimuove prodotto dal carrello
-	public static void removeItem(Prodotto prodotto, int q) {
+	public static void removeItem(Prodotto prodotto, int q) throws LightCartException {
 		if (prodotto == null || q <= 0)
 			throw new CartIllegalArgumentsException("Rimozione dal carrello fallita (null pointer).");
 		if (q <= 0)
 			throw new CartIllegalArgumentsException(
 					"Rimozione dal carrello fallita: quantità da rimuovere negativa o nulla.");
+		if (strutturaDati.size() == 0 || !strutturaDati.containsKey(prodotto))
+			throw new LightCartException("Rimozione dal carrello fallita (carrello vuoto, o prodotto inesistente).");
 
 		// aggiornamento del carrello
 		strutturaDati.put(prodotto, strutturaDati.get(prodotto) - q);
@@ -89,32 +118,6 @@ public class Cart {
 		strutturaDati.put(prodotto, q);
 	}
 
-	// calcola il subtotale senza la spedizione
-	public static float calculateSubTotaleNotSped() {
-		float result = 0;
-
-		for (Prodotto item : strutturaDati.keySet()) {
-			result += (item.getPrezzo() * strutturaDati.get(item));
-		}
-
-		subTotale = result;
-		return subTotale;
-	}
-
-	// calcola il valore di subTotale
-	private static void calculateSubTotale(float pagSpedizione) {
-		if (pagSpedizione < 0)
-			throw new CartIllegalArgumentsException("Calcolo subtotale fallito: costo spedizione negativo.");
-
-		float result = pagSpedizione;
-
-		for (Prodotto item : strutturaDati.keySet()) {
-			result += (item.getPrezzo() * strutturaDati.get(item));
-		}
-
-		subTotale = result;
-	}
-
 	public static Prodotto[] getCart() {
 		return strutturaDati.keySet().toArray(new Prodotto[strutturaDati.size()]);
 	}
@@ -127,7 +130,7 @@ public class Cart {
 		for (Prodotto item : strutturaDati.keySet())
 			if (item.getID() == ID)
 				return strutturaDati.get(item);
-		return -1;
+		throw new LightCartException();
 	}
 
 	public static int getCartNumberItems() {
@@ -138,7 +141,7 @@ public class Cart {
 		for (Prodotto item : strutturaDati.keySet())
 			if (item.getID() == selectedID)
 				return item;
-		return null;
+		throw new LightCartException();
 	}
 
 	public static boolean hasDiscount() {

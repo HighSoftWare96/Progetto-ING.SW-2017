@@ -10,6 +10,5 @@ public class CartIllegalArgumentsException extends CriticalException {
 	
 	public CartIllegalArgumentsException(String message) {
 		super(message);
-	
 	}
 }
