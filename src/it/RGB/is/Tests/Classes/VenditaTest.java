@@ -1,34 +1,41 @@
 package it.RGB.is.Tests.Classes;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
 
 import it.RGB.is.Classes.Vendita;
+import it.RGB.is.Tests.Classes.TestData;
+import it.RGB.is.Exceptions.VenditaIllegalArgumentException;
 
 public class VenditaTest {
+	
+	private Vendita venditaTest;
 
-	@Test
-	public void test() {
-		Date date = new Date();
-		Vendita vend = new Vendita(null,null, null, 0, date, "", null, null);
-		
-		try{
-			vend.getDate();
-			vend.getPagamento();
-			vend.getConsegna();
-			vend.getProdottiLength();
-			vend.getProdottoString(0);
-		}catch(Exception e){
-			e.getMessage();
-		}
-		vend.getAmount();
-		vend.getProdotti();
-		vend.getPrezzoTotale();
-		vend.getDateString();
-		vend.getIP();
-		
+	@Test (expected = VenditaIllegalArgumentException.class)
+	public void testVenditaNull() {
+		new Vendita(null,null, null, 0, new Date(), "", null, null);
 		
 	}
-
+	
+	@Test
+	public void testVenditaConstructor() {
+		venditaTest = TestData.getGenericVendita();
+		
+		String pagamento = venditaTest.getPagamento();
+		assertEquals("Bonifico bancario", pagamento);
+		String consegna = venditaTest.getConsegna();
+		assertEquals("Corriere 24H", consegna);
+		assertTrue(venditaTest.getProdottiLength() == 20);
+		assertTrue(venditaTest.getPrezzoTotale() == 250);
+		String ip = venditaTest.getIP();
+		assertEquals("localhost", ip);
+		Date data = venditaTest.getDate();
+		assertEquals(new Date(), data);
+			
+	}
 }
