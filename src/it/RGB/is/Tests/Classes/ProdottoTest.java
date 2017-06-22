@@ -31,10 +31,13 @@ public class ProdottoTest {
 		assertFalse(genericCD.getPartecipanti().length == 4);
 		assertFalse(genericDVD.getSongsTitles().isEmpty());
 		assertTrue(genericDVD.getSongsTitles().contains("Running"));
+		
 		genericCD.setNewDisp(10);
-		assertFalse(genericCD.getDisp() == 90);
+		assertTrue(genericCD.getDisp() == 90);
+		
 		genericCD.setNewDispAdd(10);
-		assertTrue(genericCD.getDisp() == 20);
+		assertTrue(genericCD.getDisp() == 100);
+		
 		assertFalse(genericCD.equals(genericDVD));
 	}
 

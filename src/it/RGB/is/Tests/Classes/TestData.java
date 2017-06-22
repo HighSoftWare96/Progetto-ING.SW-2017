@@ -50,8 +50,9 @@ public class TestData {
 							"Unknown Soldier", "The Little Things", "Chinatown", "All the Tears that shine", "Fortune",
 							"Great Expectations" },
 					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/totoXIVcover.jpg")) },
-					new Float(12.23), new Band("Toto", Genere.ROCK, new Artista[] {}), "Gran bel album", Genere.ROCK,
-					new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
+					new Float(12.23),
+					new Band("Toto", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
+					"Gran bel album", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
