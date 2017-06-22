@@ -36,7 +36,7 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.city = city;
-		this.numeroTel = numeroTel;
+		this.numeroTel = numeroTel; 
 
 		if (numeroCell != null && !numeroCell.equals(""))
 			this.numeroCell = numeroCell;

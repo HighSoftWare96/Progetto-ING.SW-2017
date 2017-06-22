@@ -6,22 +6,27 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
+import it.RGB.is.Classes.BancaUtenti;
+import it.RGB.is.Classes.Catalogo;
 import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Vendita;
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
+import it.RGB.is.Exceptions.VenditaIllegalArgumentException;
 
 public class ClienteTest {
 	private Cliente clienteOnTesting;
 
 	public ClienteTest() {
 		try {
-			clienteOnTesting = new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli",
+			BancaUtenti.initialize();
+			clienteOnTesting = new Cliente("BRTGNN96T21B296N", "bertonc96H", "ciao123", "Giovanni", "Bertoncelli",
 					"Verona", "000000000000", null);
+			BancaUtenti.addItem(clienteOnTesting);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
@@ -44,9 +49,14 @@ public class ClienteTest {
 
 	@Test
 	public void testAddVendita() {
-		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 },
-				TestData.genericCD.getPrezzo() * 20, new Date(), "localhost", Pagamento.BONIFICO,
-				ModConsegna.CORRIERE_24H);
+		Vendita vendita = null;
+		try {
+			vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 },
+					TestData.genericCD.getPrezzo() * 20, new Date(), "localhost", Pagamento.BONIFICO,
+					ModConsegna.CORRIERE_24H);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		clienteOnTesting.addVendita(vendita);
 		Vendita[] venditeCliente = clienteOnTesting.getVendite();
 		Assert.assertNotNull(vendita);
@@ -65,8 +75,9 @@ public class ClienteTest {
 																										// io
 	}
 
-	@Test
+	@Test (expected = VenditaIllegalArgumentException.class)
 	public void testAddVenditaZero() {
+		
 		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] {}, new Integer[] {}, 0, new Date(), "localhost",
 				Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);

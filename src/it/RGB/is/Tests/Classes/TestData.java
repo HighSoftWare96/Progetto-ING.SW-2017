@@ -13,16 +13,56 @@ import it.RGB.is.Classes.Strumento;
 
 public class TestData {
 
-	static Artista steveLukather = null;
-	static Artista davidPaich = null;
-	static Artista stevePorcaro = null;
-	static Artista nek = null;
-	static Band toto = null;
-	static Prodotto genericCD = null;
-	static Prodotto genericDVD = null;
-	static String genericSongs[] = null;
+	private static Artista steveLukather = null;
+	private static Artista davidPaich = null;
+	private static Artista stevePorcaro = null;
+	private static Artista nek = null;
+	private static Band toto = null;
+	private static Prodotto genericCD = null;
+	private static Prodotto genericDVD = null;
+	private static String genericSongs[] = null;
 
-	public static void initializeData() {
+	public static Artista getArtist1() {
+		initializeData();
+		return steveLukather;
+	}
+
+	public static Artista getArtist2() {
+		initializeData();
+		return davidPaich;
+	}
+
+	public static Artista getArtist3() {
+		initializeData();
+		return stevePorcaro;
+	}
+
+	public static Artista getArtistArtName() {
+		initializeData();
+		return nek;
+	}
+
+	public static Band getBand() {
+		initializeData();
+		return toto;
+	}
+
+	public static Prodotto getGenericCd() {
+		initializeData();
+		return genericCD;
+	}
+
+	public static Prodotto getGenericDVD() {
+		initializeData();
+		return genericDVD;
+	}
+
+	public static String[] getGenericSongs() {
+		initializeData();
+		return genericSongs;
+	}
+
+	private static void initializeData() {
 		try {
 			steveLukather = new Artista("Steve Lukather", Genere.ROCK, "Steve Lukather", new Date(),
 					new Strumento[] { new Strumento("Chitarra"), new Strumento("Voce"), new Strumento("Basso") });
