@@ -30,7 +30,7 @@ public class ProdottoTest {
 		genericCD.setNewDisp(10);
 		assertFalse(genericCD.getDisp() == 90);
 		genericCD.setNewDispAdd(10);
-		assertFalse(genericCD.getDisp() == 100);
+		assertTrue(genericCD.getDisp() == 20);
 		//assertTrue(genericCD.getID() == 0);
 		assertFalse(genericCD.equals(genericDVD));
 	}
@@ -43,48 +43,48 @@ public class ProdottoTest {
 		Prodotto prodotto = new Prodotto(false, null, 
 				TestData.genericSongs, new ImageIcon [] {TestData.genericCD.getCover()}, (float) 21.43, 
 				(ArtistaGenerico) TestData.davidPaich, "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(), 2);
-		prodotto.getTitolo();
+		//assertTrue(prodotto.getTitolo().equals(null));
 		
 		//titoliPezzi
 		prodotto = new Prodotto(false, "a", null,new ImageIcon [] {TestData.genericCD.getCover()}, 
 				(float) 21.43, (ArtistaGenerico) TestData.davidPaich,  "descrizione", Genere.CLASSICA, 
 				TestData.toto.getComponenti(), 2);
-		prodotto.getTitoliPezzi();
+		//assertTrue(prodotto.getTitoliPezzi().equals(null));
 		
 		//photos
 		prodotto = new Prodotto(false, "a", TestData.genericSongs, null, (float) 21.43, (ArtistaGenerico) TestData.davidPaich
 				,  "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(), 2);
-		prodotto.getPhotos();
+		//assertTrue(prodotto.getPhotos().equals(null));
 		
 		//prezzo
 		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon [] {TestData.genericCD.getCover()}
 		, 0, (ArtistaGenerico) TestData.davidPaich,  "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(), 2);
-		prodotto.getPrezzo();
+		//assertTrue(prodotto.getPrezzo() == 0);
 		
 		//musicistaTitolare
 		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon [] {TestData.genericCD.getCover()}
 		, (float) 21.43, null,  "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(), 2);
-		prodotto.getTitolare();
+		//assertTrue(prodotto.getTitolare().equals(null));
 		
 		//descrizione
 		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon [] {TestData.genericCD.getCover()}
 		, (float) 21.43, (ArtistaGenerico) TestData.davidPaich, null, Genere.CLASSICA, TestData.toto.getComponenti(), 2);
-		prodotto.getDescrizione();
+		//assertTrue(prodotto.getDescrizione().equals(null));
 		
 		//genere
 		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon [] {TestData.genericCD.getCover()}
 		, (float) 21.43, (ArtistaGenerico) TestData.davidPaich,  "descrizione", null, TestData.toto.getComponenti(), 2);
-		prodotto.getGenere();
+		//assertTrue(prodotto.getGenere().equals(null));
 		
 		//partecipanti
 		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon [] {TestData.genericCD.getCover()}
 		, (float) 21.43, (ArtistaGenerico) TestData.davidPaich,  "descrizione", Genere.CLASSICA, null, 2);
-		prodotto.getPartecipanti();
+		//assertTrue(prodotto.getPartecipanti().equals(null));
 		
 		//disp
 		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon [] {TestData.genericCD.getCover()}
 		, (float) 21.43, (ArtistaGenerico) TestData.davidPaich,  "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(), 0);
-		prodotto.getDisp();
+		//assertTrue(prodotto.getDisp() == 0);
 		
 	}
 
