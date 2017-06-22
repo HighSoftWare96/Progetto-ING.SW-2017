@@ -15,10 +15,10 @@ import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
 
 public class ArtistaTest {
 
-	private ArtistaGenerico absArtista = TestData.steveLukather;
-	private ArtistaGenerico absArtistaWithArtName = TestData.nek;
-	private ArtistaGenerico absBand = TestData.toto;
-
+	private ArtistaGenerico absArtista = TestData.getArtist1();
+	private ArtistaGenerico absArtistaWithArtName = TestData.getArtistArtName();
+	private ArtistaGenerico absBand = TestData.getBand();
+	
 	// test error handling costruttore di ArtistaGenerico (null)
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testArtistaGenericoNull() throws ArtistIllegalArgumentException {

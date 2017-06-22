@@ -30,6 +30,11 @@ public class ClienteTest {
 		}
 	}
 
+	@Test(expected = IllegalUserRegistrationException.class)
+	public void TestClienteNull() {
+
+	}
+
 	@Test
 	public void testConstructor() {
 		String nome = clienteOnTesting.getNome();
@@ -51,8 +56,8 @@ public class ClienteTest {
 	public void testAddVendita() {
 		Vendita vendita = null;
 		try {
-			vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 },
-					TestData.genericCD.getPrezzo() * 20, new Date(), "localhost", Pagamento.BONIFICO,
+			vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 },
+					TestData.getGenericCd().getPrezzo() * 20, new Date(), "localhost", Pagamento.BONIFICO,
 					ModConsegna.CORRIERE_24H);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,35 +72,12 @@ public class ClienteTest {
 																		// prodotto
 		Assert.assertEquals(vendita, venditeCliente[0]); // è quella che ho
 															// inserito io
-		Assert.assertTrue(TestData.genericCD.getPrezzo() * 20 == venditeCliente[0].getPrezzoTotale()); // è
-																										// quella
-																										// che
-																										// ho
-																										// inserito
-																										// io
-	}
-
-	@Test (expected = VenditaIllegalArgumentException.class)
-	public void testAddVenditaZero() {
-		
-		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] {}, new Integer[] {}, 0, new Date(), "localhost",
-				Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
-		clienteOnTesting.addVendita(vendita);
-		Vendita[] venditeCliente = clienteOnTesting.getVendite();
-		Assert.assertNotNull(vendita);
-		Assert.assertNotNull(venditeCliente);
-		Assert.assertEquals(1, venditeCliente.length); // ho una sola vendita
-		Assert.assertEquals(0, venditeCliente[0].getProdottiLength()); // con un
-																		// solo
-																		// prodotto
-		Assert.assertTrue(venditeCliente[0].getProdotti().length == 0); // nessun
-																		// prodotto
-		Assert.assertNotNull(venditeCliente[0]); // è quella che ho inserito io
-		Assert.assertTrue(0 == venditeCliente[0].getPrezzoTotale()); // è quella
-																		// che
-																		// ho
-																		// inserito
-																		// io
+		Assert.assertTrue(TestData.getGenericCd().getPrezzo() * 20 == venditeCliente[0].getPrezzoTotale()); // è
+		// quella
+		// che
+		// ho
+		// inserito
+		// io
 	}
 
 	@Test
@@ -116,8 +98,8 @@ public class ClienteTest {
 
 	@Test
 	public void testDiscounts() {
-		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 },
-				250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
+		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() },
+				new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
@@ -128,23 +110,23 @@ public class ClienteTest {
 		c.add(Calendar.MONTH, -13); // tredici mesi fa
 		Date aYearAgo = c.getTime();
 
-		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 }, 251,
+		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 }, 251,
 				aYearAgo, "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
 		Assert.assertFalse(clienteOnTesting.canHaveDiscounts());
 
-		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 }, 251,
+		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 }, 251,
 				aYearAgo, "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
-		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 }, 251,
+		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 }, 251,
 				new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);
 		Assert.assertFalse(clienteOnTesting.canHaveDiscounts());
 
-		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.genericCD }, new Integer[] { 20 }, 251,
+		vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 }, 251,
 				new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);
 		clienteOnTesting.addVendita(vendita);
