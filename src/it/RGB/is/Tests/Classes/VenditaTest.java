@@ -40,6 +40,13 @@ public class VenditaTest {
 		TestData.initializeData();
 		new Vendita(TestData.getGenericCliente(), new Prodotto [] { TestData.getGenericCd() }, new Integer[] { 20 }, 0, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 	}
+	@Test (expected = VenditaIllegalArgumentException.class)
+	public void testVenditaIncorrectAmount() throws VenditaIllegalArgumentException {
+		TestData.initializeData();
+		new Vendita(TestData.getGenericCliente(), new Prodotto [] { TestData.getGenericCd(), TestData.getGenericDVD() }, new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
+	}
+	
+	
 	
 	//TODO
 	//Test in caso ci sia (prodotti2.length != amount2.length)
@@ -62,7 +69,9 @@ public class VenditaTest {
 		Date data = venditaTest.getDate();
 		assertEquals(new Date(), data);
 		assertTrue(venditaTest.getDateString().length() == 17);
-			
+		
+		
+		
 		//TODO
 		//.getProdottoString(int index)
 		//.getProdotti
