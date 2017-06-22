@@ -1,4 +1,4 @@
-package it.RGB.is.Tests.Classes;
+package it.RGB.is.Tests.Integration;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,6 +8,7 @@ import it.RGB.is.Classes.Cart;
 import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Exceptions.CartIllegalArgumentsException;
 import it.RGB.is.Exceptions.LightCartException;
+import it.RGB.is.Tests.Classes.TestData;
 
 public class CartTest {
 
