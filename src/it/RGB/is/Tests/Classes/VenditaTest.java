@@ -3,7 +3,6 @@ package it.RGB.is.Tests.Classes;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -18,12 +17,14 @@ public class VenditaTest {
 
 	@Test (expected = VenditaIllegalArgumentException.class)
 	public void testVenditaNull() {
+		TestData.initializeData();
 		new Vendita(null,null, null, 0, new Date(), "", null, null);
 		
 	}
 	
 	@Test
 	public void testVenditaConstructor() {
+		TestData.initializeData();
 		venditaTest = TestData.getGenericVendita();
 		
 		String pagamento = venditaTest.getPagamento();
