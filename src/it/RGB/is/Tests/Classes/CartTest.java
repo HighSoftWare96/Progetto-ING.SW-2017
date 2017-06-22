@@ -26,13 +26,27 @@ public class CartTest {
 		//test rimozione un prodotto alla volta
 		Cart.addItem(TestData.getGenericCd(), 2);
 		Cart.removeItem(TestData.getGenericCd(), 1);
+		//carrell con un prodotto
+		assertTrue(Cart.getCartNumberItems() == 1);
 		Cart.removeItem(TestData.getGenericCd(), 1);
-		
+		//carrello vuoto
 		assertTrue(Cart.getCartNumberItems() == 0);
 		
 		Cart.addItem(TestData.getGenericCd(), 1);
+		//calcolo prezzo
+		assertTrue((float) Cart.calculateSubTotaleNotSped() == (float) 12.23);
 		assertTrue((float) Cart.getSubTotale(ModConsegna.CORRIERE_24H) != (float) 2);
-		
+		assertTrue((float) Cart.getSubTotale(ModConsegna.CORRIERE_24H) == (float) 19.23);
+		//numero prodotti nel carrello
+		assertTrue(Cart.getCartNumberItems() == 1);
+		assertTrue(Cart.getCart().length == 1);
+		//ID da prodotto
+		assertTrue(Cart.getQuantita(TestData.getGenericCd().getID()) == 1);
+		//Prodotto da ID
+		assertTrue(Cart.getItemByID(TestData.getGenericCd().getID()).equals(TestData.getGenericCd()));
+		Cart.removeItem(TestData.getGenericCd(), 1);
+		//numero prodotti nel carrello
+		assertTrue(Cart.getCartNumberItems() == 0);
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class) 
