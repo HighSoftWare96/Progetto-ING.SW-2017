@@ -52,34 +52,28 @@ public class Prodotto implements Serializable {
 	public Prodotto(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
 			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp)
 			throws ProdottoIllegalArgumentException {
-		
 
-		if( checkCorrectData(dvd, titolo, titoliPezzi, photos, prezzo, titolare, descrizione, genere, partecipanti, disp) ){
-			this.ID = setUniqueID();
-			this.dvd = dvd;
-			this.titolo = titolo;
-			this.titoliPezzi = titoliPezzi;
-			this.photos = photos;
-			this.prezzo = prezzo;
-			this.dataArrivo = setData();
-			this.musicistaTitolare = titolare;
-			this.descrizione = descrizione;
-			this.genere = genere;
-			this.partecipanti = partecipanti;
-			this.disp = disp;
-		} else {
-			throw new ProdottoIllegalArgumentException("Errore nel salvataggio del prodotto (null pointer)");
-		}
+		checkCorrectData(dvd, titolo, titoliPezzi, photos, prezzo, titolare, descrizione, genere, partecipanti, disp);
+		this.ID = setUniqueID();
+		this.dvd = dvd;
+		this.titolo = titolo;
+		this.titoliPezzi = titoliPezzi;
+		this.photos = photos;
+		this.prezzo = prezzo;
+		this.dataArrivo = setData();
+		this.musicistaTitolare = titolare;
+		this.descrizione = descrizione;
+		this.genere = genere;
+		this.partecipanti = partecipanti;
+		this.disp = disp;
 	}
 
-	private boolean checkCorrectData(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
-			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp) 
+	private void checkCorrectData(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
+			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp)
 			throws ProdottoIllegalArgumentException {
 		if (titolo == null || titolo.equals("") || titoliPezzi.length == 0 || photos.length == 0 || prezzo <= 0
 				|| titolare == null || genere == null || partecipanti.length == 0 || disp <= 0)
-			return false;
-		else 
-			return true;
+			throw new ProdottoIllegalArgumentException("Errore nella creazione del prodotto (null pointer)");
 	}
 
 	public boolean isDVD() {
