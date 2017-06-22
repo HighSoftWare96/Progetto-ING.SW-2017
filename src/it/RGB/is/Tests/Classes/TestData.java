@@ -6,10 +6,19 @@ import javax.swing.ImageIcon;
 
 import it.RGB.is.Classes.AAAMain;
 import it.RGB.is.Classes.Artista;
+import it.RGB.is.Classes.BancaUtenti;
+import it.RGB.is.Classes.BancaVendite;
 import it.RGB.is.Classes.Band;
+import it.RGB.is.Classes.Catalogo;
+import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.Genere;
+import it.RGB.is.Classes.ModConsegna;
+import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Strumento;
+import it.RGB.is.Classes.Vendita;
+import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
+import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
 
 public class TestData {
 
@@ -20,6 +29,8 @@ public class TestData {
 	private static Band toto = null;
 	private static Prodotto genericCD = null;
 	private static Prodotto genericDVD = null;
+	private static Vendita genericVendita = null;
+	private static Cliente genericCliente = null;
 	private static String genericSongs[] = null;
 
 	public static Artista getArtist1() {
@@ -62,6 +73,37 @@ public class TestData {
 		return genericSongs;
 	}
 
+	public static void changeGenOfGenericVendita(Genere genere)
+			throws ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
+		changeGenOfGenericCD(genere);
+		genericVendita = new Vendita(genericCliente, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 },
+				250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
+
+	}
+
+	public static void changeGenOfGenericCD(Genere genere)
+			throws ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
+		initializeData();
+		genericCD = new Prodotto(false, "Toto XIV",
+				new String[] { "Running out of time", "Burn", "Holy war", "21st Century Blues", "Orphan",
+						"Unknown Soldier", "The Little Things", "Chinatown", "All the Tears that shine", "Fortune",
+						"Great Expectations" },
+				new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/totoXIVcover.jpg")) },
+				new Float(12.23), new Band("Toto", genere, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
+				"Gran bel album", genere, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
+
+	}
+
+	public static Cliente getGenericCliente() {
+		initializeData();
+		return genericCliente;
+	}
+
+	public static Vendita getGenericVendita() {
+		initializeData();
+		return genericVendita;
+	}
+
 	private static void initializeData() {
 		try {
 			steveLukather = new Artista("Steve Lukather", Genere.ROCK, "Steve Lukather", new Date(),
@@ -93,8 +135,24 @@ public class TestData {
 					new Float(12.23),
 					new Band("Toto", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
 					"Gran bel album", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
+
+			// inizializzazione strutture per utente (per evitare grosse
+			// eccezioni)
+			Catalogo.initialize();
+			BancaUtenti.initialize();
+			BancaVendite.initialize();
+
+			genericCliente = new Cliente("BRTGNN96T21B296N", "testUser", "ciao123", "Mario", "Rossi", "Verona",
+					"000000000000", null);
+
+			BancaUtenti.addItem(genericCliente);
+
+			genericVendita = new Vendita(genericCliente, new Prodotto[] { TestData.getGenericCd() },
+					new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 }

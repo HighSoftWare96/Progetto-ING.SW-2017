@@ -1,55 +1,85 @@
 package it.RGB.is.Tests.Classes;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import it.RGB.is.Classes.BancaUtenti;
-import it.RGB.is.Classes.Catalogo;
 import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.Vendita;
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
-import it.RGB.is.Exceptions.VenditaIllegalArgumentException;
 
 public class ClienteTest {
+
 	private Cliente clienteOnTesting;
 
 	public ClienteTest() {
 		try {
-			BancaUtenti.initialize();
-			clienteOnTesting = new Cliente("BRTGNN96T21B296N", "bertonc96H", "ciao123", "Giovanni", "Bertoncelli",
-					"Verona", "000000000000", null);
-			BancaUtenti.addItem(clienteOnTesting);
+			clienteOnTesting = TestData.getGenericCliente();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test(expected = IllegalUserRegistrationException.class)
-	public void TestClienteNull() {
+	public void TestClienteEmptyUserName() throws IllegalUserRegistrationException {
+		new Cliente("BRTGNN96T21B296N", "", "ciao123", "Mario", "Rossi", "Verona", "000000000000", null);
+	}
 
+	@Test(expected = IllegalUserRegistrationException.class)
+	public void TestClienteWrongCF() throws IllegalUserRegistrationException {
+		new Cliente("BRTGNN96T21B296", "", "ciao123", "Mario", "Rossi", "Verona", "000000000000", null);
+	}
+
+	@Test(expected = IllegalUserRegistrationException.class)
+	public void TestClienteWrongCFFormat() throws IllegalUserRegistrationException {
+		new Cliente("AAAAAAAAAAAAAAA", "", "ciao123", "Mario", "Rossi", "Verona", "000000000000", null);
+	}
+
+	@Test(expected = IllegalUserRegistrationException.class)
+	public void TestClienteAlreadyExist() throws IllegalUserRegistrationException {
+		new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Mario", "Rossi", "Verona", "000000000000", null);
+	}
+
+	@Test(expected = IllegalUserRegistrationException.class)
+	public void TestClienteNotPassword() throws IllegalUserRegistrationException {
+		new Cliente("BRTGNN96T21B296N", "bertonc96", "", "Mario", "Rossi", "Verona", "000000000000", null);
 	}
 
 	@Test
 	public void testConstructor() {
 		String nome = clienteOnTesting.getNome();
-		Assert.assertEquals("Nome cliente", "Giovanni", nome);
+		assertEquals("Nome cliente", "Mario", nome);
 		String cognome = clienteOnTesting.getCognome();
-		Assert.assertEquals("Cognome cliente", "Bertoncelli", cognome);
+		assertEquals("Cognome cliente", "Rossi", cognome);
 		String cf = clienteOnTesting.getCF();
-		Assert.assertEquals("CF cliente", "BRTGNN96T21B296N", cf);
+		assertEquals("CF cliente", "BRTGNN96T21B296N", cf);
 		String psw = clienteOnTesting.getPassword();
-		Assert.assertEquals("Psw cliente", "ciao123", psw);
+		assertEquals("Psw cliente", "ciao123", psw);
 		String city = clienteOnTesting.getCity();
-		Assert.assertEquals("Città cliente", "Verona", city);
+		assertEquals("Città cliente", "Verona", city);
 		String tel = clienteOnTesting.getTel();
-		Assert.assertEquals("Tel cliente", "000000000000", tel);
-		Assert.assertFalse(clienteOnTesting.canHaveDiscounts());
+		assertEquals("Tel cliente", "000000000000", tel);
+		assertFalse(clienteOnTesting.canHaveDiscounts());
+		// test cellulare
+		assertTrue(clienteOnTesting.getCell().equals(""));
+	}
+
+	@Test
+	public void testClienteWithCell() throws IllegalUserRegistrationException {
+		clienteOnTesting = new Cliente("BRTGNN96T21B296N", "testUser", "ciao123", "Mario", "Rossi", "Verona",
+				"000000000000", "000000000000");
+		assertNotNull(clienteOnTesting.getCell());
+		assertFalse(clienteOnTesting.getCell().equals(""));
 	}
 
 	@Test
@@ -82,17 +112,12 @@ public class ClienteTest {
 
 	@Test
 	public void testEquals() throws IllegalUserRegistrationException {
-		Cliente clienteForEquals = new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli",
+		Cliente clienteForEquals = new Cliente("BRTGNN96T21B296N", "testUserEq", "ciao123", "Mario", "Rossi", "Verona",
+				"000000000000", null);
+		Cliente clienteForEquals2 = new Cliente("BRTGNN96T21B296N", "testUserEq", "oqwuw123", "Mario2", "3Rossi",
 				"Verona", "000000000000", null);
-		Assert.assertTrue(clienteForEquals.equals(clienteOnTesting));
-		Assert.assertTrue(clienteForEquals.hashCode() == clienteOnTesting.hashCode());
-		clienteForEquals = new Cliente("BRTGNN96T21B2N", "bertonc96", "ciao123", "Giovanni", "Bertoncelli", "Verona",
-				"000000000000", null);
-		Assert.assertTrue(clienteForEquals.equals(clienteOnTesting));
-		Assert.assertTrue(clienteForEquals.hashCode() == clienteOnTesting.hashCode());
-		clienteForEquals = new Cliente("BRTGNN96T21B296N", "bertonc95", "ciao123", "Giovanni", "Bertoncelli", "Verona",
-				"000000000000", null);
-		Assert.assertFalse(clienteForEquals.equals(clienteOnTesting));
+		Assert.assertTrue(clienteForEquals.equals(clienteForEquals2));
+		Assert.assertTrue(clienteForEquals.hashCode() == clienteForEquals2.hashCode());
 		Assert.assertFalse(clienteForEquals.hashCode() == clienteOnTesting.hashCode());
 	}
 
@@ -133,6 +158,12 @@ public class ClienteTest {
 		clienteOnTesting.addVendita(vendita);
 		Assert.assertTrue(clienteOnTesting.canHaveDiscounts());
 
+	}
+
+	@Test
+	public void testClientePreferredGen() {
+		Vendita genericVendita = TestData.getGenericVendita();
+		
 	}
 
 }
