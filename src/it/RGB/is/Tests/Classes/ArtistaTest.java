@@ -15,48 +15,54 @@ import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
 
 public class ArtistaTest {
 
-	private ArtistaGenerico absArtista = TestData.getArtist1();
-	private ArtistaGenerico absArtistaWithArtName = TestData.getArtistArtName();
-	private ArtistaGenerico absBand = TestData.getBand();
-	
+	private ArtistaGenerico absArtista = null;
+	private ArtistaGenerico absArtistaWithArtName = null;
+	private ArtistaGenerico absBand = null;
+
+	public ArtistaTest() {
+		TestData.initializeData();
+		absArtista = TestData.getArtist1();
+		absArtistaWithArtName = TestData.getArtistArtName();
+		absBand = TestData.getBand();
+	}
+
 	// test error handling costruttore di ArtistaGenerico (null)
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testArtistaGenericoNull() throws ArtistIllegalArgumentException {
-		TestData.initializeData();
 		new Artista(null, null, "Test", new Date(), new Strumento[] { new Strumento("Chitarra") });
 	}
 
 	// test error handling costruttore di Artista
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testArtistaNull() throws ArtistIllegalArgumentException {
-		TestData.initializeData();
+
 		new Artista("Test", Genere.ROCK, null, null, null);
 	}
 
 	// test error handling costruttore di Artista (empty)
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testArtistaEmpty() throws ArtistIllegalArgumentException {
-		TestData.initializeData();
+
 		new Artista("Test", Genere.ROCK, null, null, new Strumento[] {});
 	}
 
 	// test error handling costruttore di Band (null)
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testBandNull() throws ArtistIllegalArgumentException {
-		TestData.initializeData();
+
 		new Band("Test", Genere.ROCK, null);
 	}
 
 	// test error handling costruttore di Band (empty)
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testBandEmpty() throws ArtistIllegalArgumentException {
-		TestData.initializeData();
+
 		new Artista("Test", Genere.ROCK, null, null, new Strumento[] {});
 	}
 
 	@Test
 	public void testArtistaSemplice() {
-		TestData.initializeData();
+
 		assertTrue(absArtista.getGenerePrincipale().equals(Genere.ROCK));
 		// stesso nome arte e nascita un solo nome stampato
 		assertTrue(absArtista.getNomeArte().equalsIgnoreCase("Steve Lukather"));
@@ -66,7 +72,7 @@ public class ArtistaTest {
 
 	@Test
 	public void testArtistaConSecondoNome() {
-		TestData.initializeData();	
+
 		assertTrue(absArtistaWithArtName.toString().contains("Nek"));
 		assertTrue(absArtistaWithArtName.toString().contains("Filippo"));
 
@@ -74,7 +80,7 @@ public class ArtistaTest {
 
 	@Test
 	public void testBand() {
-		TestData.initializeData();
+
 		assertTrue(absBand.getGenerePrincipale().equals(Genere.ROCK));
 		assertTrue(absBand.toString().contains("Steve Lukather"));
 		assertTrue(absBand.toString().contains("Steve Lukather"));
