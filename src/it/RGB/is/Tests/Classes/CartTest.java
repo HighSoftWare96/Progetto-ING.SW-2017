@@ -21,8 +21,8 @@ public class CartTest {
 
 		
 	     Cart.initialize();
-	     Cart.removeItem(TestData.genericCD, -1);
-	     Cart.removeItem(TestData.genericCD, 0);
+	     Cart.removeItem(TestData.getGenericCd(), -1);
+	     Cart.removeItem(TestData.getGenericCd(), 0);
 	}
 	
 	@Test(expected = CartIllegalArgumentsException.class) 
@@ -38,8 +38,8 @@ public class CartTest {
 
 		
 	     Cart.initialize();
-	     Cart.addItem(TestData.genericCD, -1);
-	     Cart.addItem(TestData.genericCD, 0);
-	     Cart.addItem(TestData.genericCD, 110);
+	     Cart.addItem(TestData.getGenericCd(), -1);
+	     Cart.addItem(TestData.getGenericCd(), 0);
+	     Cart.addItem(TestData.getGenericCd(), 110);
 	} 	
 }

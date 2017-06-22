@@ -19,9 +19,8 @@ public class ProdottoTest {
 
 	@Test
 	public void testProdotto() {
-		TestData.initializeData();
-		genericCD = TestData.genericCD;		
-		genericDVD = TestData.genericDVD;		
+		genericCD = TestData.getGenericCd();		
+		genericDVD = TestData.getGenericDVD();		
 
 		assertTrue(genericCD.getDescrizione().equals("Gran bel album"));
 		assertTrue(!genericCD.getTitolo().contains("DVD"));
@@ -31,9 +30,16 @@ public class ProdottoTest {
 		assertFalse(genericCD.getPartecipanti().length == 4);
 		assertFalse(genericDVD.getSongsTitles().isEmpty());
 		assertTrue(genericDVD.getSongsTitles().contains("Running"));
-		
+		assertTrue(genericCD.getDataArrivo().equals(genericDVD.getDataArrivo()));
+		assertFalse(genericCD.getID() == genericDVD.getID());
 		genericCD.setNewDisp(10);
 		assertTrue(genericCD.getDisp() == 90);
+		assertTrue(genericCD.getPrezzoString().equals(genericDVD.getPrezzoString()));
+		assertTrue((float) genericCD.getPrezzo() == ((float) 12.23));
+		assertTrue(genericCD.getTitolare().toString().equals(genericDVD.getTitolare().toString()));
+		assertTrue(genericCD.getGenere().equals(Genere.ROCK));
+		assertFalse(genericDVD.getGenere().equals(Genere.JAZZ));
+		//manca controllo sulle foto e sui pezzi
 		
 		genericCD.setNewDispAdd(10);
 		assertTrue(genericCD.getDisp() == 100);
@@ -43,67 +49,57 @@ public class ProdottoTest {
 
 	@Test(expected = ProdottoIllegalArgumentException.class)
 	public void checkProdottoNull() throws ProdottoIllegalArgumentException {
-		TestData.initializeData();
-		
+
 		// titolo
-		Prodotto prodotto = new Prodotto(false, null, TestData.genericSongs,
-				new ImageIcon[] { TestData.genericCD.getCover() }, (float) 21.43, (ArtistaGenerico) TestData.davidPaich,
-				"descrizione", Genere.CLASSICA, TestData.toto.getComponenti(), 2);
-		// assertTrue(prodotto.getTitolo().equals(null));
+		Prodotto prodotto = new Prodotto(false, null, TestData.getGenericSongs(),
+				new ImageIcon[] { TestData.getGenericCd().getCover() }, (float) 21.43, (ArtistaGenerico) TestData.getArtist2(),
+				"descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(), 2);
 
 		// titoliPezzi
-		prodotto = new Prodotto(false, "a", null, new ImageIcon[] { TestData.genericCD.getCover() }, (float) 21.43,
-				(ArtistaGenerico) TestData.davidPaich, "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(),
+		prodotto = new Prodotto(false, "a", null, new ImageIcon[] { TestData.getGenericCd().getCover() }, (float) 21.43,
+				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
 				2);
-		// assertTrue(prodotto.getTitoliPezzi().equals(null));
 
 		// photos
-		prodotto = new Prodotto(false, "a", TestData.genericSongs, null, (float) 21.43,
-				(ArtistaGenerico) TestData.davidPaich, "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(),
+		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), null, (float) 21.43,
+				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
 				2);
-		// assertTrue(prodotto.getPhotos().equals(null));
 
 		// prezzo
-		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon[] { TestData.genericCD.getCover() }, 0,
-				(ArtistaGenerico) TestData.davidPaich, "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(),
+		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() }, 0,
+				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
 				2);
-		// assertTrue(prodotto.getPrezzo() == 0);
 
 		// musicistaTitolare
-		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon[] { TestData.genericCD.getCover() },
-				(float) 21.43, null, "descrizione", Genere.CLASSICA, TestData.toto.getComponenti(), 2);
-		// assertTrue(prodotto.getTitolare().equals(null));
+		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, null, "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(), 2);
 
 		// descrizione
-		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon[] { TestData.genericCD.getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.davidPaich, null, Genere.CLASSICA,
-				TestData.toto.getComponenti(), 2);
-		// assertTrue(prodotto.getDescrizione().equals(null));
+		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), null, Genere.CLASSICA,
+				TestData.getBand().getComponenti(), 2);
 
 		// genere
-		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon[] { TestData.genericCD.getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.davidPaich, "descrizione", null,
-				TestData.toto.getComponenti(), 2);
-		// assertTrue(prodotto.getGenere().equals(null));
+		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", null,
+				TestData.getBand().getComponenti(), 2);
 
 		// partecipanti
-		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon[] { TestData.genericCD.getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.davidPaich, "descrizione", Genere.CLASSICA, null, 2);
-		// assertTrue(prodotto.getPartecipanti().equals(null));
+		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, null, 2);
 
 		// disp
-		prodotto = new Prodotto(false, "a", TestData.genericSongs, new ImageIcon[] { TestData.genericCD.getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.davidPaich, "descrizione", Genere.CLASSICA,
-				TestData.toto.getComponenti(), 0);
-		// assertTrue(prodotto.getDisp() == 0);
+		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA,
+				TestData.getBand().getComponenti(), 0);
 
 	}
 	
 	@Test
 	public void testHashCode(){
-		genericCD = TestData.genericCD;
-		genericDVD = TestData.genericDVD;
-		Prodotto genericCD2 = TestData.genericCD;
+		genericCD = TestData.getGenericCd();
+		genericDVD = TestData.getGenericDVD();
+		Prodotto genericCD2 = TestData.getGenericCd();
 		
 		assertTrue(genericCD.hashCode() == genericCD2.hashCode());
 		assertFalse(genericCD.hashCode() == genericDVD.hashCode());
