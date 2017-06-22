@@ -1,7 +1,6 @@
 package it.RGB.is.Tests.Classes;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,16 +39,12 @@ public class VenditaTest {
 		TestData.initializeData();
 		new Vendita(TestData.getGenericCliente(), new Prodotto [] { TestData.getGenericCd() }, new Integer[] { 20 }, 0, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 	}
+	
 	@Test (expected = VenditaIllegalArgumentException.class)
 	public void testVenditaIncorrectAmount() throws VenditaIllegalArgumentException {
 		TestData.initializeData();
 		new Vendita(TestData.getGenericCliente(), new Prodotto [] { TestData.getGenericCd(), TestData.getGenericDVD() }, new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 	}
-	
-	
-	
-	//TODO
-	//Test in caso ci sia (prodotti2.length != amount2.length)
 	
 	@Test
 	public void testVenditaConstructor() {
@@ -67,14 +62,10 @@ public class VenditaTest {
 		int amount = venditaTest.getAmount().length;
 		assertEquals(1, amount);
 		Date data = venditaTest.getDate();
-		assertEquals(new Date(), data);
+		assertEquals(new Date().toString(), data.toString());
 		assertTrue(venditaTest.getDateString().length() == 17);
+		assertFalse(venditaTest.getProdotti().equals(null));
+		assertEquals("Toto XIV", venditaTest.getProdottoString(0));
 		
-		
-		
-		//TODO
-		//.getProdottoString(int index)
-		//.getProdotti
-
 	}
 }
