@@ -59,7 +59,7 @@ public class ClienteTest {
 
 	@Test(expected = IllegalUserRegistrationException.class)
 	public void TestClienteAlreadyExist() throws IllegalUserRegistrationException {
-		new Cliente("BRTGNN96T21B296N", "bertonc96", "ciao123", "Mario", "Rossi", "Verona", "000000000000", null);
+		new Cliente("BRTGNN96T21B296N", "testUser", "ciao123", "Mario", "Rossi", "Verona", "000000000000", null);
 	}
 
 	@Test(expected = IllegalUserRegistrationException.class)
@@ -190,15 +190,25 @@ public class ClienteTest {
 
 		// jazz
 		TestData.changeGenOfGenericVendita(Genere.JAZZ);
+		
+		genericVendita = TestData.getGenericVendita();
 		clienteOnTesting.addVendita(genericVendita);
 		clienteOnTesting.addVendita(genericVendita);
-		
-		// ancora ROCK
-		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.ROCK));
-		
 		clienteOnTesting.addVendita(genericVendita);
 		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.JAZZ));
 		
+		// jazz
+		TestData.changeGenOfGenericVendita(Genere.POP);
+		genericVendita = TestData.getGenericVendita();
+		clienteOnTesting.addVendita(genericVendita);
+		clienteOnTesting.addVendita(genericVendita);
+		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.JAZZ));
+		
+		clienteOnTesting.addVendita(genericVendita);
+		clienteOnTesting.addVendita(genericVendita);
+		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.POP));
+		
+		assertEquals(9, clienteOnTesting.getVenditeCount()); 
 		
 	}
 

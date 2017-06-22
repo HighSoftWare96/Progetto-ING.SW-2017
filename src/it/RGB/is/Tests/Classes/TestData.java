@@ -94,7 +94,6 @@ public class TestData {
 				new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/totoXIVcover.jpg")) },
 				new Float(12.23), new Band("Toto", genere, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
 				"Gran bel album", genere, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
-
 	}
 
 	public static Cliente getGenericCliente() {
