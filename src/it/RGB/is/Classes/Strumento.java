@@ -2,6 +2,8 @@ package it.RGB.is.Classes;
 
 import java.io.Serializable;
 
+import it.RGB.is.Exceptions.StrumentoIllegalArgument;
+
 public class Strumento implements Serializable {
 
 	/**
@@ -11,6 +13,9 @@ public class Strumento implements Serializable {
 	private String nomeStrumento;
 
 	public Strumento(String nome) {
+		if (nome == null || nome.equals(""))
+			throw new StrumentoIllegalArgument();
+		
 		this.nomeStrumento = nome;
 	}
 
@@ -26,7 +31,7 @@ public class Strumento implements Serializable {
 	public boolean equals(Object obj) {
 		return (obj instanceof Strumento) && ((Strumento) obj).getNomeStrumento().equals(this.getNomeStrumento());
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return this.getNomeStrumento().hashCode();
