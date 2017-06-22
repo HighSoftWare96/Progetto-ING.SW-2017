@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import org.junit.Test;
 
 import it.RGB.is.Classes.ArtistaGenerico;
+import it.RGB.is.Classes.BancaUtenti;
+import it.RGB.is.Classes.Catalogo;
 import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
@@ -29,7 +31,7 @@ public class ProdottoTest {
 		assertTrue(genericCD.getPartecipanti().length > 0);
 		assertFalse(genericCD.getPartecipanti().length == 4);
 		assertFalse(genericDVD.getSongsTitles().isEmpty());
-		assertTrue(genericDVD.getSongsTitles().contains("Running"));
+		assertTrue(genericDVD.getSongsTitles().toString().contains("Running"));
 		assertTrue(genericCD.getDataArrivo().equals(genericDVD.getDataArrivo()));
 		assertFalse(genericCD.getID() == genericDVD.getID());
 		genericCD.setNewDisp(10);
@@ -48,53 +50,99 @@ public class ProdottoTest {
 	}
 
 	@Test(expected = ProdottoIllegalArgumentException.class)
-	public void checkProdottoNull() throws ProdottoIllegalArgumentException {
+	public void checkProdottoTitoloNull() throws ProdottoIllegalArgumentException {
 
 		// titolo
-		Prodotto prodotto = new Prodotto(false, null, TestData.getGenericSongs(),
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, null, TestData.getGenericSongs(),
 				new ImageIcon[] { TestData.getGenericCd().getCover() }, (float) 21.43, (ArtistaGenerico) TestData.getArtist2(),
 				"descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(), 2);
-
-		// titoliPezzi
-		prodotto = new Prodotto(false, "a", null, new ImageIcon[] { TestData.getGenericCd().getCover() }, (float) 21.43,
-				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
-				2);
-
-		// photos
-		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), null, (float) 21.43,
-				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
-				2);
-
-		// prezzo
-		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() }, 0,
-				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
-				2);
-
-		// musicistaTitolare
-		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
-				(float) 21.43, null, "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(), 2);
-
-		// descrizione
-		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), null, Genere.CLASSICA,
-				TestData.getBand().getComponenti(), 2);
-
-		// genere
-		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", null,
-				TestData.getBand().getComponenti(), 2);
-
-		// partecipanti
-		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, null, 2);
-
-		// disp
-		prodotto = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
-				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA,
-				TestData.getBand().getComponenti(), 0);
-
 	}
 	
+	@Test(expected = ProdottoIllegalArgumentException.class)
+	public void checkProdottoPezziNull() throws ProdottoIllegalArgumentException {
+
+		// titoliPezzi
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, "Titolo", TestData.getGenericSongsEmpty(), new ImageIcon[] { TestData.getGenericCd().getCover() }, (float) 21.43,
+				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
+				2);
+	}
+	
+	@Test(expected = ProdottoIllegalArgumentException.class)
+	public void checkProdottoPhotosNull() throws ProdottoIllegalArgumentException {
+
+		// photos
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, "Titolo", TestData.getGenericSongs(), null, (float) 21.43,
+				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
+				2);
+	}
+	
+	@Test(expected = ProdottoIllegalArgumentException.class)
+	public void checkProdottoPrezzoNull() throws ProdottoIllegalArgumentException {
+
+		// prezzo
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() }, 0,
+				(ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(),
+				2);
+	}
+	
+	@Test(expected = ProdottoIllegalArgumentException.class)
+	public void checkProdottoTitolareNull() throws ProdottoIllegalArgumentException {
+
+		// musicistaTitolare
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, null, "descrizione", Genere.CLASSICA, TestData.getBand().getComponenti(), 2);
+	}
+	
+	@Test(expected = ProdottoIllegalArgumentException.class)
+	public void checkProdottoGenereNull() throws ProdottoIllegalArgumentException {
+
+		// genere
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", null,
+				TestData.getBand().getComponenti(), 2);
+	}
+	
+	@Test(expected = ProdottoIllegalArgumentException.class)
+	public void checkProdottoPartecipantiNull() throws ProdottoIllegalArgumentException {
+
+		// partecipanti
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA, TestData.getNoPartecipanti(), 2);
+	}
+	
+	@Test(expected = ProdottoIllegalArgumentException.class)
+	public void checkProdottoDispNull() throws ProdottoIllegalArgumentException {
+		
+		// disp
+		TestData.initializeData();
+		Catalogo.initialize();
+		BancaUtenti.initialize();
+		genericCD = new Prodotto(false, "a", TestData.getGenericSongs(), new ImageIcon[] { TestData.getGenericCd().getCover() },
+				(float) 21.43, (ArtistaGenerico) TestData.getArtist2(), "descrizione", Genere.CLASSICA,
+				TestData.getBand().getComponenti(), 0);
+	}
+
 	@Test
 	public void testHashCode(){
 		genericCD = TestData.getGenericCd();

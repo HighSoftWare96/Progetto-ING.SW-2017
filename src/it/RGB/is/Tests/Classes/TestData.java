@@ -32,6 +32,8 @@ public class TestData {
 	private static Vendita genericVendita = null;
 	private static Cliente genericCliente = null;
 	private static String genericSongs[] = null;
+	private static String genericSongsEmpty[] = null;
+	private static Artista noPartecipanti[] = null;
 
 	public static Artista getArtist1() {
 		//initializeData();
@@ -72,6 +74,16 @@ public class TestData {
 		//initializeData();
 		return genericSongs;
 	}
+	
+	public static String[] getGenericSongsEmpty(){
+		//initializeData();
+		return genericSongsEmpty;
+	}
+	
+	public static Artista[] getNoPartecipanti(){
+		//initializeData();
+		return noPartecipanti;
+	}	
 
 	public static void changeGenOfGenericVendita(Genere genere)
 			throws ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
@@ -136,6 +148,12 @@ public class TestData {
 					new Band("Toto", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
 					"Gran bel album", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
 
+			genericSongs = new String[]{"canzone 1", "canzone 2"};
+			
+			genericSongsEmpty = new String[]{};
+			
+			noPartecipanti = new Artista[] {};
+			
 			genericCliente = new Cliente("BRTGNN96T21B296N", "testUser", "ciao123", "Mario", "Rossi", "Verona",
 					"000000000000", null);
 
