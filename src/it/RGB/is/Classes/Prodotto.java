@@ -166,7 +166,7 @@ public class Prodotto implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return this.titolo.hashCode();
+		return this.getTitolo().hashCode();
 	}
 
 }

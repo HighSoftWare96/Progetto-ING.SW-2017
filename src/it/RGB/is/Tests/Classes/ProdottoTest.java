@@ -98,5 +98,15 @@ public class ProdottoTest {
 		// assertTrue(prodotto.getDisp() == 0);
 
 	}
+	
+	@Test
+	public void testHashCode(){
+		genericCD = TestData.genericCD;
+		genericDVD = TestData.genericDVD;
+		Prodotto genericCD2 = TestData.genericCD;
+		
+		assertTrue(genericCD.hashCode() == genericCD2.hashCode());
+		assertFalse(genericCD.hashCode() == genericDVD.hashCode());
+	}
 
 }
