@@ -38,6 +38,7 @@ public class ProdottoTest {
 		assertTrue(genericDVD.getSongsTitles().toString().contains("Running"));
 		assertTrue(genericCD.getDataArrivo().equals(genericDVD.getDataArrivo()));
 		assertFalse(genericCD.getID() == genericDVD.getID());
+		// controllo disponibilità
 		genericCD.setNewDisp(10);
 		assertTrue(genericCD.getDisp() == 90);
 		assertTrue(genericCD.getPrezzoString().equals(genericDVD.getPrezzoString()));
@@ -51,7 +52,7 @@ public class ProdottoTest {
 		assertTrue(genericCD.getDisp() == 100);
 		
 		assertFalse(genericCD.equals(genericDVD));
-	}
+	} 
 
 	@Test(expected = ProdottoIllegalArgumentException.class)
 	public void checkProdottoTitoloNull() throws ProdottoIllegalArgumentException {
