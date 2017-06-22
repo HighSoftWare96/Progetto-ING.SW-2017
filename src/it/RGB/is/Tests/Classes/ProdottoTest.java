@@ -43,7 +43,8 @@ public class ProdottoTest {
 
 	@Test(expected = ProdottoIllegalArgumentException.class)
 	public void checkProdottoNull() throws ProdottoIllegalArgumentException {
-
+		TestData.initializeData();
+		
 		// titolo
 		Prodotto prodotto = new Prodotto(false, null, TestData.genericSongs,
 				new ImageIcon[] { TestData.genericCD.getCover() }, (float) 21.43, (ArtistaGenerico) TestData.davidPaich,

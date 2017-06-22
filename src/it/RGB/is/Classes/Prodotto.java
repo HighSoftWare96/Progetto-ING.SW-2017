@@ -71,8 +71,8 @@ public class Prodotto implements Serializable {
 	private void checkCorrectData(boolean dvd, String titolo, String[] titoliPezzi, ImageIcon[] photos, float prezzo,
 			ArtistaGenerico titolare, String descrizione, Genere genere, ArtistaGenerico[] partecipanti, int disp)
 			throws ProdottoIllegalArgumentException {
-		if (titolo == null || titolo.equals("") || titoliPezzi.length == 0 || photos.length == 0 || prezzo <= 0
-				|| titolare == null || genere == null || partecipanti.length == 0 || disp <= 0)
+		if (titolo == null || titolo.equals("") || titoliPezzi.length == 0 || photos == null || photos.length == 0
+				|| prezzo <= 0 || titolare == null || genere == null || partecipanti.length == 0 || disp <= 0)
 			throw new ProdottoIllegalArgumentException("Errore nella creazione del prodotto (null pointer)");
 	}
 
