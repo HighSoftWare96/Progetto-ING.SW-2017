@@ -55,10 +55,11 @@ public class Catalogo implements Serializable {
 
 	public static void removeItem(Prodotto prodotto, int amount) {
 		prodotto.setNewDisp(amount);
-		if (prodotto.getDisp() <= 2) {
-			JOptionPane.showMessageDialog(GUIMain.getFrame(),
+		if (prodotto.getDisp() < 2) {
+			System.out.println("Attenzione!\nProdotto: " + prodotto.getID() + ", " + prodotto.getTitolo() + " in esaurimento!"); //Avviso di esaurimento prodotti
+			/*JOptionPane.showMessageDialog(GUIMain.getFrame(),
 					"Attenzione!\nProdotto: " + prodotto.getID() + ", " + prodotto.getTitolo() + " in esaurimento!",
-					"Prodotto in esaurimento", JOptionPane.ERROR_MESSAGE);
+					"Prodotto in esaurimento", JOptionPane.ERROR_MESSAGE); */
 			if (prodotto.getDisp() == 0)
 				Catalogo.removeAll(prodotto);
 		}
