@@ -7,14 +7,14 @@ import it.RGB.is.Exceptions.LightCartException;;
 
 public class Cart {
 
-	private static HashMap<Prodotto, Integer> strutturaDati = new HashMap<>();; // prodotto
-																				// &
-																				// amount
+	private static HashMap<Prodotto, Integer> strutturaDati = null; // prodotto
+																	// &
+																	// amount
 	private static float subTotale;
 	private static boolean withDiscount = false;
 
 	public static void initialize() {
-
+		strutturaDati = new HashMap<>();
 	}
 
 	public static float getSubTotale(ModConsegna modConsegna) {

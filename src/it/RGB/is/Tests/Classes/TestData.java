@@ -9,6 +9,7 @@ import it.RGB.is.Classes.Artista;
 import it.RGB.is.Classes.BancaUtenti;
 import it.RGB.is.Classes.BancaVendite;
 import it.RGB.is.Classes.Band;
+import it.RGB.is.Classes.Cart;
 import it.RGB.is.Classes.Catalogo;
 import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.Genere;
@@ -109,6 +110,7 @@ public class TestData {
 			Catalogo.initializeFromScratch();
 			BancaUtenti.initializeFromScratch();
 			BancaVendite.initializeFromScratch();
+			Cart.initialize();
 			
 			steveLukather = new Artista("Steve Lukather", Genere.ROCK, "Steve Lukather", new Date(),
 					new Strumento[] { new Strumento("Chitarra"), new Strumento("Voce"), new Strumento("Basso") });
@@ -152,6 +154,8 @@ public class TestData {
 			genericVendita = new Vendita(genericCliente, new Prodotto[] { TestData.getGenericCd() },
 					new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

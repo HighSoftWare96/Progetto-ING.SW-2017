@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashSet;
 
-import it.RGB.is.Exceptions.LightBancaUtentiException;
+import it.RGB.is.Exceptions.BancaUtentiIllegalArgumentException;
 import it.RGB.is.Exceptions.CriticalException;
 
 /**
@@ -52,13 +52,14 @@ public class BancaUtenti implements Serializable {
 
 	}
 
-	public static void addItem(Cliente cliente) throws LightBancaUtentiException{
+	public static void addItem(Cliente cliente) throws BancaUtentiIllegalArgumentException{
 		if(cliente.equals(null)){
-			throw new LightBancaUtentiException("Aggiunta cliente fallita (null pointer).");
+			throw new BancaUtentiIllegalArgumentException("Aggiunta cliente fallita (null pointer).");
 		}
 		strutturaUtenti.add(cliente);
 	}
 
+	// CONTROLLI
 	public static boolean checkLogIn(String username, String password) {
 		for (Cliente item : strutturaUtenti) {
 			if (item.getUsername().equals(username) && item.getPassword().equals(password)) {

@@ -11,7 +11,7 @@ import java.util.HashSet;
 
 import it.RGB.is.Exceptions.CriticalException;
 import it.RGB.is.Exceptions.LightCatalogoException;
-
+import it.RGB.is.Exceptions.CatalogoIllegalArgumentException;
 
 /**
  * 
@@ -23,12 +23,11 @@ public class Catalogo implements Serializable {
 	private static HashSet<Prodotto> strutturaDati;
 	private static int availableID;
 
-	
 	// SOLO PER TESTING !!!
 	public static void initializeFromScratch() {
 		strutturaDati = new HashSet<>();
 	}
-	
+
 	public static void initialize() {
 		try {
 			if (catalogoFile.exists()) {
@@ -48,40 +47,68 @@ public class Catalogo implements Serializable {
 		}
 	}
 
-	public static void addItem(Prodotto prodotto) throws LightCatalogoException {
-		if(prodotto.equals(null)){
-			throw new LightCatalogoException("Aggiunta prodotto fallita (null pointer)");
+	// BANCADATI: aggiunta e rimozione dal catalogo
+	public static void addItem(Prodotto prodotto) throws CatalogoIllegalArgumentException {
+		if (prodotto.equals(null)) {
+			throw new CatalogoIllegalArgumentException("Aggiunta prodotto fallita (null pointer)");
 		}
 		strutturaDati.add(prodotto);
 	}
 
-	public static void removeItem(Prodotto prodotto, int amount) throws LightCatalogoException {
-		if(prodotto.equals(null)){
-			throw new LightCatalogoException("Rimozione prodotto fallita (null pointer)");
+	public static void addItem(Prodotto prodotto, int amountSelected)
+			throws CatalogoIllegalArgumentException, LightCatalogoException {
+		if (prodotto.equals(null)) {
+			throw new CatalogoIllegalArgumentException("Aggiunta prodotto fallita (null pointer)");
 		}
-		if(amount < 0){
+		if (amountSelected <= 0) {
+			throw new LightCatalogoException("Aggiunta prodotto fallita (quantità minore di 0)");
+		}
+
+		prodotto.setNewDispAdd(amountSelected); // aggiungo i prodotti
+
+		// se non c'è lo rimetto
+		if (!strutturaDati.contains(prodotto)) {
+			strutturaDati.add(prodotto);
+		}
+
+	}
+
+	public static void removeItem(Prodotto prodotto, int amount)
+			throws CatalogoIllegalArgumentException, LightCatalogoException {
+		if (prodotto.equals(null)) {
+			throw new CatalogoIllegalArgumentException("Rimozione prodotto fallita (null pointer)");
+		}
+		if (amount <= 0) {
 			throw new LightCatalogoException("Rimozione prodotto fallita (quantità minore di 0)");
 		}
-		
+
 		prodotto.setNewDisp(amount);
 		if (prodotto.getDisp() < 2) {
-			System.out.println("Attenzione!\nProdotto: " + prodotto.getID() + ", " + prodotto.getTitolo() + " in esaurimento!"); //Avviso di esaurimento prodotti
-			/*JOptionPane.showMessageDialog(GUIMain.getFrame(),
-					"Attenzione!\nProdotto: " + prodotto.getID() + ", " + prodotto.getTitolo() + " in esaurimento!",
-					"Prodotto in esaurimento", JOptionPane.ERROR_MESSAGE); */
+			System.out.println(
+					"Attenzione!\nProdotto: " + prodotto.getID() + ", " + prodotto.getTitolo() + " in esaurimento!"); // Avviso
+																														// di
+																														// esaurimento
+																														// prodotti
+			/*
+			 * JOptionPane.showMessageDialog(GUIMain.getFrame(),
+			 * "Attenzione!\nProdotto: " + prodotto.getID() + ", " +
+			 * prodotto.getTitolo() + " in esaurimento!",
+			 * "Prodotto in esaurimento", JOptionPane.ERROR_MESSAGE);
+			 */
 			if (prodotto.getDisp() == 0)
 				Catalogo.removeAll(prodotto);
 		}
 	}
 
-	private static void removeAll(Prodotto prodotto) throws LightCatalogoException{
-		if(prodotto.equals(null)){
-			throw new LightCatalogoException("Rimozione prodotti fallita (null pointer)");
+	private static void removeAll(Prodotto prodotto) throws CatalogoIllegalArgumentException {
+		if (prodotto.equals(null)) {
+			throw new CatalogoIllegalArgumentException("Rimozione prodotti fallita (null pointer)");
 		}
-		
+
 		strutturaDati.remove(prodotto);
 	}
 
+	// GETTER
 	public static int getUniqueID() {
 		return availableID++;
 	}
@@ -90,39 +117,7 @@ public class Catalogo implements Serializable {
 		return strutturaDati.toArray(new Prodotto[strutturaDati.size()]);
 	}
 
-	public static void saveCatalog() {
-
-		if (!catalogoFile.exists()) { // se il file non esiste lo creo
-			try {
-				catalogoFile.getParentFile().mkdirs();
-				catalogoFile.createNewFile();
-			} catch (IOException e) {
-				throw new CriticalException("Catalogo IO: salvataggio dati su file");
-			}
-		}
-
-		try {
-			FileOutputStream outToFile;
-			ObjectOutputStream byteStreamToSave;
-
-			// creo un file di output (stesso di prima)
-			outToFile = new FileOutputStream(catalogoFile);
-
-			// creo uno stream di output che punta al file
-			byteStreamToSave = new ObjectOutputStream(outToFile);
-
-			// scrivo l'oggetto nel file in modo da poterlo recuperare la
-			// prossima volta
-			byteStreamToSave.writeObject((Object) strutturaDati);
-			byteStreamToSave.close();
-			outToFile.close();
-
-		} catch (IOException e) {
-			throw new CriticalException("Catalogo IO: salvataggio dati su file");
-		}
-
-	}
-
+	// RICERCA
 	public static Prodotto searchByID(int ID) {
 		for (Prodotto item : strutturaDati) {
 			if (item.getID() == ID)
@@ -163,6 +158,7 @@ public class Catalogo implements Serializable {
 					result.add(item);
 			}
 			break;
+
 		default:
 			break;
 		}
@@ -192,18 +188,35 @@ public class Catalogo implements Serializable {
 		return result.toArray(new Prodotto[result.size()]);
 	}
 
-	public static void addItem(Prodotto prodotto, int amountSelected) throws LightCatalogoException {
-		if(prodotto.equals(null)){
-			throw new LightCatalogoException("Aggiunta prodotto fallita (null pointer)");
+	public static void saveCatalog() {
+
+		if (!catalogoFile.exists()) { // se il file non esiste lo creo
+			try {
+				catalogoFile.getParentFile().mkdirs();
+				catalogoFile.createNewFile();
+			} catch (IOException e) {
+				throw new CriticalException("Catalogo IO: salvataggio dati su file");
+			}
 		}
-		if(amountSelected < 0){
-			throw new LightCatalogoException("Aggiunta prodotto fallita (quantità minore di 0)");
-		}
-		
-		prodotto.setNewDispAdd(amountSelected); // aggiungo i prodotti
-		// se non c'è lo rimetto
-		if (!strutturaDati.contains(prodotto)) {
-			strutturaDati.add(prodotto);
+
+		try {
+			FileOutputStream outToFile;
+			ObjectOutputStream byteStreamToSave;
+
+			// creo un file di output (stesso di prima)
+			outToFile = new FileOutputStream(catalogoFile);
+
+			// creo uno stream di output che punta al file
+			byteStreamToSave = new ObjectOutputStream(outToFile);
+
+			// scrivo l'oggetto nel file in modo da poterlo recuperare la
+			// prossima volta
+			byteStreamToSave.writeObject((Object) strutturaDati);
+			byteStreamToSave.close();
+			outToFile.close();
+
+		} catch (IOException e) {
+			throw new CriticalException("Catalogo IO: salvataggio dati su file");
 		}
 
 	}

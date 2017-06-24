@@ -13,12 +13,11 @@ import it.RGB.is.Tests.Classes.TestData;
 public class CartTest {
 
 	public CartTest() {
-		TestData.initializeData();
-		Cart.initialize();
 	}
 	
 	@Test
 	public void removeAllTest(){
+		TestData.initializeData();
 		// test rimozione tutti prodotti
 		Cart.addItem(TestData.getGenericCd(), 4);
 		Cart.addItem(TestData.getGenericDVD(), 2);
@@ -28,7 +27,7 @@ public class CartTest {
 	
 	@Test
 	public void removeTest(){
-		Cart.removeAll();
+		TestData.initializeData();
 		// test rimozione un prodotto alla volta
 		Cart.addItem(TestData.getGenericCd(), 2);
 		Cart.removeItem(TestData.getGenericCd(), 1);
@@ -42,7 +41,8 @@ public class CartTest {
 	
 	@Test
 	public void calcPriceTest(){
-		Cart.removeAll();
+		TestData.initializeData();
+
 		Cart.addItem(TestData.getGenericCd(), 1);
 
 		// calcolo prezzo
@@ -52,7 +52,8 @@ public class CartTest {
 	}
 	
 	public void productsInCartTest(){
-		Cart.removeAll();
+		TestData.initializeData();
+		
 		Cart.addItem(TestData.getGenericCd(), 1);
 		
 		// numero prodotti nel carrello
@@ -62,16 +63,18 @@ public class CartTest {
 	
 	@Test
 	public void IDFromProductTest(){
-		Cart.removeAll();
-		Cart.addItem(TestData.getGenericCd(), 1);
+		TestData.initializeData();
+		Cart.addItem(TestData.getGenericCd(), 1);		
+		Cart.addItem(TestData.getGenericDVD(), 10);		
 		
 		// ID da prodotto
 		assertTrue(Cart.getQuantita(TestData.getGenericCd().getID()) == 1);
+		assertTrue(Cart.getQuantita(TestData.getGenericDVD().getID()) == 10);
 	}
 
 	@Test
 	public void addToExistingTest(){
-		Cart.removeAll();
+		TestData.initializeData();
 		Cart.addItem(TestData.getGenericCd(), 1);
 		
 		// aumento quantità di un prodotto già presente
@@ -81,7 +84,7 @@ public class CartTest {
 	
 	@Test
 	public void productFromIDTest(){
-		Cart.removeAll();
+		TestData.initializeData();
 		Cart.addItem(TestData.getGenericCd(), 1);
 		
 		// Prodotto da ID
@@ -90,7 +93,7 @@ public class CartTest {
 	
 	@Test
 	public void completeTest(){
-		Cart.removeAll();
+		TestData.initializeData();
 		// completamento acquisto
 		Cart.addItem(TestData.getGenericCd(), 1);
 		Cart.addItem(TestData.getGenericCd(), 1);
@@ -100,7 +103,7 @@ public class CartTest {
 	
 	@Test
 	public void amountLengthTest() {
-		Cart.removeAll();
+		TestData.initializeData();
 		// get amount length
 		Cart.addItem(TestData.getGenericCd(), 1);
 		Cart.addItem(TestData.getGenericCd(), 1);
@@ -110,39 +113,45 @@ public class CartTest {
 
 	@Test(expected = CartIllegalArgumentsException.class)
 	public void testAddCartModeThenAvailable() {
+		TestData.initializeData();
 		// inserisco più prodotti di quanti disponibili nel catalogo
 		Cart.addItem(TestData.getGenericCd(), 2000);
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class)
 	public void removeItemNull() {
+		TestData.initializeData();
 		Cart.removeItem(null, 1);
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class)
 	public void removeItemAmount() {
+		TestData.initializeData();
 		Cart.removeItem(TestData.getGenericCd(), -1);
 		Cart.removeItem(TestData.getGenericCd(), 0);
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class)
 	public void addItemNull() {
+		TestData.initializeData();
 		Cart.addItem(null, 1);
 	}
 
 	@Test(expected = LightCartException.class)
 	public void getItemFromNotExistingProduct() {
+		TestData.initializeData();
 		Cart.getItemByID(TestData.getGenericCd().getID());
 	}
 
 	@Test(expected = LightCartException.class)
 	public void getAmountFromNotExistingProduct() {
+		TestData.initializeData();
 		Cart.getQuantita(TestData.getGenericCd().getID());
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class)
 	public void addItemAmount() {
-
+		TestData.initializeData();
 		Cart.addItem(TestData.getGenericCd(), -1);
 		Cart.addItem(TestData.getGenericCd(), 0);
 		Cart.addItem(TestData.getGenericCd(), 110);
@@ -150,10 +159,11 @@ public class CartTest {
 
 	@Test(expected = LightCartException.class)
 	public void removeCartWrong() {
+		TestData.initializeData();
 		Cart.removeItem(TestData.getGenericCd(), 1);
 	}
 
-	@Test // (expected = LightCartException.class)
+	@Test
 	public void removeAllCartEmpty() {
 		Cart.removeAll();
 	}

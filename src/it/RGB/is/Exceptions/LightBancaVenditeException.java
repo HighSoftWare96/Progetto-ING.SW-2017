@@ -1,6 +1,6 @@
 package it.RGB.is.Exceptions;
 
-public class LightBancaVenditeException extends IllegalArgumentException {
+public class LightBancaVenditeException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 

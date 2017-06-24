@@ -44,8 +44,8 @@ public class BancaVendite {
 			strutturaVendite = new ArrayList<>();
 	}
 
-	public static void addItem(Vendita vendita) throws LightBancaVenditeException{
-		if(vendita.equals(null)){
+	public static void addItem(Vendita vendita) throws LightBancaVenditeException {
+		if (vendita.equals(null)) {
 			throw new LightBancaVenditeException("Aggiunta vendita fallita (null pointer).");
 		}
 		strutturaVendite.add(vendita);

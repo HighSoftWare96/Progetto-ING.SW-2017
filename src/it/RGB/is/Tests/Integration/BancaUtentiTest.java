@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import it.RGB.is.Classes.BancaUtenti;
 import it.RGB.is.Classes.Cliente;
+import it.RGB.is.Exceptions.BancaUtentiIllegalArgumentException;
 
 /**
  * @author Edoardo
@@ -21,17 +22,20 @@ public class BancaUtentiTest {
 	private static HashSet<Cliente> strutturaUtenti;
 	private static Cliente clienteLoggato = null;
 
-	
 	/**
-	 * Test method for {@link it.RGB.is.Classes.BancaUtenti#addItem(it.RGB.is.Classes.Cliente)}.
+	 * Test method for
+	 * {@link it.RGB.is.Classes.BancaUtenti#addItem(it.RGB.is.Classes.Cliente)}.
+	 * 
+	 * @throws BancaUtentiIllegalArgumentException
 	 */
 	@Test
-	public void testAddItem() {
+	public void testAddItem() throws BancaUtentiIllegalArgumentException {
 		BancaUtenti.addItem(null);
 	}
 
 	/**
-	 * Test method for {@link it.RGB.is.Classes.BancaUtenti#checkLogIn(java.lang.String, java.lang.String)}.
+	 * Test method for
+	 * {@link it.RGB.is.Classes.BancaUtenti#checkLogIn(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testCheckLogIn() {
@@ -52,11 +56,12 @@ public class BancaUtentiTest {
 	 */
 	@Test
 	public void testGetLoggedInUser() {
-		
+
 	}
 
 	/**
-	 * Test method for {@link it.RGB.is.Classes.BancaUtenti#userNameExists(java.lang.String)}.
+	 * Test method for
+	 * {@link it.RGB.is.Classes.BancaUtenti#userNameExists(java.lang.String)}.
 	 */
 	@Test
 	public void testUserNameExists() {
@@ -116,9 +121,9 @@ public class BancaUtentiTest {
 	 */
 	@Test
 	public void testToString() {
-		BancaUtenti banca= new BancaUtenti();
+		BancaUtenti banca = new BancaUtenti();
 		banca.toString();
-		}
+	}
 
 	/**
 	 * Test method for {@link java.lang.Object#notify()}.

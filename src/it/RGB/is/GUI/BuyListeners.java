@@ -16,6 +16,7 @@ import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Vendita;
+import it.RGB.is.Exceptions.LightBancaVenditeException;
 
 public class BuyListeners implements ActionListener {
 	public static final String CANCEL_COMMAND = "Cancel";
@@ -100,8 +101,12 @@ public class BuyListeners implements ActionListener {
 					Cart.getSubTotale(frame.getConsegnaSelezionata()), new Date(), "localhost",
 					frame.getPagamentoSelezionato(), frame.getConsegnaSelezionata());
 
-			// aggiungo alla banca vendite
-			BancaVendite.addItem(current);
+			try {
+				// aggiungo alla banca vendite
+				BancaVendite.addItem(current);
+			} catch (LightBancaVenditeException e1) {
+
+			}
 
 			// aggiungo alla lista dell'utente
 			Cliente clienteLoggato = BancaUtenti.getLoggedInUser();

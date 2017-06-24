@@ -13,6 +13,7 @@ import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.SearchMod;
+import it.RGB.is.Exceptions.BancaUtentiIllegalArgumentException;
 import it.RGB.is.Exceptions.IllegalUserRegistrationException;
 import it.RGB.is.Exceptions.NoGenPrefFoundException;
 
@@ -299,8 +300,12 @@ public final class Controller {
 			return;
 		}
 
-		// inserisco il nuovo utente nel database
-		BancaUtenti.addItem(newUser);
+		try {
+			// inserisco il nuovo utente nel database
+			BancaUtenti.addItem(newUser);
+		} catch (BancaUtentiIllegalArgumentException e) {
+
+		}
 		// faccio il login
 		setLoggedIn(newUser);
 
