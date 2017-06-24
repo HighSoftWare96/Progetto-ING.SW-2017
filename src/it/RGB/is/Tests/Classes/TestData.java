@@ -67,23 +67,22 @@ public class TestData {
 	public static String[] getGenericSongs() {
 		return genericSongs;
 	}
-	
-	public static String[] getGenericSongsEmpty(){
-		//initializeData();
+
+	public static String[] getGenericSongsEmpty() {
+		// initializeData();
 		return genericSongsEmpty;
 	}
-	
-	public static Artista[] getNoPartecipanti(){
-		//initializeData();
+
+	public static Artista[] getNoPartecipanti() {
+		// initializeData();
 		return noPartecipanti;
-	}	
+	}
 
 	public static void changeGenOfGenericVendita(Genere genere)
 			throws ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
 		changeGenOfGenericCD(genere);
 		genericVendita = new Vendita(genericCliente, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 },
 				250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
-
 	}
 
 	public static void changeGenOfGenericCD(Genere genere)
@@ -111,7 +110,7 @@ public class TestData {
 			BancaUtenti.initializeFromScratch();
 			BancaVendite.initializeFromScratch();
 			Cart.initialize();
-			
+
 			steveLukather = new Artista("Steve Lukather", Genere.ROCK, "Steve Lukather", new Date(),
 					new Strumento[] { new Strumento("Chitarra"), new Strumento("Voce"), new Strumento("Basso") });
 
@@ -138,24 +137,22 @@ public class TestData {
 							"Unknown Soldier", "The Little Things", "Chinatown", "All the Tears that shine", "Fortune",
 							"Great Expectations" },
 					new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/totoXIVcover.jpg")) },
-					new Float(12.23),
-					new Band("Toto", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
-					"Gran bel album", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
+					new Float(52.23),
+					new Band("Toto", Genere.FOLK, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
+					"Gran bel album", Genere.FOLK, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
 
-			genericSongs = new String[]{"canzone 1", "canzone 2"};
-			
-			genericSongsEmpty = new String[]{};
-			
+			genericSongs = new String[] { "canzone 1", "canzone 2" };
+
+			genericSongsEmpty = new String[] {};
+
 			noPartecipanti = new Artista[] {};
-			
+
 			genericCliente = new Cliente("BRTGNN96T21B296N", "testUser", "ciao123", "Mario", "Rossi", "Verona",
 					"000000000000", null);
 
 			genericVendita = new Vendita(genericCliente, new Prodotto[] { TestData.getGenericCd() },
 					new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -14,9 +14,9 @@ public class CartTest {
 
 	public CartTest() {
 	}
-	
+
 	@Test
-	public void removeAllTest(){
+	public void removeAllTest() {
 		TestData.initializeData();
 		// test rimozione tutti prodotti
 		Cart.addItem(TestData.getGenericCd(), 4);
@@ -24,9 +24,9 @@ public class CartTest {
 		Cart.removeAll();
 		assertTrue(Cart.getCartNumberItems() == 0);
 	}
-	
+
 	@Test
-	public void removeTest(){
+	public void removeTest() {
 		TestData.initializeData();
 		// test rimozione un prodotto alla volta
 		Cart.addItem(TestData.getGenericCd(), 2);
@@ -38,9 +38,9 @@ public class CartTest {
 		// carrello vuoto
 		assertTrue(Cart.getCartNumberItems() == 0);
 	}
-	
+
 	@Test
-	public void calcPriceTest(){
+	public void calcPriceTest() {
 		TestData.initializeData();
 
 		Cart.addItem(TestData.getGenericCd(), 1);
@@ -50,49 +50,49 @@ public class CartTest {
 		assertTrue((float) Cart.getSubTotale(ModConsegna.CORRIERE_24H) != (float) 2);
 		assertTrue((float) Cart.getSubTotale(ModConsegna.CORRIERE_24H) == (float) 19.23);
 	}
-	
-	public void productsInCartTest(){
+
+	public void productsInCartTest() {
 		TestData.initializeData();
-		
+
 		Cart.addItem(TestData.getGenericCd(), 1);
-		
+
 		// numero prodotti nel carrello
 		assertTrue(Cart.getCartNumberItems() == 1);
 		assertTrue(Cart.getCart().length == 1);
 	}
-	
+
 	@Test
-	public void IDFromProductTest(){
+	public void IDFromProductTest() {
 		TestData.initializeData();
-		Cart.addItem(TestData.getGenericCd(), 1);		
-		Cart.addItem(TestData.getGenericDVD(), 10);		
-		
+		Cart.addItem(TestData.getGenericCd(), 1);
+		Cart.addItem(TestData.getGenericDVD(), 10);
+
 		// ID da prodotto
 		assertTrue(Cart.getQuantita(TestData.getGenericCd().getID()) == 1);
 		assertTrue(Cart.getQuantita(TestData.getGenericDVD().getID()) == 10);
 	}
 
 	@Test
-	public void addToExistingTest(){
+	public void addToExistingTest() {
 		TestData.initializeData();
 		Cart.addItem(TestData.getGenericCd(), 1);
-		
+
 		// aumento quantità di un prodotto già presente
 		Cart.addItem(TestData.getGenericCd(), 1);
 		assertTrue(Cart.getQuantita(TestData.getGenericCd().getID()) == 2);
 	}
-	
+
 	@Test
-	public void productFromIDTest(){
+	public void productFromIDTest() {
 		TestData.initializeData();
 		Cart.addItem(TestData.getGenericCd(), 1);
-		
+
 		// Prodotto da ID
 		assertTrue(Cart.getItemByID(TestData.getGenericCd().getID()).equals(TestData.getGenericCd()));
 	}
-	
+
 	@Test
-	public void completeTest(){
+	public void completeTest() {
 		TestData.initializeData();
 		// completamento acquisto
 		Cart.addItem(TestData.getGenericCd(), 1);
@@ -100,7 +100,7 @@ public class CartTest {
 		Cart.buyAndRemove();
 		assertTrue(Cart.getCartNumberItems() == 0);
 	}
-	
+
 	@Test
 	public void amountLengthTest() {
 		TestData.initializeData();
@@ -125,6 +125,13 @@ public class CartTest {
 	}
 
 	@Test(expected = CartIllegalArgumentsException.class)
+	public void removeItemMoreThanPresent() {
+		TestData.initializeData();
+		Cart.addItem(TestData.getGenericCd(), 10);
+		Cart.removeItem(TestData.getGenericCd(), 20);
+	}
+
+	@Test(expected = LightCartException.class)
 	public void removeItemAmount() {
 		TestData.initializeData();
 		Cart.removeItem(TestData.getGenericCd(), -1);

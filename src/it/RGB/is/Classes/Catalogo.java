@@ -49,7 +49,7 @@ public class Catalogo implements Serializable {
 
 	// BANCADATI: aggiunta e rimozione dal catalogo
 	public static void addItem(Prodotto prodotto) throws CatalogoIllegalArgumentException {
-		if (prodotto.equals(null)) {
+		if (prodotto == null) {
 			throw new CatalogoIllegalArgumentException("Aggiunta prodotto fallita (null pointer)");
 		}
 		strutturaDati.add(prodotto);
@@ -57,14 +57,14 @@ public class Catalogo implements Serializable {
 
 	public static void addItem(Prodotto prodotto, int amountSelected)
 			throws CatalogoIllegalArgumentException, LightCatalogoException {
-		if (prodotto.equals(null)) {
+		if (prodotto == null) {
 			throw new CatalogoIllegalArgumentException("Aggiunta prodotto fallita (null pointer)");
 		}
 		if (amountSelected <= 0) {
 			throw new LightCatalogoException("Aggiunta prodotto fallita (quantità minore di 0)");
 		}
 
-		prodotto.setNewDispAdd(amountSelected); // aggiungo i prodotti
+		prodotto.addDisp(amountSelected); // aggiungo i prodotti
 
 		// se non c'è lo rimetto
 		if (!strutturaDati.contains(prodotto)) {
@@ -75,14 +75,15 @@ public class Catalogo implements Serializable {
 
 	public static void removeItem(Prodotto prodotto, int amount)
 			throws CatalogoIllegalArgumentException, LightCatalogoException {
-		if (prodotto.equals(null)) {
+		if (prodotto == null) {
 			throw new CatalogoIllegalArgumentException("Rimozione prodotto fallita (null pointer)");
 		}
-		if (amount <= 0) {
+		if (amount <= 0 || amount > prodotto.getDisp()) {
 			throw new LightCatalogoException("Rimozione prodotto fallita (quantità minore di 0)");
 		}
 
-		prodotto.setNewDisp(amount);
+		prodotto.removeDisp(amount);
+
 		if (prodotto.getDisp() < 2) {
 			System.out.println(
 					"Attenzione!\nProdotto: " + prodotto.getID() + ", " + prodotto.getTitolo() + " in esaurimento!"); // Avviso
@@ -101,10 +102,6 @@ public class Catalogo implements Serializable {
 	}
 
 	private static void removeAll(Prodotto prodotto) throws CatalogoIllegalArgumentException {
-		if (prodotto.equals(null)) {
-			throw new CatalogoIllegalArgumentException("Rimozione prodotti fallita (null pointer)");
-		}
-
 		strutturaDati.remove(prodotto);
 	}
 
@@ -128,6 +125,7 @@ public class Catalogo implements Serializable {
 
 	public static Prodotto[] searchByKey(SearchMod searchMod, String key) {
 		HashSet<Prodotto> result = new HashSet<>();
+		key = key.toLowerCase();
 
 		switch (searchMod) {
 		case ARTISTA:

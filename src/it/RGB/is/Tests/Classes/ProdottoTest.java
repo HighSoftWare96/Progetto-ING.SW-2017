@@ -39,7 +39,7 @@ public class ProdottoTest {
 		assertTrue(genericCD.getDataArrivo().equals(genericDVD.getDataArrivo()));
 		assertFalse(genericCD.getID() == genericDVD.getID());
 		// controllo disponibilità
-		genericCD.setNewDisp(10);
+		genericCD.removeDisp(10);
 		assertTrue(genericCD.getDisp() == 90);
 		assertTrue(genericCD.getPrezzoString().equals(genericDVD.getPrezzoString()));
 		assertTrue((float) genericCD.getPrezzo() == ((float) 12.23));
@@ -48,7 +48,7 @@ public class ProdottoTest {
 		assertFalse(genericDVD.getGenere().equals(Genere.JAZZ));
 		//manca controllo sulle foto e sui pezzi
 		
-		genericCD.setNewDispAdd(10);
+		genericCD.addDisp(10);
 		assertTrue(genericCD.getDisp() == 100);
 		
 		assertFalse(genericCD.equals(genericDVD));

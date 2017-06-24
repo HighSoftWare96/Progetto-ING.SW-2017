@@ -74,11 +74,11 @@ public class Cart {
 	public static void removeItem(Prodotto prodotto, int q) throws LightCartException {
 		if (prodotto == null)
 			throw new CartIllegalArgumentsException("Rimozione dal carrello fallita (null pointer).");
-		if (q <= 0)
-			throw new CartIllegalArgumentsException(
-					"Rimozione dal carrello fallita: quantità da rimuovere negativa o nulla.");
 		if (strutturaDati.size() == 0 || !strutturaDati.containsKey(prodotto))
 			throw new LightCartException("Rimozione dal carrello fallita (carrello vuoto, o prodotto inesistente).");
+		if (q <= 0 || q > strutturaDati.get(prodotto)) // quantità negativa oppure piu grande di quella presente
+			throw new CartIllegalArgumentsException(
+					"Rimozione dal carrello fallita: quantità da rimuovere negativa o nulla.");
 
 		// aggiornamento del carrello
 		strutturaDati.put(prodotto, strutturaDati.get(prodotto) - q);

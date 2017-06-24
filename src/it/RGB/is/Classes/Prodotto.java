@@ -120,11 +120,11 @@ public class Prodotto implements Serializable {
 		return this.disp;
 	}
 
-	public void setNewDisp(int nProdottiVenduti) {
+	public void removeDisp(int nProdottiVenduti) {
 		this.disp -= nProdottiVenduti;
 	}
 
-	public void setNewDispAdd(int nProdottiRestituiti) {
+	public void addDisp(int nProdottiRestituiti) {
 		this.disp += nProdottiRestituiti;
 	}
 
