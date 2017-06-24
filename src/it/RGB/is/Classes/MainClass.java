@@ -11,7 +11,7 @@ import it.RGB.is.Exceptions.CriticalException;
 import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
 import it.RGB.is.GUI.GUIMain;
 
-public class AAAMain {
+public class MainClass {
 
 	private static boolean insertOldData = false;
 
@@ -49,7 +49,7 @@ public class AAAMain {
 								"Unknown Soldier", "The Little Things", "Chinatown", "All the Tears that shine",
 								"Fortune", "Great Expectations" },
 						new ImageIcon[] {
-								new ImageIcon(AAAMain.class.getResource("/resources/covers/totoXIVcover.jpg")) },
+								new ImageIcon(MainClass.class.getResource("/resources/covers/totoXIVcover.jpg")) },
 						new Float(12.23),
 						new Band("Toto", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }),
 						"Gran bel album", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro }, 100);
@@ -62,7 +62,7 @@ public class AAAMain {
 								"This Is How We Do", "International Smile", "Ghost", "Love Me", "This Moment",
 								"Double Rainbow", "By The Grace Of God" },
 						new ImageIcon[] {
-								new ImageIcon(AAAMain.class.getResource("/resources/covers/prismcover.jpg")) },
+								new ImageIcon(MainClass.class.getResource("/resources/covers/prismcover.jpg")) },
 						new Float(6.99), katyPerry, "18 ottobre 2013", Genere.POP, new Artista[] { katyPerry }, 100);
 
 				Artista chrisMartin = new Artista("Chris Martin", Genere.POP, "Christopher Anthony John Martin ",
@@ -78,8 +78,8 @@ public class AAAMain {
 						new String[] { "A Head Full of Dreams", "Birds", "Hymn for the Weekend", "Everglow",
 								"Adventure of a Lifetime", "Fun", "Kaleidoscope", "Army of One", "Amazing Day",
 								"Colour Spectrum", "Up&Up" },
-						new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/ahfodcover.jpg")),
-								new ImageIcon(AAAMain.class.getResource("/resources/covers/ahfodcover_back.jpg")) },
+						new ImageIcon[] { new ImageIcon(MainClass.class.getResource("/resources/covers/ahfodcover.jpg")),
+								new ImageIcon(MainClass.class.getResource("/resources/covers/ahfodcover_back.jpg")) },
 						new Float(14.99),
 						new Band("Coldplay", Genere.POP,
 								new Artista[] { chrisMartin, jonnyBuckland, guyBerryman, willChampion }),
@@ -95,7 +95,7 @@ public class AAAMain {
 								"Washing of the Water", "Solsbury Hill", "Digging in the Dirt", "Sledgehammer",
 								"Secret World", "Don't Give Up", "In your Eyes" },
 						new ImageIcon[] {
-								new ImageIcon(AAAMain.class.getResource("/resources/covers/secretworldcover.jpg")) },
+								new ImageIcon(MainClass.class.getResource("/resources/covers/secretworldcover.jpg")) },
 						new Float(24.70), peterGabriel, "Remastered 2002", Genere.WORLD_MUSIC,
 						new Artista[] { peterGabriel }, 12);
 
@@ -109,7 +109,7 @@ public class AAAMain {
 								"Georgia on My Mind", "House of the Risin' Sun", "Amazing Grace", "Story of Little Boy",
 								"Tall Fiddler", "Cowboy's Dream", "Morning Aire", "Initiation", "Lenny Bro'",
 								"Questions" },
-						new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/cscover.jpg")) },
+						new ImageIcon[] { new ImageIcon(MainClass.class.getResource("/resources/covers/cscover.jpg")) },
 						new Float(19.99), tommyEmmanuel, "Released in 2008", Genere.FOLK,
 						new Artista[] { tommyEmmanuel }, 32);
 
@@ -125,7 +125,7 @@ public class AAAMain {
 								"Cheap Trick – Surrender", "Cat Stevens – Father and Son", "Parliament – Flashlight",
 								"The Sneepers feat. David Hasselhoff – Guardians Inferno" },
 						new ImageIcon[] {
-								new ImageIcon(AAAMain.class.getResource("/resources/covers/guardianGcover.jpg")) },
+								new ImageIcon(MainClass.class.getResource("/resources/covers/guardianGcover.jpg")) },
 						new Float(19.99), tylerBates, "Artisti vari", Genere.ROCK, new Artista[] { tylerBates }, 32);
 
 				Artista johnColtrane = new Artista("John Coltrane", Genere.JAZZ, "John William Coltrane", new Date(),
@@ -144,7 +144,7 @@ public class AAAMain {
 				Prodotto blueTrain = new Prodotto(false, "Blue Train",
 						new String[] { "Blue Train", "Moment's Notice", "Locomotion", "I'm Old Fashioned", "Lazy Bird",
 								"Blue Train (alt. take)", "Lazy Bird (alt. take)" },
-						new ImageIcon[] { new ImageIcon(AAAMain.class.getResource("/resources/covers/bluetrain.jpg")) },
+						new ImageIcon[] { new ImageIcon(MainClass.class.getResource("/resources/covers/bluetrain.jpg")) },
 						new Float(8.99), johnColtrane, "Album del 1957", Genere.JAZZ, new Artista[] { johnColtrane,
 								leeMorgan, curtisFuller, kennyDrew, paulChambers, phillyJoeJones },
 						80);
@@ -157,7 +157,7 @@ public class AAAMain {
 								"Me gustas tú", "Denia", "Mi Vida", "Trapped by Love", "Le Rendez Vous", "Mr. Bobby",
 								"Papito", "La Chinita", "La Marea", "Homens", "La Vacaloca", "Infinita Tristeza" },
 						new ImageIcon[] {
-								new ImageIcon(AAAMain.class.getResource("/resources/covers/esperanzacover.jpg")) },
+								new ImageIcon(MainClass.class.getResource("/resources/covers/esperanzacover.jpg")) },
 						new Float(6.99), manuChao, "Album del 2001", Genere.LATIN, new Artista[] { manuChao }, 100);
 
 			
