@@ -9,10 +9,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashSet;
 
-import javax.swing.JOptionPane;
-
 import it.RGB.is.Exceptions.CriticalException;
-import it.RGB.is.GUI.GUIMain;
+import it.RGB.is.Exceptions.LightCatalogoException;
+
 
 /**
  * 
@@ -49,11 +48,21 @@ public class Catalogo implements Serializable {
 		}
 	}
 
-	public static void addItem(Prodotto prodotto) {
+	public static void addItem(Prodotto prodotto) throws LightCatalogoException {
+		if(prodotto.equals(null)){
+			throw new LightCatalogoException("Aggiunta prodotto fallita (null pointer)");
+		}
 		strutturaDati.add(prodotto);
 	}
 
-	public static void removeItem(Prodotto prodotto, int amount) {
+	public static void removeItem(Prodotto prodotto, int amount) throws LightCatalogoException {
+		if(prodotto.equals(null)){
+			throw new LightCatalogoException("Rimozione prodotto fallita (null pointer)");
+		}
+		if(amount < 0){
+			throw new LightCatalogoException("Rimozione prodotto fallita (quantità minore di 0)");
+		}
+		
 		prodotto.setNewDisp(amount);
 		if (prodotto.getDisp() < 2) {
 			System.out.println("Attenzione!\nProdotto: " + prodotto.getID() + ", " + prodotto.getTitolo() + " in esaurimento!"); //Avviso di esaurimento prodotti
@@ -65,7 +74,11 @@ public class Catalogo implements Serializable {
 		}
 	}
 
-	private static void removeAll(Prodotto prodotto) {
+	private static void removeAll(Prodotto prodotto) throws LightCatalogoException{
+		if(prodotto.equals(null)){
+			throw new LightCatalogoException("Rimozione prodotti fallita (null pointer)");
+		}
+		
 		strutturaDati.remove(prodotto);
 	}
 
@@ -179,7 +192,14 @@ public class Catalogo implements Serializable {
 		return result.toArray(new Prodotto[result.size()]);
 	}
 
-	public static void addItem(Prodotto prodotto, int amountSelected) {
+	public static void addItem(Prodotto prodotto, int amountSelected) throws LightCatalogoException {
+		if(prodotto.equals(null)){
+			throw new LightCatalogoException("Aggiunta prodotto fallita (null pointer)");
+		}
+		if(amountSelected < 0){
+			throw new LightCatalogoException("Aggiunta prodotto fallita (quantità minore di 0)");
+		}
+		
 		prodotto.setNewDispAdd(amountSelected); // aggiungo i prodotti
 		// se non c'è lo rimetto
 		if (!strutturaDati.contains(prodotto)) {

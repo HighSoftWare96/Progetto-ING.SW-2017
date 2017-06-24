@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashSet;
 
+import it.RGB.is.Exceptions.LightBancaUtentiException;
 import it.RGB.is.Exceptions.CriticalException;
 
 /**
@@ -51,7 +52,10 @@ public class BancaUtenti implements Serializable {
 
 	}
 
-	public static void addItem(Cliente cliente) {
+	public static void addItem(Cliente cliente) throws LightBancaUtentiException{
+		if(cliente.equals(null)){
+			throw new LightBancaUtentiException("Aggiunta cliente fallita (null pointer).");
+		}
 		strutturaUtenti.add(cliente);
 	}
 

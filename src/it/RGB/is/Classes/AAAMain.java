@@ -160,6 +160,7 @@ public class AAAMain {
 								new ImageIcon(AAAMain.class.getResource("/resources/covers/esperanzacover.jpg")) },
 						new Float(6.99), manuChao, "Album del 2001", Genere.LATIN, new Artista[] { manuChao }, 100);
 
+			
 				Catalogo.addItem(totoXIV);
 				Catalogo.addItem(prism);
 				Catalogo.addItem(ahfodColdPlay);
