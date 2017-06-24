@@ -4,6 +4,8 @@
 package it.RGB.is.Tests.Integration;
 
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
 
@@ -12,6 +14,8 @@ import org.junit.Test;
 import it.RGB.is.Classes.BancaUtenti;
 import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Exceptions.BancaUtentiIllegalArgumentException;
+import it.RGB.is.GUI.Controller;
+import it.RGB.is.Tests.Classes.TestData;
 
 /**
  * @author Edoardo
@@ -21,156 +25,56 @@ public class BancaUtentiTest {
 
 	private static HashSet<Cliente> strutturaUtenti;
 	private static Cliente clienteLoggato = null;
+	
+	private void newUser(){
+		try {
+			Cliente user = new Cliente("RGHDRD96D15B296T", "user", "password", "User", "Test",
+					"City", "12312312364", null);
+			BancaUtenti.addItem(user);
+		} catch (Exception e) {
+		}
+	}
 
-	/**
-	 * Test method for
-	 * {@link it.RGB.is.Classes.BancaUtenti#addItem(it.RGB.is.Classes.Cliente)}.
-	 * 
-	 * @throws BancaUtentiIllegalArgumentException
-	 */
-	@Test
+	@Test (expected = BancaUtentiIllegalArgumentException.class)
 	public void testAddItem() throws BancaUtentiIllegalArgumentException {
 		BancaUtenti.addItem(null);
 	}
 
-	/**
-	 * Test method for
-	 * {@link it.RGB.is.Classes.BancaUtenti#checkLogIn(java.lang.String, java.lang.String)}.
-	 */
 	@Test
 	public void testCheckLogIn() {
 
-		BancaUtenti.checkLogIn("", "");
+		TestData.initializeData();
+		newUser();
+		assertTrue(BancaUtenti.checkLogIn("user", "password"));
 	}
 
-	/**
-	 * Test method for {@link it.RGB.is.Classes.BancaUtenti#setLoggedOut()}.
-	 */
 	@Test
 	public void testSetLoggedOut() {
+		
+		TestData.initializeData();
 		BancaUtenti.setLoggedOut();
+		assertTrue(BancaUtenti.getLoggedInUser() == null);
 	}
 
-	/**
-	 * Test method for {@link it.RGB.is.Classes.BancaUtenti#getLoggedInUser()}.
-	 */
 	@Test
 	public void testGetLoggedInUser() {
-
+		
+		TestData.initializeData();
+		try{
+			Controller.setLoggedIn(TestData.getGenericCliente());
+		
+			assertTrue(BancaUtenti.getLoggedInUser().equals(TestData.getGenericCliente()));
+		
+		} catch (NullPointerException e){
+		}
 	}
 
-	/**
-	 * Test method for
-	 * {@link it.RGB.is.Classes.BancaUtenti#userNameExists(java.lang.String)}.
-	 */
 	@Test
 	public void testUserNameExists() {
-		BancaUtenti.userNameExists("");
+		
+		TestData.initializeData();
+		newUser();
+		assertTrue(BancaUtenti.userNameExists("user"));
+		assertFalse(BancaUtenti.userNameExists("nomeInesistente"));
 	}
-
-	/**
-	 * Test method for {@link it.RGB.is.Classes.BancaUtenti#saveUtenti()}.
-	 */
-	@Test
-	public void testSaveUtenti() {
-		BancaUtenti.saveUtenti();
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#Object()}.
-	 */
-	@Test
-	public void testObject() {
-
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#getClass()}.
-	 */
-	@Test
-	public void testGetClass() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#hashCode()}.
-	 */
-	@Test
-	public void testHashCode() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#equals(java.lang.Object)}.
-	 */
-	@Test
-	public void testEquals() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#clone()}.
-	 */
-	@Test
-	public void testClone() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#toString()}.
-	 */
-	@Test
-	public void testToString() {
-		BancaUtenti banca = new BancaUtenti();
-		banca.toString();
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#notify()}.
-	 */
-	@Test
-	public void testNotify() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#notifyAll()}.
-	 */
-	@Test
-	public void testNotifyAll() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#wait(long)}.
-	 */
-	@Test
-	public void testWaitLong() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#wait(long, int)}.
-	 */
-	@Test
-	public void testWaitLongInt() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#wait()}.
-	 */
-	@Test
-	public void testWait() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link java.lang.Object#finalize()}.
-	 */
-	@Test
-	public void testFinalize() {
-		fail("Not yet implemented");
-	}
-
 }

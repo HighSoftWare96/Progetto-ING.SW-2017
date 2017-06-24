@@ -53,7 +53,7 @@ public class BancaUtenti implements Serializable {
 	}
 
 	public static void addItem(Cliente cliente) throws BancaUtentiIllegalArgumentException{
-		if(cliente.equals(null)){
+		if(cliente == null){
 			throw new BancaUtentiIllegalArgumentException("Aggiunta cliente fallita (null pointer).");
 		}
 		strutturaUtenti.add(cliente);
