@@ -12,9 +12,6 @@ import java.util.HashSet;
 import it.RGB.is.Exceptions.CriticalException;
 import it.RGB.is.Exceptions.LightBancaVenditeException;
 
-/**
- * 
- */
 public class BancaVendite {
 
 	private static ArrayList<Vendita> strutturaVendite;
@@ -45,7 +42,7 @@ public class BancaVendite {
 	}
 
 	public static void addItem(Vendita vendita) throws LightBancaVenditeException {
-		if (vendita.equals(null)) {
+		if (vendita == null) {
 			throw new LightBancaVenditeException("Aggiunta vendita fallita (null pointer).");
 		}
 		strutturaVendite.add(vendita);
