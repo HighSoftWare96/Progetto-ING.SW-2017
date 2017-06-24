@@ -120,7 +120,7 @@ public class TestData {
 					new Strumento[] { new Strumento("Sintetizzatore") });
 			nek = new Artista("Nek", Genere.ROCK, "Filippo Neviani", new Date(),
 					new Strumento[] { new Strumento("Voce") });
-
+ 
 			toto = new Band("Toto", Genere.ROCK, new Artista[] { steveLukather, davidPaich, stevePorcaro });
 
 			genericCD = new Prodotto(false, "Toto XIV",

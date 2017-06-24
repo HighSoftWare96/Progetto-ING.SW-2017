@@ -31,7 +31,7 @@ public class ArtistaTest {
 	public void testArtistaGenericoNull() throws ArtistIllegalArgumentException {
 		new Artista(null, null, "Test", new Date(), new Strumento[] { new Strumento("Chitarra") });
 	}
-
+ 
 	// test error handling costruttore di Artista
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testArtistaNull() throws ArtistIllegalArgumentException {
