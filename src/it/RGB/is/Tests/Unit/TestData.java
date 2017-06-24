@@ -1,4 +1,4 @@
-package it.RGB.is.Tests.Classes;
+package it.RGB.is.Tests.Unit;
 
 import java.util.Date;
 

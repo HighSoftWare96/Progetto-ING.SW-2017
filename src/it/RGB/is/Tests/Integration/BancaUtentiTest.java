@@ -12,7 +12,7 @@ import it.RGB.is.Classes.BancaUtenti;
 import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Exceptions.BancaUtentiIllegalArgumentException;
 import it.RGB.is.GUI.Controller;
-import it.RGB.is.Tests.Classes.TestData;
+import it.RGB.is.Tests.Unit.TestData;
 
 public class BancaUtentiTest {
 	

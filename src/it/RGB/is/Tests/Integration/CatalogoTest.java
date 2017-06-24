@@ -10,7 +10,7 @@ import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.SearchMod;
 import it.RGB.is.Exceptions.CatalogoIllegalArgumentException;
 import it.RGB.is.Exceptions.LightCatalogoException;
-import it.RGB.is.Tests.Classes.TestData;
+import it.RGB.is.Tests.Unit.TestData;
 
 public class CatalogoTest {
 

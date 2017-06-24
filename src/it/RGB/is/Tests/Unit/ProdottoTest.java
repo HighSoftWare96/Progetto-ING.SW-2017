@@ -1,4 +1,4 @@
-package it.RGB.is.Tests.Classes;
+package it.RGB.is.Tests.Unit;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

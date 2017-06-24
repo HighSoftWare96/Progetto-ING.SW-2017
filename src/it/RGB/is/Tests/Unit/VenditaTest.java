@@ -1,4 +1,4 @@
-package it.RGB.is.Tests.Classes;
+package it.RGB.is.Tests.Unit;
 
 import static org.junit.Assert.*;
 
@@ -10,8 +10,8 @@ import it.RGB.is.Classes.Prodotto;
 import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Vendita;
-import it.RGB.is.Tests.Classes.TestData;
 import it.RGB.is.Exceptions.VenditaIllegalArgumentException;
+import it.RGB.is.Tests.Unit.TestData;
 
 public class VenditaTest {
 	
