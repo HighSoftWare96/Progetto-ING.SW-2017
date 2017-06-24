@@ -3,11 +3,8 @@
  */
 package it.RGB.is.Tests.Integration;
 
-import static org.junit.Assert.fail;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.util.HashSet;
 
 import org.junit.Test;
 
@@ -39,6 +36,7 @@ public class BancaUtentiTest {
 		TestData.initializeData();
 		newUser();
 		assertTrue(BancaUtenti.checkLogIn("user", "password"));
+		assertFalse(BancaUtenti.checkLogIn("", ""));
 	}
 
 	@Test
