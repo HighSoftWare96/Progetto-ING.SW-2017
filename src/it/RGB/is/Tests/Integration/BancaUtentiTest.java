@@ -17,14 +17,7 @@ import it.RGB.is.Exceptions.BancaUtentiIllegalArgumentException;
 import it.RGB.is.GUI.Controller;
 import it.RGB.is.Tests.Classes.TestData;
 
-/**
- * @author Edoardo
- *
- */
 public class BancaUtentiTest {
-
-	private static HashSet<Cliente> strutturaUtenti;
-	private static Cliente clienteLoggato = null;
 	
 	private void newUser(){
 		try {
