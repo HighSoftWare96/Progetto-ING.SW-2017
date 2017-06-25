@@ -45,7 +45,6 @@ public class BancaVendite {
 		if (vendita == null) {
 			throw new LightBancaVenditeException("Aggiunta vendita fallita (null pointer).");
 		}
-		System.out.println("Size: " + strutturaVendite.size());
 		strutturaVendite.add(vendita);
 	}
 
