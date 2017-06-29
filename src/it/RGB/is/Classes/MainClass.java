@@ -13,7 +13,7 @@ import it.RGB.is.GUI.GUIMain;
 
 public class MainClass {
 
-	private static boolean insertOldData = false;
+	private static boolean insertOldData = true;
 
 	public static void main(String[] args) {
 
@@ -78,7 +78,8 @@ public class MainClass {
 						new String[] { "A Head Full of Dreams", "Birds", "Hymn for the Weekend", "Everglow",
 								"Adventure of a Lifetime", "Fun", "Kaleidoscope", "Army of One", "Amazing Day",
 								"Colour Spectrum", "Up&Up" },
-						new ImageIcon[] { new ImageIcon(MainClass.class.getResource("/resources/covers/ahfodcover.jpg")),
+						new ImageIcon[] {
+								new ImageIcon(MainClass.class.getResource("/resources/covers/ahfodcover.jpg")),
 								new ImageIcon(MainClass.class.getResource("/resources/covers/ahfodcover_back.jpg")) },
 						new Float(14.99),
 						new Band("Coldplay", Genere.POP,
@@ -116,7 +117,7 @@ public class MainClass {
 				Artista tylerBates = new Artista("Tyler Bates", Genere.POP, "Tyler Bates", new Date(),
 						new Strumento[] { new Strumento("Compositore") });
 
-				Prodotto guardianGalaxy2 = new Prodotto(false, "Guardiani della Galassia Vol. 2 (OSD)",
+				Prodotto guardianGalaxy2 = new Prodotto(false, "Guardiani della Galassia Vol. 2 (OST)",
 						new String[] { "Electric Light Orchestra – Mr. Blue Sky", "Sweet – Fox on the Run",
 								"Aliotta Haynes Jeremiah – Lake Shore Drive", "Fleetwood Mac – The Chain",
 								"Sam Cooke – Bring It On Home to Me", "Glen Campbell – Southern Nights",
@@ -144,7 +145,8 @@ public class MainClass {
 				Prodotto blueTrain = new Prodotto(false, "Blue Train",
 						new String[] { "Blue Train", "Moment's Notice", "Locomotion", "I'm Old Fashioned", "Lazy Bird",
 								"Blue Train (alt. take)", "Lazy Bird (alt. take)" },
-						new ImageIcon[] { new ImageIcon(MainClass.class.getResource("/resources/covers/bluetrain.jpg")) },
+						new ImageIcon[] {
+								new ImageIcon(MainClass.class.getResource("/resources/covers/bluetrain.jpg")) },
 						new Float(8.99), johnColtrane, "Album del 1957", Genere.JAZZ, new Artista[] { johnColtrane,
 								leeMorgan, curtisFuller, kennyDrew, paulChambers, phillyJoeJones },
 						80);
@@ -160,7 +162,19 @@ public class MainClass {
 								new ImageIcon(MainClass.class.getResource("/resources/covers/esperanzacover.jpg")) },
 						new Float(6.99), manuChao, "Album del 2001", Genere.LATIN, new Artista[] { manuChao }, 100);
 
-			
+				Artista hansZimmer = new Artista("Hans Zimmer", Genere.POP, "Hans Florian Zimmer", new Date(),
+						new Strumento[] { new Strumento("Compositore") });
+
+				Prodotto interstellar = new Prodotto(false, "Interstellar (OST)",
+						new String[] { "Dreaming of the Crash", "Cornfield Cha1se", "Dust", "Day One", "Stay",
+								"Message from Home", "The Wormhole", "Mountains", "Afraid of Time",
+								"A Place Among the Stars", "Running Out", "I'm Going Home", "Coward", "Detach",
+								"S.T.A.Y.", "Where We're Going" },
+						new ImageIcon[] {
+								new ImageIcon(MainClass.class.getResource("/resources/covers/interstcover.jpg")) },
+						new Float(14.99), hansZimmer, "Soundtrack del film Interstellar (girato da Cristopher Nolan)",
+						Genere.CLASSICA, new Artista[] { hansZimmer }, 44);
+
 				Catalogo.addItem(totoXIV);
 				Catalogo.addItem(prism);
 				Catalogo.addItem(ahfodColdPlay);
@@ -169,6 +183,7 @@ public class MainClass {
 				Catalogo.addItem(guardianGalaxy2);
 				Catalogo.addItem(blueTrain);
 				Catalogo.addItem(esperanza);
+				Catalogo.addItem(interstellar);
 
 			} catch (ArtistIllegalArgumentException e) {
 				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni artisti!",
