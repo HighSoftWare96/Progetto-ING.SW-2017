@@ -14,15 +14,11 @@ import it.RGB.is.Exceptions.LightBancaVenditeException;
 
 public class BancaVendite {
 
+	private static BancaVendite uniqueInstance = null;
 	private static ArrayList<Vendita> strutturaVendite;
 	private final static File venditeFile = new File("music_store_file//vendite.dat");
 
-	// SOLO PER TESTING !!!
-	public static void initializeFromScratch() {
-		strutturaVendite = new ArrayList<>();
-	}
-
-	public static void initialize() throws CriticalException {
+	private BancaVendite() {
 		if (venditeFile.exists()) {
 			// recupero i dati
 			try {
@@ -39,6 +35,17 @@ public class BancaVendite {
 			}
 		} else // creo il catalogo da zero
 			strutturaVendite = new ArrayList<>();
+	}
+
+	// SOLO PER TESTING !!!
+	public static void initializeFromScratch() {
+		strutturaVendite = new ArrayList<>();
+	}
+
+	public static void initialize() throws CriticalException {
+		// SINGLETON + PROXY?
+		if (uniqueInstance == null)
+			uniqueInstance = new BancaVendite();
 	}
 
 	public static void addItem(Vendita vendita) throws LightBancaVenditeException {

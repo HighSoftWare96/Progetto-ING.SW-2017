@@ -20,15 +20,12 @@ public class ArtistaTest {
 	private ArtistaGenerico absBand = null;
 
 	public ArtistaTest() {
-		TestData.initializeData();
-		absArtista = TestData.getArtist1();
-		absArtistaWithArtName = TestData.getArtistArtName();
-		absBand = TestData.getBand();
 	}
 
 	// test error handling costruttore di ArtistaGenerico (null)
 	@Test(expected = ArtistIllegalArgumentException.class)
 	public void testArtistaGenericoNull() throws ArtistIllegalArgumentException {
+		
 		new Artista(null, null, "Test", new Date(), new Strumento[] { new Strumento("Chitarra") });
 	}
  
@@ -62,7 +59,10 @@ public class ArtistaTest {
 
 	@Test
 	public void testArtistaSemplice() {
-
+		TestData.initializeData();
+		absArtista = TestData.getArtist1();
+		absArtistaWithArtName = TestData.getArtistArtName();
+		absBand = TestData.getBand();
 		assertTrue(absArtista.getGenerePrincipale().equals(Genere.ROCK));
 		// stesso nome arte e nascita un solo nome stampato
 		assertTrue(absArtista.getNomeArte().equalsIgnoreCase("Steve Lukather"));
@@ -72,7 +72,10 @@ public class ArtistaTest {
 
 	@Test
 	public void testArtistaConSecondoNome() {
-
+		TestData.initializeData();
+		absArtista = TestData.getArtist1();
+		absArtistaWithArtName = TestData.getArtistArtName();
+		absBand = TestData.getBand();
 		assertTrue(absArtistaWithArtName.toString().contains("Nek"));
 		assertTrue(absArtistaWithArtName.toString().contains("Filippo"));
 
@@ -80,7 +83,10 @@ public class ArtistaTest {
 
 	@Test
 	public void testBand() {
-
+		TestData.initializeData();
+		absArtista = TestData.getArtist1();
+		absArtistaWithArtName = TestData.getArtistArtName();
+		absBand = TestData.getBand();
 		assertTrue(absBand.getGenerePrincipale().equals(Genere.ROCK));
 		assertTrue(absBand.toString().contains("Steve Lukather"));
 		assertTrue(absBand.toString().contains("Steve Lukather"));

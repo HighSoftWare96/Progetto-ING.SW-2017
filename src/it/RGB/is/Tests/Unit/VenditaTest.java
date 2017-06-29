@@ -18,8 +18,6 @@ public class VenditaTest {
 	private Vendita venditaTest = null;
 	
 	public VenditaTest() {
-		TestData.initializeData();
-		venditaTest = TestData.getGenericVendita();
 	}
 		
 	@Test (expected = VenditaIllegalArgumentException.class)
@@ -46,7 +44,8 @@ public class VenditaTest {
 	
 	@Test
 	public void testVenditaConstructor() {
-		
+		TestData.initializeData();
+		venditaTest = TestData.getGenericVendita();
 		assertFalse(venditaTest.getProdotti().equals(null));
 		int amount = venditaTest.getAmount().length;
 		assertEquals(1, amount);

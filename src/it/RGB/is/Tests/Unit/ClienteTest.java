@@ -29,17 +29,6 @@ public class ClienteTest {
 	private Cliente clienteOnTesting;
 
 	public ClienteTest() {
-		try {
-
-			TestData.initializeData();
-
-			clienteOnTesting = TestData.getGenericCliente();
-
-			BancaUtenti.addItem(clienteOnTesting);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test(expected = IllegalUserRegistrationException.class)
@@ -69,6 +58,13 @@ public class ClienteTest {
 
 	@Test
 	public void testConstructor() {
+		try {
+			TestData.initializeData();
+			clienteOnTesting = TestData.getGenericCliente();
+			BancaUtenti.addItem(clienteOnTesting);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String nome = clienteOnTesting.getNome();
 		assertEquals("Nome cliente", "Mario", nome);
 		String cognome = clienteOnTesting.getCognome();
@@ -96,6 +92,13 @@ public class ClienteTest {
 
 	@Test
 	public void testAddVendita() {
+		try {
+			TestData.initializeData();
+			clienteOnTesting = TestData.getGenericCliente();
+			BancaUtenti.addItem(clienteOnTesting);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Vendita vendita = null;
 		try {
 			vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() }, new Integer[] { 20 },
@@ -124,6 +127,13 @@ public class ClienteTest {
 
 	@Test
 	public void testEquals() throws IllegalUserRegistrationException {
+		try {
+			TestData.initializeData();
+			clienteOnTesting = TestData.getGenericCliente();
+			BancaUtenti.addItem(clienteOnTesting);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Cliente clienteForEquals = new Cliente("BRTGNN96T21B296N", "testUserEq", "ciao123", "Mario", "Rossi", "Verona",
 				"000000000000", null);
 		Cliente clienteForEquals2 = new Cliente("BRTGNN96T21B296N", "testUserEq", "oqwuw123", "Mario2", "3Rossi",
@@ -135,6 +145,13 @@ public class ClienteTest {
 
 	@Test
 	public void testDiscounts() {
+		try {
+			TestData.initializeData();
+			clienteOnTesting = TestData.getGenericCliente();
+			BancaUtenti.addItem(clienteOnTesting);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Vendita vendita = new Vendita(clienteOnTesting, new Prodotto[] { TestData.getGenericCd() },
 				new Integer[] { 20 }, 250, new Date(), "localhost", Pagamento.BONIFICO, ModConsegna.CORRIERE_24H);
 		clienteOnTesting.addVendita(vendita);
@@ -175,12 +192,27 @@ public class ClienteTest {
 	// nessun acquisto effettuato: eccezione
 	@Test(expected = NoGenPrefFoundException.class)
 	public void testClientePreferredGenNull() throws NoGenPrefFoundException {
+		try {
+			TestData.initializeData();
+			clienteOnTesting = TestData.getGenericCliente();
+			BancaUtenti.addItem(clienteOnTesting);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		clienteOnTesting = TestData.getGenericCliente();
 		clienteOnTesting.calculateGeneriPref();
 	}
 
 	@Test
-	public void testClientePreferredGen() throws NoGenPrefFoundException, ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
+	public void testClientePreferredGen()
+			throws NoGenPrefFoundException, ProdottoIllegalArgumentException, ArtistIllegalArgumentException {
+		try {
+			TestData.initializeData();
+			clienteOnTesting = TestData.getGenericCliente();
+			BancaUtenti.addItem(clienteOnTesting);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Vendita genericVendita = TestData.getGenericVendita();
 		clienteOnTesting.addVendita(genericVendita);
 		clienteOnTesting.addVendita(genericVendita);
@@ -190,26 +222,26 @@ public class ClienteTest {
 
 		// jazz
 		TestData.changeGenOfGenericVendita(Genere.JAZZ);
-		
+
 		genericVendita = TestData.getGenericVendita();
 		clienteOnTesting.addVendita(genericVendita);
 		clienteOnTesting.addVendita(genericVendita);
 		clienteOnTesting.addVendita(genericVendita);
 		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.JAZZ));
-		
+
 		// jazz
 		TestData.changeGenOfGenericVendita(Genere.POP);
 		genericVendita = TestData.getGenericVendita();
 		clienteOnTesting.addVendita(genericVendita);
 		clienteOnTesting.addVendita(genericVendita);
 		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.JAZZ));
-		
+
 		clienteOnTesting.addVendita(genericVendita);
 		clienteOnTesting.addVendita(genericVendita);
 		assertTrue(clienteOnTesting.calculateGeneriPref().equals(Genere.POP));
-		
-		assertEquals(9, clienteOnTesting.getVenditeCount()); 
-		
+
+		assertEquals(9, clienteOnTesting.getVenditeCount());
+
 	}
 
 }

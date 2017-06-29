@@ -17,22 +17,16 @@ import it.RGB.is.Exceptions.CriticalException;
  */
 public class BancaUtenti implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8289777747322280430L;
+
+	// SINGLETON
+	private static BancaUtenti uniqueInstance = null;
+
 	private static final File utentiFile = new File("music_store_file//utenti.dat");
 	private static HashSet<Cliente> strutturaUtenti;
 	private static Cliente clienteLoggato = null;
 
-	
-	// SOLO PER TESTING !!!
-	public static void initializeFromScratch() {
-		strutturaUtenti = new HashSet<>();
-	}
-	
-	
-	public static void initialize() {
+	private BancaUtenti() {
 		if (utentiFile.exists()) {
 			// recupero i dati
 			try {
@@ -49,11 +43,20 @@ public class BancaUtenti implements Serializable {
 			}
 		} else // creo il catalogo da zero
 			strutturaUtenti = new HashSet<>();
-
 	}
 
-	public static void addItem(Cliente cliente) throws BancaUtentiIllegalArgumentException{
-		if(cliente == null){
+	// SOLO PER TESTING !!!
+	public static void initializeFromScratch() {
+		strutturaUtenti = new HashSet<>();
+	}
+
+	public static void initialize() {
+		if (uniqueInstance == null)
+			uniqueInstance = new BancaUtenti();
+	}
+
+	public static void addItem(Cliente cliente) throws BancaUtentiIllegalArgumentException {
+		if (cliente == null) {
 			throw new BancaUtentiIllegalArgumentException("Aggiunta cliente fallita (null pointer).");
 		}
 		strutturaUtenti.add(cliente);
@@ -118,7 +121,5 @@ public class BancaUtenti implements Serializable {
 		}
 
 	}
-
-
 
 }

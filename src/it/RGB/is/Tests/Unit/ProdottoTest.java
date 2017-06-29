@@ -20,13 +20,13 @@ public class ProdottoTest {
 	private Prodotto genericDVD = null;
 
 	public ProdottoTest() {
-		TestData.initializeData();
 	}
 	
 	@Test
 	public void testProdotto() {
-		genericCD = TestData.getGenericCd();		
-		genericDVD = TestData.getGenericDVD();		
+		TestData.initializeData();
+		genericCD = TestData.getGenericCd();
+		genericDVD = TestData.getGenericDVD();
 
 		assertTrue(genericCD.getDescrizione().equals("Gran bel album"));
 		assertTrue(!genericCD.getTitolo().contains("DVD"));

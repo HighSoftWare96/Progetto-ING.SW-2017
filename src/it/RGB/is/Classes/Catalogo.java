@@ -19,16 +19,14 @@ import it.RGB.is.Exceptions.CatalogoIllegalArgumentException;
 public class Catalogo implements Serializable {
 
 	private static final long serialVersionUID = 3336345341426740830L;
+
+	private static Catalogo uniqueInstance = null;
+
 	private static final File catalogoFile = new File("music_store_file//catalogo.dat");
 	private static HashSet<Prodotto> strutturaDati;
 	private static int availableID;
 
-	// SOLO PER TESTING !!!
-	public static void initializeFromScratch() {
-		strutturaDati = new HashSet<>();
-	}
-
-	public static void initialize() {
+	private Catalogo() {
 		try {
 			if (catalogoFile.exists()) {
 				// recupero i dati
@@ -45,6 +43,16 @@ public class Catalogo implements Serializable {
 		} catch (Exception e) {
 			throw new CriticalException("Catalogo IO: inizializzazione dati da file");
 		}
+	}
+
+	// SOLO PER TESTING !!!
+	public static void initializeFromScratch() {
+		strutturaDati = new HashSet<>();
+	}
+
+	public static void initialize() {
+		if (uniqueInstance == null)
+			uniqueInstance = new Catalogo();
 	}
 
 	// BANCADATI: aggiunta e rimozione dal catalogo
