@@ -169,9 +169,4 @@ public class CartTest {
 		TestData.initializeData();
 		Cart.removeItem(TestData.getGenericCd(), 1);
 	}
-
-	@Test
-	public void removeAllCartEmpty() {
-		Cart.removeAll();
-	}
 }
