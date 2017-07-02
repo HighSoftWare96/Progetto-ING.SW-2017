@@ -174,6 +174,24 @@ public class MainClass {
 								new ImageIcon(MainClass.class.getResource("/resources/covers/interstcover.jpg")) },
 						new Float(14.99), hansZimmer, "Soundtrack del film Interstellar (girato da Cristopher Nolan)",
 						Genere.CLASSICA, new Artista[] { hansZimmer }, 44);
+				
+				Artista herbieHancock = new Artista("Herbie Hancock", Genere.JAZZ, "Herbert Jeffrey Hancock", new Date(),
+						new Strumento[] { new Strumento("Pianoforte"), new Strumento("Clavinet"), new Strumento("Sintetizzatore")});
+				Artista bennieMaupin = new Artista("Bennie Maupin", Genere.JAZZ, "Bennie Maupin", new Date(),
+						new Strumento[] { new Strumento("Sassofono"), new Strumento("Clarinetto Basso"), new Strumento("Flauto contralto")});
+				Artista paulJackson =  new Artista("Paul Jackson", Genere.JAZZ, "Paul Jackson", new Date(),
+						new Strumento[] { new Strumento("Basso elettrico")});
+				Artista harveyMason =  new Artista("Harvey Mason", Genere.JAZZ, "Harvey Williams Mason", new Date(),
+						new Strumento[] { new Strumento("Batteria")});
+				Artista billSummers =  new Artista("Bill Summers", Genere.JAZZ, "Bill Summers", new Date(),
+						new Strumento[] { new Strumento("Conga"), new Strumento("Tamburello"), new Strumento("Cabassa")});
+				
+				Prodotto headHunters = new Prodotto(false, "Head Hunters",
+						new String[] { "Chameleon", "Watermelon Man", "Sly", "Vein Melter" },
+						new ImageIcon[] {
+								new ImageIcon(MainClass.class.getResource("/resources/covers/headhunterscover.jpg")) },
+						new Float(5.99), herbieHancock, "Soundtrack del film Interstellar (girato da Cristopher Nolan)",
+						Genere.JAZZ, new Artista[] { herbieHancock, bennieMaupin, paulJackson, harveyMason, billSummers }, 12);
 
 				Catalogo.addItem(totoXIV);
 				Catalogo.addItem(prism);
@@ -184,6 +202,7 @@ public class MainClass {
 				Catalogo.addItem(blueTrain);
 				Catalogo.addItem(esperanza);
 				Catalogo.addItem(interstellar);
+				Catalogo.addItem(headHunters);
 
 			} catch (ArtistIllegalArgumentException e) {
 				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni artisti!",
