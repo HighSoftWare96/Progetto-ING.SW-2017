@@ -175,6 +175,15 @@ public class MainClass {
 						new Float(14.99), hansZimmer, "Soundtrack del film Interstellar (girato da Cristopher Nolan)",
 						Genere.CLASSICA, new Artista[] { hansZimmer }, 44);
 				
+				Prodotto inception = new Prodotto(false, "Inception: Music from the Motion Picture", 
+						new String[] {"Half Remembered Dream", "We Built Our Own World", "Dream Is Collapsing",
+								"Radical Notion", "Old Souls", "528491", "Mombasa", "One Simple Idea", 
+								"Dream Within A Dream", "Waiting For A Train", "Paradox", "Time"}, 
+						new ImageIcon[] {
+								new ImageIcon(MainClass.class.getResource("/resources/covers/inception.jpg")) },
+						new Float(12.99), hansZimmer, "Soundtrack del film Inception (girato da Cristopher Nolan)",
+						Genere.CLASSICA, new Artista[] { hansZimmer }, 30);
+				
 				Artista herbieHancock = new Artista("Herbie Hancock", Genere.JAZZ, "Herbert Jeffrey Hancock", new Date(),
 						new Strumento[] { new Strumento("Pianoforte"), new Strumento("Clavinet"), new Strumento("Sintetizzatore")});
 				Artista bennieMaupin = new Artista("Bennie Maupin", Genere.JAZZ, "Bennie Maupin", new Date(),
@@ -190,7 +199,7 @@ public class MainClass {
 						new String[] { "Chameleon", "Watermelon Man", "Sly", "Vein Melter" },
 						new ImageIcon[] {
 								new ImageIcon(MainClass.class.getResource("/resources/covers/headhunterscover.jpg")) },
-						new Float(5.99), herbieHancock, "Soundtrack del film Interstellar (girato da Cristopher Nolan)",
+						new Float(5.99), herbieHancock, "Uno degli album più venduti della storia della musica jazz.",
 						Genere.JAZZ, new Artista[] { herbieHancock, bennieMaupin, paulJackson, harveyMason, billSummers }, 12);
 
 				Catalogo.addItem(totoXIV);
@@ -202,6 +211,7 @@ public class MainClass {
 				Catalogo.addItem(blueTrain);
 				Catalogo.addItem(esperanza);
 				Catalogo.addItem(interstellar);
+				Catalogo.addItem(inception);
 				Catalogo.addItem(headHunters);
 
 			} catch (ArtistIllegalArgumentException e) {
