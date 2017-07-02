@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import it.RGB.is.Exceptions.ArtistIllegalArgumentException;
-import it.RGB.is.Exceptions.CriticalException;
 import it.RGB.is.Exceptions.ProdottoIllegalArgumentException;
 import it.RGB.is.GUI.GUIMain;
 
@@ -201,6 +200,19 @@ public class MainClass {
 								new ImageIcon(MainClass.class.getResource("/resources/covers/headhunterscover.jpg")) },
 						new Float(5.99), herbieHancock, "Uno degli album più venduti della storia della musica jazz.",
 						Genere.JAZZ, new Artista[] { herbieHancock, bennieMaupin, paulJackson, harveyMason, billSummers }, 12);
+				
+				Artista shakira = new Artista("Shakira", Genere.LATIN, "Shakira Isabel Mebarak Ripoll", new Date(),
+						new Strumento[] { new Strumento("Voce")});
+				
+				Prodotto laundryService = new Prodotto(false, "Laundry Service",
+						new String[] {"Objection (Tango)", "Underneath Your Clothes", "Whenever, Wherever", "Rules",
+								"The One", "Ready For The Good Times", "Fool", "Te Dejo Madrid", "Poem to a Horse",
+								"Que Me Quedes Tu", "Eyes Like Yours (Ojos Asì)", "Suerte (Whenever, Wherever)",
+								"Te Aviso, Te Anuncio (Tango)"},
+						new ImageIcon[] {
+								new ImageIcon(MainClass.class.getResource("/resources/covers/laundryservicecover.jpg")) },
+						new Float(7.99), shakira, "Quinto album in studio di Shakira, oltre 20 milioni di copie vendute.",
+						Genere.LATIN, new Artista[] { shakira }, 52);
 
 				Catalogo.addItem(totoXIV);
 				Catalogo.addItem(prism);
@@ -213,6 +225,7 @@ public class MainClass {
 				Catalogo.addItem(interstellar);
 				Catalogo.addItem(inception);
 				Catalogo.addItem(headHunters);
+				Catalogo.addItem(laundryService);
 
 			} catch (ArtistIllegalArgumentException e) {
 				JOptionPane.showMessageDialog(null, "Errore nell'inizializzazione di alcuni artisti!",
