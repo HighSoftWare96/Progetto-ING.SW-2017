@@ -65,7 +65,7 @@ public class MainTableProductsListener implements ListSelectionListener, MouseLi
 
 				// Menu a comparsa faccio comparire il menu con le coordinate
 				// date dall'evento del mouse
-				new MainTableProductsPopMenu().show(mainPanel, e.getX(), (e.getY() + 40));
+				new MainTableProductsPopMenu().show(mainPanel, e.getXOnScreen(), e.getYOnScreen() - 40);
 				;
 			}
 		} else {
