@@ -17,7 +17,6 @@ import it.RGB.is.Classes.ModConsegna;
 import it.RGB.is.Classes.Pagamento;
 import it.RGB.is.Classes.Vendita;
 import it.RGB.is.Exceptions.LightBancaVenditeException;
-import it.RGB.is.Exceptions.VenditaIllegalArgumentException;
 
 public class BuyListeners implements ActionListener {
 	public static final String CANCEL_COMMAND = "Cancel";

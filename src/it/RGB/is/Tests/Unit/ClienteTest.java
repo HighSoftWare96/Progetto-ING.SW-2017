@@ -12,7 +12,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import it.RGB.is.Classes.BancaUtenti;
-import it.RGB.is.Classes.Catalogo;
 import it.RGB.is.Classes.Cliente;
 import it.RGB.is.Classes.Genere;
 import it.RGB.is.Classes.ModConsegna;

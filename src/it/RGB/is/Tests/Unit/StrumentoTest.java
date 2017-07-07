@@ -13,7 +13,7 @@ public class StrumentoTest {
 
 	@Test(expected = StrumentoIllegalArgument.class)
 	public void testStrumentoNull() {
-		Strumento bo = new Strumento("");
+		new Strumento("");
 	}
 
 	@Test

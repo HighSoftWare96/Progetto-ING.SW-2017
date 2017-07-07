@@ -35,6 +35,8 @@ public class AmountPicker extends JDialog {
 	private JButton disposeBtn = new JButton(AmountPickerListener.DISPOSE_COMMAND);
 	private Prodotto prodotto;
 	private JLabel priceLbl;
+	private JLabel objDetail;
+	private JLabel imageCD;
 
 	public AmountPicker(JDialog parent, Prodotto prodotto, String title, int min, int max) {
 		super(parent, true);
@@ -61,10 +63,10 @@ public class AmountPicker extends JDialog {
 		setFocusable(true);
 		addKeyListener(new KeyboardListener(this));
 
-		JLabel imageCD = new JLabel(prodotto.getCover());
+		imageCD = new JLabel(prodotto.getCover());
 
 		JPanel northPanel = new JPanel(new GridLayout(2, 1));
-		JLabel objDetail = new JLabel("<html><h3>" + prodotto.getTitolo(), SwingConstants.CENTER);
+		objDetail = new JLabel("<html><h3>" + prodotto.getTitolo(), SwingConstants.CENTER);
 		priceLbl = new JLabel("Prezzo: " + prodotto.getPrezzoString() + " €", SwingConstants.CENTER);
 
 		northPanel.add(objDetail);
