@@ -43,7 +43,7 @@ public final class Controller {
 	public static void flushCart() {
 		CartFrame.setEmptyLayout();
 		MainFrameMenu.disableEmptyBtn();
-		CartFrame.disableEmptyBtn();
+		CartFrame.cartEmptyBtns();
 	}
 
 	// LOGINFRAMELISTENER
@@ -266,7 +266,7 @@ public final class Controller {
 			// aggiorno la view del catalogo
 			MainPanelProducts.updateCatalogItems();
 			MainFrameMenu.disableEmptyBtn();
-			CartFrame.disableEmptyBtn();
+			CartFrame.cartEmptyBtns();
 		}
 	}
 

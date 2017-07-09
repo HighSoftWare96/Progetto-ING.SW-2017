@@ -26,6 +26,8 @@ import it.RGB.is.Classes.Cart;
 
 public class CartFrame extends JDialog {
 
+	private static CartFrame instance = null;
+
 	private static final long serialVersionUID = 1L;
 	private static JButton removeCart;
 	private static JButton backCart;
@@ -44,7 +46,13 @@ public class CartFrame extends JDialog {
 
 	private final Container contentPanel = this.getContentPane();
 
-	public CartFrame(JFrame frame) {
+	public static CartFrame getInstance(JFrame frame) {
+		if (instance == null)
+			instance = new CartFrame(frame);
+		return instance;
+	}
+
+	private CartFrame(JFrame frame) {
 
 		super(frame, true);
 
@@ -109,10 +117,9 @@ public class CartFrame extends JDialog {
 
 		if (Cart.getCartNumberItems() == 0) { // empty disabilitato se il
 												// carrello è vuoto
-			emptyCart.setEnabled(false);
-			buyCart.setEnabled(false);
-			buyCart.setForeground(null);
-		}
+			cartEmptyBtns();
+		} else
+			cartNotEmptyBtns();
 
 		// Mostra totale del carrello
 		totalProducts = new JLabel("<html><center>N. articoli singoli: <h2>" + Cart.getCartNumberItems() + "</h2>"); // numero
@@ -147,7 +154,6 @@ public class CartFrame extends JDialog {
 		setIconImage(new ImageIcon(MainFrame.class.getResource("/resources/cart_icon_new.png")).getImage());
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setVisible(true);
 	}
 
 	private void adjustTable(JTable table) {
@@ -195,9 +201,12 @@ public class CartFrame extends JDialog {
 		totalPrice.setText("<html><center>Totale: <h2>" + Cart.calculateSubTotaleNotSped() + " €</h2>");
 
 		// imposto la tabella come nuova view nel carrello
-		if (Cart.getCartNumberItems() > 0) // se ci sono elementi
+		if (Cart.getCartNumberItems() > 0) {// se ci sono elementi
 			containerTable.setViewportView(cartItemsTable);
+			cartNotEmptyBtns();
+		}
 		else {
+			cartEmptyBtns();
 			containerTable.setViewportView(emptyCartIconLbl);
 		}
 	}
@@ -212,7 +221,13 @@ public class CartFrame extends JDialog {
 		removeCart.setForeground(null);
 	}
 
-	public static void disableEmptyBtn() {
+	public static void cartNotEmptyBtns() {
+		emptyCart.setEnabled(true);
+		buyCart.setEnabled(true);
+		buyCart.setForeground(Color.decode("#006600"));
+	}
+	
+	public static void cartEmptyBtns() {
 		emptyCart.setEnabled(false);
 		buyCart.setEnabled(false);
 		buyCart.setForeground(null);

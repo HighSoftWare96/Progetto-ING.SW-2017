@@ -47,7 +47,9 @@ public class MainFrame extends JFrame {
 		MainPanelButtons buttonSOUTH = new MainPanelButtons();
 		products = new MainPanelProducts();
 		sidebar = new MainPanelSidebar();
+		CartFrame.getInstance(this).setVisible(false);;
 
+		
 		mainFrameContainer.setLayout(new BorderLayout());
 		mainFrameContainer.add(buttonSOUTH, BorderLayout.SOUTH);
 		mainFrameContainer.add(products, BorderLayout.CENTER);
@@ -85,7 +87,7 @@ public class MainFrame extends JFrame {
 				Cart.removeAll();
 
 				if (Cart.getCart().length != 0)
-					CartFrame.disableEmptyBtn();
+					CartFrame.cartEmptyBtns();
 
 				// prima di uscire salvo tutti i dati su file
 				Catalogo.saveCatalog();

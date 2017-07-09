@@ -48,7 +48,7 @@ public class MainFrameListeners implements ActionListener {
 			break;
 
 		case ActionsCommands.CART_VIEW_COMMAND:
-			new CartFrame(GUIMain.getFrame());
+			CartFrame.getInstance(GUIMain.getFrame()).setVisible(true);
 			break;
 
 		case ActionsCommands.ADD_ITEM_TO_CART:
