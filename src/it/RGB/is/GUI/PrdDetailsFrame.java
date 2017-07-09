@@ -81,7 +81,7 @@ public class PrdDetailsFrame extends JDialog {
 
 		fourthPanel.add(singerGroupLabel);
 		fourthPanel
-				.add(new JLabel("<html><center>" + prodotto.getTitolare().toString() + "<br>", SwingConstants.CENTER));
+				.add(new JLabel("<html><center>" + prodotto.getTitolare().getNomeArte() + "<br>", SwingConstants.CENTER));
 
 		fourthPanel.add(descrlLabel);
 		fourthPanel.add(new JLabel("<html>" + prodotto.getDescrizione() + "<br>", SwingConstants.CENTER));
